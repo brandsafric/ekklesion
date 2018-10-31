@@ -9,8 +9,6 @@
 
 namespace IglesiaUNO\People\Domain\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class ArgonHashedPassword.
  *
@@ -21,7 +19,6 @@ class ArgonHashedPassword implements HashedPassword
 {
     /**
      * @var string
-     * @ORM\Column(type="string")
      */
     private $hash;
 

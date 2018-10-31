@@ -10,7 +10,6 @@
 namespace IglesiaUNO\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ActionToken.
@@ -23,14 +22,10 @@ class ActionToken
     public const EXPIRES = '+4 hours';
 
     /**
-     * @ORM\Column(type="string")
-     *
      * @var string
      */
     private $value;
     /**
-     * @ORM\Column(type="chronos")
-     *
      * @var Chronos
      */
     private $expires;

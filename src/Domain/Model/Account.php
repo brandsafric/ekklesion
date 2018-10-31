@@ -10,50 +10,36 @@
 namespace IglesiaUNO\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
-use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
 /**
  * Class Account.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
- * @ORM\Entity(repositoryClass="IglesiaUNO\People\Infrastructure\Repository\DoctrineAccountRepository")
  */
 class Account
 {
     /**
-     * @ORM\Column(type="guid")
-     *
-     * @var string
+     * @var Uuid
      */
     private $uuid;
     /**
-     * @ORM\Embedded(class="IglesiaUNO\People\Domain\Model\ArgonHashedPassword", columnPrefix="password_")
-     *
      * @var HashedPassword
      */
     private $password;
     /**
-     * @ORM\Embedded(class="IglesiaUNO\People\Domain\Model\Username", columnPrefix="username_")
-     *
      * @var Username
      */
     private $username;
     /**
-     * @ORM\Embedded(class="IglesiaUNO\People\Domain\Model\ActionToken", columnPrefix="token_")
-     *
      * @var ActionToken
      */
     private $actionToken;
     /**
-     * @ORM\Column(type="chronos", nullable=true)
-     *
      * @var Chronos|null
      */
     private $lastLogin;
     /**
-     * @ORM\Column(type="chronos")
-     *
      * @var Chronos
      */
     private $createdAt;
@@ -72,7 +58,7 @@ class Account
     public static function create(string $username, string $plainPassword): Account
     {
         $self = new self();
-        $self->uuid = Uuid::uuid4()->toString();
+        $self->uuid = Uuid::uuid4();
         $self->username = Username::create($username);
         $self->password = ArgonHashedPassword::fromPlainPassword($plainPassword);
         $self->actionToken = ActionToken::generate();
@@ -82,9 +68,9 @@ class Account
     }
 
     /**
-     * @return string
+     * @return Uuid
      */
-    public function uuid(): string
+    public function uuid(): Uuid
     {
         return $this->uuid;
     }

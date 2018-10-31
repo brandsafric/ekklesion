@@ -9,8 +9,6 @@
 
 namespace IglesiaUNO\People\Domain\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Class Username.
  *
@@ -20,14 +18,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Username
 {
     /**
-     * @ORM\Column(type="string", unique=true)
-     *
      * @var string
      */
     private $normal;
     /**
-     * @ORM\Column(type="string", unique=true)
-     *
      * @var string
      */
     private $canonical;

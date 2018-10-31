@@ -11,12 +11,14 @@ namespace IglesiaUNO\People\Factory\Service;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\Tools\Setup;
 use IglesiaUNO\People\Infrastructure\Persistence\PsrSqlLogger;
 use IglesiaUNO\People\Infrastructure\Persistence\Types\ChronosType;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Ramsey\Uuid\Uuid;
 
 class EntityManagerFactory
 {
@@ -25,16 +27,20 @@ class EntityManagerFactory
         $isDev = 'dev' === $container->get('settings')['env'];
 
         $paths = [
-            __DIR__.'/../../Domain/Model',
+            __DIR__.'/../../../doctrine/mappings' => 'IglesiaUNO\People\Domain\Model',
         ];
 
-        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDev);
+        $config = Setup::createConfiguration($isDev);
+
+        $driver = new SimplifiedXmlDriver($paths);
+        $config->setMetadataDriverImpl($driver);
 
         $namingStrategy = new UnderscoreNamingStrategy();
         $config->setNamingStrategy($namingStrategy);
 
         $config->setSQLLogger(new PsrSqlLogger($container->get(LoggerInterface::class)));
 
+        Type::addType('uuid', Uuid::class);
         Type::addType('chronos', ChronosType::class);
 
         $conn = [

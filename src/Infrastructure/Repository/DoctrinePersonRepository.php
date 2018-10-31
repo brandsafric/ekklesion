@@ -10,13 +10,13 @@
 namespace IglesiaUNO\People\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use IglesiaUNO\People\Domain\Repository\PersonRepository;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Class DoctrinePersonRepository.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class DoctrinePersonRepository extends EntityRepository implements PersonRepository
 {
 }

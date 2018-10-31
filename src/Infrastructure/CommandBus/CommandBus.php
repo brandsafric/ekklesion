@@ -7,16 +7,19 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Repository;
-
-use Doctrine\ORM\EntityRepository;
+namespace IglesiaUNO\People\Infrastructure\CommandBus;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Interface CommandBus.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+interface CommandBus
 {
+    /**
+     * @param $command
+     *
+     * @return mixed
+     */
+    public function dispatch($command);
 }

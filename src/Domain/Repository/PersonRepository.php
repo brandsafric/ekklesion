@@ -7,8 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Domain\Model;
+namespace IglesiaUNO\People\Domain\Repository;
 
-class Family
+/**
+ * Interface PersonRepository.
+ *
+ * @author Matías Navarro Carter <mnavarro@option.cl>
+ */
+interface PersonRepository
 {
 }

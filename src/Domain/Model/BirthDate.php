@@ -7,16 +7,22 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Repository;
+namespace IglesiaUNO\People\Domain\Model;
 
-use Doctrine\ORM\EntityRepository;
+use Cake\Chronos\Chronos;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Class BirthDate.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class BirthDate extends Chronos
 {
+    /**
+     * @return int
+     */
+    public function age(): int
+    {
+        return $this->diffInYears(Chronos::now());
+    }
 }

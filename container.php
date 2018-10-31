@@ -7,7 +7,10 @@
  * file that was distributed with this source code.
  */
 
+use IglesiaUNO\People\Domain\Repository;
+use IglesiaUNO\People\Factory\Repository as RepositoryFactory;
 use IglesiaUNO\People\Factory\Service as ServiceFactory;
+use IglesiaUNO\People\Infrastructure\CommandBus\CommandBus;
 use IglesiaUNO\People\Infrastructure\Templating\Templating;
 
 return [
@@ -23,8 +26,10 @@ return [
     \Doctrine\ORM\EntityManagerInterface::class => new ServiceFactory\EntityManagerFactory(),
     \Psr\Log\LoggerInterface::class => new ServiceFactory\LoggerFactory(),
     Templating::class => new ServiceFactory\TwigTemplatingFactory(),
+    CommandBus::class => new ServiceFactory\CommandBusFactory(),
 
     // Repositories
+    Repository\AccountRepository::class => RepositoryFactory\AccountRepositoryFactory::class,
 
     // Commands => Command Handlers
 ];

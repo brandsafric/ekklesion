@@ -7,16 +7,21 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Repository;
+namespace IglesiaUNO\People\Infrastructure\CommandHandler;
 
-use Doctrine\ORM\EntityRepository;
+use IglesiaUNO\People\Domain\Command\CreatePerson;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Class CreatePersonHandler.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class CreatePersonHandler
 {
+    /**
+     * @param CreatePerson $command
+     */
+    public function __invoke(CreatePerson $command)
+    {
+    }
 }

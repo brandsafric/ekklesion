@@ -7,16 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Repository;
-
-use Doctrine\ORM\EntityRepository;
+namespace IglesiaUNO\People\Domain\Model;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Class Email.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class Email
 {
 }

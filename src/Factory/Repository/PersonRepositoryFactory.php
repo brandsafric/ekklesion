@@ -7,16 +7,16 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Repository;
+namespace IglesiaUNO\People\Factory\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use IglesiaUNO\People\Domain\Repository\PersonRepository;
 
 /**
- * Class DoctrineAccountRepository.
-
+ * Class PersonRepositoryFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class PersonRepositoryFactory extends EntityRepository implements PersonRepository
 {
 }

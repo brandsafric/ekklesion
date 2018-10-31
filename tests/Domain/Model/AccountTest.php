@@ -13,6 +13,7 @@ use Cake\Chronos\Chronos;
 use IglesiaUNO\People\Domain\Model\Account;
 use IglesiaUNO\People\Domain\Model\Username;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class AccountTest.
@@ -50,6 +51,6 @@ class AccountTest extends TestCase
         $account = Account::create('username', 'password');
         $this->assertInstanceOf(Chronos::class, $account->createdAt());
         $this->assertInstanceOf(Username::class, $account->username());
-        $this->assertInternalType('string', $account->uuid());
+        $this->assertInstanceOf(Uuid::class, $account->uuid());
     }
 }
