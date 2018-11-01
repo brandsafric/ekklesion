@@ -18,7 +18,7 @@ use IglesiaUNO\People\Domain\Command\Login;
  */
 class LoginHandler implements AccountsAware
 {
-    use AccountsTrait;
+    use Accounts;
 
     /**
      * @param Login $command

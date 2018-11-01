@@ -10,24 +10,24 @@
 namespace IglesiaUNO\People\Factory\CommandHandler;
 
 use IglesiaUNO\People\Domain\Repository\PersonRepository;
-use IglesiaUNO\People\Infrastructure\CommandHandler\CreatePersonHandler;
+use IglesiaUNO\People\Infrastructure\CommandHandler\ListPeopleHandler;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class CreatePersonHandlerFactory.
+ * Class ListPeopleHandlerFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class CreatePersonHandlerFactory
+class ListPeopleHandlerFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return CreatePersonHandler
+     * @return ListPeopleHandler
      */
     public function __invoke(ContainerInterface $container)
     {
-        $handler = new CreatePersonHandler();
+        $handler = new ListPeopleHandler();
         $handler->setPeople($container->get(PersonRepository::class));
 
         return $handler;

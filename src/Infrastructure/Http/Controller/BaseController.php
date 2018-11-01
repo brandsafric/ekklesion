@@ -87,7 +87,7 @@ abstract class BaseController
      *
      * @return ResponseInterface
      */
-    protected function json(ResponseInterface $response, array $data = [], int $status = 200): ResponseInterface
+    protected function json(ResponseInterface $response, $data = null, int $status = 200): ResponseInterface
     {
         $response->getBody()->write(json_encode($data));
 

@@ -16,7 +16,12 @@ use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\Tools\Setup;
 use IglesiaUNO\People\Infrastructure\Persistence\PsrSqlLogger;
 use IglesiaUNO\People\Infrastructure\Persistence\Types\ChronosType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\EmailType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\FilenameType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\GenderType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\PhoneNumberType;
 use IglesiaUNO\People\Infrastructure\Persistence\Types\UuidType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\WebsiteType;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -42,6 +47,11 @@ class EntityManagerFactory
 
         Type::addType('uuid', UuidType::class);
         Type::addType('chronos', ChronosType::class);
+        Type::addType('gender', GenderType::class);
+        Type::addType('email', EmailType::class);
+        Type::addType('filename', FilenameType::class);
+        Type::addType('phone', PhoneNumberType::class);
+        Type::addType('website', WebsiteType::class);
 
         $conn = [
             'url' => $container->get('settings')['db_url'],

@@ -5,8 +5,8 @@ A people database for Iglesia UNO.
 
 ## Use Cases
 
-- [ ] Create a Person
-- [ ] List People
+- [x] Create a Person
+- [x] List People
 - [ ] See a Person
 - [ ] Update a Person
 - [ ] Delete a person
@@ -16,6 +16,7 @@ A people database for Iglesia UNO.
 - [ ] Remove person membership (api)
 - [ ] Remove person deaconship (api)
 - [ ] Remove person eldership (api)
-- [ ] Create account for Person (api)
+- [x] Create an account
+- [ ] Assign an account to a person (api)
 - [ ] Assign people to a family (api)
 - [ ] Remove people from a family (api)

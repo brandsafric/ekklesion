@@ -16,7 +16,7 @@ class NameTest extends TestCase
 {
     public function testTextTransformation(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
 
         $this->assertSame('John Peter', $name->given());
         $this->assertSame('Doe', $name->father());
@@ -25,31 +25,31 @@ class NameTest extends TestCase
 
     public function testInformalFormatting(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
         $this->assertSame('John Peter', $name->format(Name::FORMAT_INFORMAL));
     }
 
     public function testNormalFormatting(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
         $this->assertSame('John Doe', $name->format(Name::FORMAT_NORMAL));
     }
 
     public function testFullFormatting(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
         $this->assertSame('John Peter Doe Carson', $name->format(Name::FORMAT_FULL));
     }
 
     public function testListFormatting(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
         $this->assertSame('Doe Carson, John Peter', $name->format(Name::FORMAT_LIST));
     }
 
     public function testInvalidFormattingValue(): void
     {
-        $name = Name::fromParts(['john', 'peter'], 'doe', 'CARSON');
+        $name = Name::fromParts('john peter', 'doe', 'CARSON');
         $this->expectException(\InvalidArgumentException::class);
         $name->format(6);
     }

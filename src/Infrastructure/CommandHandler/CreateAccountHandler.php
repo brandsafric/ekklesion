@@ -20,7 +20,7 @@ use IglesiaUNO\People\Domain\Presenter\AccountArrayPresenter;
  */
 class CreateAccountHandler implements AccountsAware
 {
-    use AccountsTrait;
+    use Accounts;
 
     /**
      * @param CreateAccount $command
@@ -29,6 +29,8 @@ class CreateAccountHandler implements AccountsAware
      */
     public function __invoke(CreateAccount $command)
     {
+        $this->ensureUsernameIsUnique($command->username());
+
         $account = Account::create($command->username(), $command->plainPassword());
         $this->accounts->add($account);
 

@@ -13,11 +13,11 @@ use IglesiaUNO\People\Domain\Model\Account;
 use IglesiaUNO\People\Domain\Repository\AccountRepository;
 
 /**
- * Trait AccountsTrait.
+ * Trait Accounts.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-trait AccountsTrait
+trait Accounts
 {
     /**
      * @var AccountRepository
@@ -43,6 +43,17 @@ trait AccountsTrait
         if ($account instanceof Account) {
             return $account;
         }
-        throw new \DomainException('Account not found');
+        throw new \DomainException('Account not found', 404);
+    }
+
+    /**
+     * @param string $username
+     */
+    protected function ensureUsernameIsUnique(string $username): void
+    {
+        $account = $this->accounts->ofUsername($username);
+        if ($account instanceof Account) {
+            throw new \DomainException('The username is already taken');
+        }
     }
 }

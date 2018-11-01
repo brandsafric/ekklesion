@@ -42,8 +42,14 @@ return [
 
     // Repositories
     Repository\AccountRepository::class => new RepositoryFactory\AccountRepositoryFactory(),
+    Repository\PersonRepository::class => new RepositoryFactory\PersonRepositoryFactory(),
 
     // Commands => Command Handlers Factories
-    Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
+    Command\CreateFirstUser::class => new HandlerFactory\CreateFirstUserHandlerFactory(),
+
     Command\CreateAccount::class => new HandlerFactory\CreateAccountHandlerFactory(),
+    Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
+
+    Command\ListPeople::class => new HandlerFactory\ListPeopleHandlerFactory(),
+    Command\CreatePerson::class => new HandlerFactory\CreatePersonHandlerFactory(),
 ];

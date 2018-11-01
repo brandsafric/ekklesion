@@ -23,10 +23,20 @@ class Website
      */
     private $url;
 
+    /**
+     * Website constructor.
+     *
+     * @param string $url
+     */
     private function __construct(string $url)
     {
         Assertion::url($url);
         $this->url = $url;
+    }
+
+    public function __toString()
+    {
+        return $this->url();
     }
 
     /**

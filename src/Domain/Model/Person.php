@@ -10,10 +10,11 @@
 namespace IglesiaUNO\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
+use IglesiaUNO\People\Infrastructure\Filesystem\Filename;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class Person.
+ * A Person represents someone that has attended or attends a church.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
@@ -28,21 +29,33 @@ class Person
      */
     private $name;
     /**
-     * @var string|null
+     * @var Gender
+     */
+    private $gender;
+    /**
+     * @var PersonRole
+     */
+    private $role;
+    /**
+     * @var Filename|null
      */
     private $avatar;
-    /**
-     * @var BirthDate|null
-     */
-    private $birthDate;
     /**
      * @var Uuid|null
      */
     private $accountId;
     /**
-     * @var PersonRole
+     * @var Uuid|null
      */
-    private $role;
+    private $household;
+    /**
+     * @var Uuid|null
+     */
+    private $householdRole;
+    /**
+     * @var Chronos|null
+     */
+    private $birthday;
     /**
      * @var Email|null
      */
@@ -64,7 +77,239 @@ class Person
      */
     private $baptizedAt;
     /**
+     * @var Uuid
+     */
+    private $createdBy;
+    /**
      * @var Chronos
      */
-    private $addedAt;
+    private $createdAt;
+
+    /**
+     * Person constructor.
+     */
+    private function __construct()
+    {
+    }
+
+    /**
+     * @param Name  $name
+     * @param Email $email
+     *
+     * @return Person
+     */
+    public static function createInitial(Name $name, Email $email): Person
+    {
+        $person = new self();
+        $person->uuid = Uuid::uuid4();
+        $person->name = $name;
+        $person->email = $email;
+        $person->gender = Gender::other();
+        $person->role = PersonRole::init();
+        $person->createdBy = $person->uuid;
+        $person->createdAt = Chronos::now();
+
+        return $person;
+    }
+
+    /**
+     * @param Uuid       $createdBy
+     * @param Name       $name
+     * @param Gender     $gender
+     * @param PersonRole $role
+     *
+     * @return Person
+     */
+    public static function create(Uuid $createdBy, Name $name, Gender $gender, PersonRole $role): Person
+    {
+        $person = new self();
+        $person->uuid = Uuid::uuid4();
+        $person->name = $name;
+        $person->gender = $gender;
+        $person->role = $role;
+        $person->createdBy = $createdBy;
+        $person->createdAt = Chronos::now();
+    }
+
+    /**
+     * @return Uuid
+     */
+    public function uuid(): Uuid
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return Name
+     */
+    public function name(): Name
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Gender
+     */
+    public function gender(): Gender
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @return PersonRole
+     */
+    public function role(): PersonRole
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return Filename|null
+     */
+    public function avatar(): ?Filename
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @return Chronos|null
+     */
+    public function birthday(): ?Chronos
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @return null|Uuid
+     */
+    public function accountId(): ?Uuid
+    {
+        return $this->accountId;
+    }
+
+    /**
+     * @return null|Uuid
+     */
+    public function household(): ?Uuid
+    {
+        return $this->household;
+    }
+
+    /**
+     * @return null|Uuid
+     */
+    public function householdRole(): ?Uuid
+    {
+        return $this->householdRole;
+    }
+
+    /**
+     * @return Email|null
+     */
+    public function email(): ?Email
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return PhoneNumber|null
+     */
+    public function phoneNumber(): ?PhoneNumber
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @return Website|null
+     */
+    public function facebook(): ?Website
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @return Chronos|null
+     */
+    public function firstVisit(): ?Chronos
+    {
+        return $this->firstVisit;
+    }
+
+    /**
+     * @return Chronos|null
+     */
+    public function baptizedAt(): ?Chronos
+    {
+        return $this->baptizedAt;
+    }
+
+    /**
+     * @return Uuid
+     */
+    public function createdBy(): Uuid
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * @return Chronos
+     */
+    public function createdAt(): Chronos
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param PhoneNumber $phoneNumber
+     */
+    public function setPhoneNumber(PhoneNumber $phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @param Email $email
+     */
+    public function setEmail(Email $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param Chronos $birthday
+     */
+    public function setBirthday(Chronos $birthday): void
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @param Chronos $firstVisit
+     */
+    public function setFirstVisit(Chronos $firstVisit): void
+    {
+        $this->firstVisit = $firstVisit;
+    }
+
+    /**
+     * @param Chronos $baptizedAt
+     */
+    public function setBaptizedAt(Chronos $baptizedAt): void
+    {
+        $this->baptizedAt = $baptizedAt;
+    }
+
+    /**
+     * @param string $username
+     * @param string $plainPassword
+     *
+     * @return Account
+     */
+    public function createAccount(string $username, string $plainPassword): Account
+    {
+        $account = Account::create($this->uuid, $username, $plainPassword);
+        $this->accountId = $account->uuid();
+
+        return $account;
+    }
 }

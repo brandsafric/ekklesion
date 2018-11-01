@@ -7,22 +7,19 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Domain\Model;
+namespace IglesiaUNO\People\Infrastructure\CommandHandler;
 
-use Cake\Chronos\Chronos;
+use IglesiaUNO\People\Domain\Repository\PersonRepository;
 
 /**
- * Class BirthDate.
+ * Interface PeopleAware.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class BirthDate extends Chronos
+interface PeopleAware
 {
     /**
-     * @return int
+     * @param PersonRepository $people
      */
-    public function age(): int
-    {
-        return $this->diffInYears(Chronos::now());
-    }
+    public function setPeople(PersonRepository $people): void;
 }

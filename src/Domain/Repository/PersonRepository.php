@@ -9,6 +9,11 @@
 
 namespace IglesiaUNO\People\Domain\Repository;
 
+use IglesiaUNO\People\Domain\Model\Email;
+use IglesiaUNO\People\Domain\Model\Person;
+use MNC\PhpDdd\Domain\Model\Collection;
+use Ramsey\Uuid\Uuid;
+
 /**
  * Interface PersonRepository.
  *
@@ -16,4 +21,39 @@ namespace IglesiaUNO\People\Domain\Repository;
  */
 interface PersonRepository
 {
+    /**
+     * @return Collection
+     */
+    public function all(): Collection;
+
+    /**
+     * @param Uuid $id
+     *
+     * @return Person|null
+     */
+    public function ofId(Uuid $id): ?Person;
+
+    /**
+     * @param Uuid $id
+     *
+     * @return Person|null
+     */
+    public function ofAccountId(Uuid $id): ?Person;
+
+    /**
+     * @param Email $email
+     *
+     * @return Person|null
+     */
+    public function ofEmail(Email $email): ?Person;
+
+    /**
+     * @param Person $person
+     */
+    public function add(Person $person): void;
+
+    /**
+     * @param Person $person
+     */
+    public function remove(Person $person): void;
 }

@@ -7,12 +7,20 @@
 
         <id name="uuid" type="uuid" column="uuid"/>
         <embedded name="name" class="IglesiaUNO\People\Domain\Model\Name" column-prefix="name_"/>
-        <field name="avatar" nullable="true"/>
+        <field name="gender" type="gender"/>
         <embedded name="role" class="IglesiaUNO\People\Domain\Model\PersonRole" column-prefix="role_"/>
+        <field name="avatar" type="filename" nullable="true"/>
+        <field name="birthday" type="chronos" nullable="true"/>
         <field name="accountId" type="uuid" nullable="true"/>
+        <field name="household" type="uuid" nullable="true"/>
+        <field name="householdRole" type="uuid" nullable="true"/>
+        <field name="email" type="email" nullable="true"/>
+        <field name="phoneNumber" type="phone" nullable="true"/>
+        <field name="facebook" type="website" nullable="true"/>
         <field name="firstVisit" type="chronos" nullable="true"/>
         <field name="baptizedAt" type="chronos" nullable="true"/>
-        <field name="addedAt" type="chronos"/>
+        <field name="createdBy" type="uuid"/>
+        <field name="createdAt" type="chronos"/>
 
     </entity>
 

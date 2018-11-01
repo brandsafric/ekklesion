@@ -24,7 +24,7 @@ class AccountTest extends TestCase
 {
     public function testAccountPasswordCanBeChanged(): void
     {
-        $account = Account::create('username', 'password');
+        $account = Account::create(Uuid::uuid4(), 'username', 'password');
         $account->changePassword('password', 'newPassword');
         $account->login('newPassword');
         $this->assertNotNull($account->lastLogin());
@@ -32,14 +32,14 @@ class AccountTest extends TestCase
 
     public function testWrongPasswordInChangingFails(): void
     {
-        $account = Account::create('username', 'password');
+        $account = Account::create(Uuid::uuid4(), 'username', 'password');
         $this->expectException(\DomainException::class);
         $account->changePassword('wrongPassword', 'newPassword');
     }
 
     public function testPasswordCanBeResseted(): void
     {
-        $account = Account::create('username', 'password');
+        $account = Account::create(Uuid::uuid4(), 'username', 'password');
         $token = $account->startPasswordResetProcess();
         $account->resetPassword($token, 'newPassword');
         $account->login('newPassword');
@@ -48,7 +48,7 @@ class AccountTest extends TestCase
 
     public function testAccessors(): void
     {
-        $account = Account::create('username', 'password');
+        $account = Account::create(Uuid::uuid4(), 'username', 'password');
         $this->assertInstanceOf(Chronos::class, $account->createdAt());
         $this->assertInstanceOf(Username::class, $account->username());
         $this->assertInstanceOf(Uuid::class, $account->uuid());

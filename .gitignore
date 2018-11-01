@@ -5,3 +5,5 @@ composer.lock
 node_modules
 yarn.lock
 public/build
+storage
+public/storage

@@ -26,4 +26,10 @@ class PhoneNumberTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $number = PhoneNumber::fromCountryCodeAndNumber('56', ' 9 6623-409 ');
     }
+
+    public function testCreationFromValue(): void
+    {
+        $number = PhoneNumber::fromValue('+56 9 6623 4079');
+        $this->assertSame('+56 9 6623 4079', $number->value());
+    }
 }

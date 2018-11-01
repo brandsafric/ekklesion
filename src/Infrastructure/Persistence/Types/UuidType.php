@@ -47,7 +47,7 @@ class UuidType extends Type
      *
      * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): UuidInterface
+    public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         if (empty($value)) {
             return null;
@@ -72,7 +72,7 @@ class UuidType extends Type
      *
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if (empty($value)) {
             return null;

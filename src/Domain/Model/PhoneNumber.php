@@ -40,6 +40,26 @@ class PhoneNumber
     }
 
     /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->value();
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return PhoneNumber
+     */
+    public static function fromValue(string $value): PhoneNumber
+    {
+        [$code, $area, $partOne, $partTwo] = sscanf($value, '+%s %s %s %s');
+
+        return new self($code, $area.$partOne.$partTwo);
+    }
+
+    /**
      * @param string $countryCode
      * @param string $number
      *

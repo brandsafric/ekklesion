@@ -24,6 +24,10 @@ class Account
      */
     private $uuid;
     /**
+     * @var Uuid
+     */
+    private $personId;
+    /**
      * @var HashedPassword
      */
     private $password;
@@ -50,15 +54,17 @@ class Account
     }
 
     /**
+     * @param Uuid   $personId
      * @param string $username
      * @param string $plainPassword
      *
      * @return Account
      */
-    public static function create(string $username, string $plainPassword): Account
+    public static function create(Uuid $personId, string $username, string $plainPassword): Account
     {
         $self = new self();
         $self->uuid = Uuid::uuid4();
+        $self->personId = $personId;
         $self->username = Username::create($username);
         $self->password = ArgonHashedPassword::fromPlainPassword($plainPassword);
         $self->actionToken = ActionToken::generate();
@@ -81,6 +87,14 @@ class Account
     public function username(): Username
     {
         return $this->username;
+    }
+
+    /**
+     * @return Uuid
+     */
+    public function personId(): Uuid
+    {
+        return $this->personId;
     }
 
     /**

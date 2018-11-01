@@ -49,15 +49,15 @@ class Name
     }
 
     /**
-     * @param array       $given
+     * @param string      $given
      * @param null|string $father
      * @param null|string $mother
      *
      * @return Name
      */
-    public static function fromParts(array $given, ?string $father, ?string $mother): Name
+    public static function fromParts(string $given, ?string $father, ?string $mother): Name
     {
-        return new self($given, $father, $mother);
+        return new self(explode(' ', $given), $father, $mother);
     }
 
     public function given(): string

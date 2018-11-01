@@ -11,7 +11,9 @@ namespace IglesiaUNO\People\Infrastructure\Http\Controller;
 
 use Cake\Chronos\Chronos;
 use IglesiaUNO\People\Domain\Command\CreateAccount;
+use IglesiaUNO\People\Domain\Command\CreateFirstUser;
 use IglesiaUNO\People\Domain\Command\Login;
+use IglesiaUNO\People\Infrastructure\Http\Form\FormExtractor;
 use IglesiaUNO\People\Infrastructure\Http\Security\Authenticator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -96,5 +98,41 @@ class SecurityController extends BaseController
         $response = $this->redirect($response, '/auth/login');
 
         return $authenticator->removeAuthenticationCookie($response);
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function install(Request $request, Response $response): Response
+    {
+        return $this->render($response, 'install.html.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function doInstall(Request $request, Response $response): Response
+    {
+        $extractor = new FormExtractor($request);
+        $person = $this->dispatchCommand(new CreateFirstUser(
+            $extractor->get('given'),
+            $extractor->get('father'),
+            $extractor->get('mother'),
+            $extractor->get('email'),
+            $extractor->get('username'),
+            $extractor->get('password')
+        ));
+
+        /** @var Authenticator $authenticator */
+        $authenticator = $this->get(Authenticator::class);
+        $response = $authenticator->addAuthenticationCookie($response, $person['accountId'], Chronos::now()->addDay());
+
+        return $this->redirect($response, '/');
     }
 }

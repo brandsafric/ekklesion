@@ -9,25 +9,22 @@
 
 namespace IglesiaUNO\People\Factory\CommandHandler;
 
+use IglesiaUNO\People\Domain\Repository\AccountRepository;
 use IglesiaUNO\People\Domain\Repository\PersonRepository;
-use IglesiaUNO\People\Infrastructure\CommandHandler\CreatePersonHandler;
+use IglesiaUNO\People\Infrastructure\CommandHandler\CreateFirstUserHandler;
 use Psr\Container\ContainerInterface;
 
-/**
- * Class CreatePersonHandlerFactory.
- *
- * @author Matías Navarro Carter <mnavarro@option.cl>
- */
-class CreatePersonHandlerFactory
+class CreateFirstUserHandlerFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return CreatePersonHandler
+     * @return CreateFirstUserHandler
      */
     public function __invoke(ContainerInterface $container)
     {
-        $handler = new CreatePersonHandler();
+        $handler = new CreateFirstUserHandler();
+        $handler->setAccounts($container->get(AccountRepository::class));
         $handler->setPeople($container->get(PersonRepository::class));
 
         return $handler;

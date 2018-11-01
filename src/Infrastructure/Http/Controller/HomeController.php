@@ -27,6 +27,6 @@ class HomeController extends BaseController
      */
     public function __invoke(Request $request, Response $response): Response
     {
-        return $this->render($response, 'layout/dashboard.html.twig');
+        return $this->render($response, 'views/dashboard.html.twig');
     }
 }
