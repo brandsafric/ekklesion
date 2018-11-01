@@ -1,7 +1,7 @@
-Iglesia UNO - People
-====================
+Ekklesion - People
+==================
 
-A people database for Iglesia UNO.
+People management for churches.
 
 ## Use Cases
 

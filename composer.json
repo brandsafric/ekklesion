@@ -1,6 +1,6 @@
 {
-    "name": "iglesia-uno/people",
-    "description": "A people database for Iglesia UNO",
+    "name": "ekklesion/people",
+    "description": "People management for churches",
     "type": "project",
     "require": {
         "php": "^7.2",
