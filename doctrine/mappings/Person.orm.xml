@@ -3,12 +3,12 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                    https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
-    <entity name="IglesiaUNO\People\Domain\Model\Person" repository-class="IglesiaUNO\People\Infrastructure\Repository\DoctrinePersonRepository">
+    <entity name="Ekklesion\People\Domain\Model\Person" repository-class="Ekklesion\People\Infrastructure\Repository\DoctrinePersonRepository">
 
         <id name="uuid" type="uuid" column="uuid"/>
-        <embedded name="name" class="IglesiaUNO\People\Domain\Model\Name" column-prefix="name_"/>
+        <embedded name="name" class="Ekklesion\People\Domain\Model\Name" column-prefix="name_"/>
         <field name="gender" type="gender"/>
-        <embedded name="role" class="IglesiaUNO\People\Domain\Model\PersonRole" column-prefix="role_"/>
+        <embedded name="role" class="Ekklesion\People\Domain\Model\PersonRole" column-prefix="role_"/>
         <field name="avatar" type="filename" nullable="true"/>
         <field name="birthday" type="chronos" nullable="true"/>
         <field name="accountId" type="uuid" nullable="true"/>

@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\CommandHandler;
+namespace Ekklesion\People\Infrastructure\CommandHandler;
 
 use Cake\Chronos\Chronos;
-use IglesiaUNO\People\Domain\Command\CreatePerson;
-use IglesiaUNO\People\Domain\Model\Email;
-use IglesiaUNO\People\Domain\Model\Gender;
-use IglesiaUNO\People\Domain\Model\Name;
-use IglesiaUNO\People\Domain\Model\Person;
-use IglesiaUNO\People\Domain\Model\PersonRole;
-use IglesiaUNO\People\Domain\Model\PhoneNumber;
-use IglesiaUNO\People\Domain\Presenter\PersonArrayPresenter;
+use Ekklesion\People\Domain\Command\CreatePerson;
+use Ekklesion\People\Domain\Model\Email;
+use Ekklesion\People\Domain\Model\Gender;
+use Ekklesion\People\Domain\Model\Name;
+use Ekklesion\People\Domain\Model\Person;
+use Ekklesion\People\Domain\Model\PersonRole;
+use Ekklesion\People\Domain\Model\PhoneNumber;
+use Ekklesion\People\Domain\Presenter\PersonArrayPresenter;
 use Ramsey\Uuid\Uuid;
 
 /**

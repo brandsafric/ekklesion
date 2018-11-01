@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Persistence\Types;
+namespace Ekklesion\People\Infrastructure\Persistence\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\StringType;
-use IglesiaUNO\People\Domain\Model\Website;
+use Ekklesion\People\Domain\Model\Website;
 use InvalidArgumentException;
 
 /**

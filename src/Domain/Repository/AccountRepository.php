@@ -1,16 +1,16 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Domain\Repository;
+namespace Ekklesion\People\Domain\Repository;
 
-use IglesiaUNO\People\Domain\Model\Account;
-use IglesiaUNO\People\Domain\Model\Username;
+use Ekklesion\People\Domain\Model\Account;
+use Ekklesion\People\Domain\Model\Username;
 use MNC\PhpDdd\Domain\Model\Collection;
 
 /**

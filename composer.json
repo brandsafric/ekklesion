@@ -41,12 +41,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "IglesiaUNO\\People\\": "src/"
+            "Ekklesion\\People\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IglesiaUNO\\People\\Tests\\": "tests/"
+            "Ekklesion\\People\\Tests\\": "tests/"
         }
     }
 }

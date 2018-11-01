@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                    https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
-    <embeddable name="IglesiaUNO\People\Domain\Model\PersonRole">
+    <embeddable name="Ekklesion\People\Domain\Model\PersonRole">
         <field name="value" type="integer"/>
     </embeddable>
 

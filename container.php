@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-use IglesiaUNO\People\Domain\Command;
-use IglesiaUNO\People\Domain\Repository;
-use IglesiaUNO\People\Factory\CommandHandler as HandlerFactory;
-use IglesiaUNO\People\Factory\Http\JwtAuthenticatorFactory;
-use IglesiaUNO\People\Factory\Http\Middleware as MiddlewareFactory;
-use IglesiaUNO\People\Factory\Repository as RepositoryFactory;
-use IglesiaUNO\People\Factory\Service as ServiceFactory;
-use IglesiaUNO\People\Infrastructure\CommandBus\CommandBus;
-use IglesiaUNO\People\Infrastructure\Http\Middleware;
-use IglesiaUNO\People\Infrastructure\Http\Security\Authenticator;
-use IglesiaUNO\People\Infrastructure\Templating\Templating;
+use Ekklesion\People\Domain\Command;
+use Ekklesion\People\Domain\Repository;
+use Ekklesion\People\Factory\CommandHandler as HandlerFactory;
+use Ekklesion\People\Factory\Http\JwtAuthenticatorFactory;
+use Ekklesion\People\Factory\Http\Middleware as MiddlewareFactory;
+use Ekklesion\People\Factory\Repository as RepositoryFactory;
+use Ekklesion\People\Factory\Service as ServiceFactory;
+use Ekklesion\People\Infrastructure\CommandBus\CommandBus;
+use Ekklesion\People\Infrastructure\Http\Middleware;
+use Ekklesion\People\Infrastructure\Http\Security\Authenticator;
+use Ekklesion\People\Infrastructure\Templating\Templating;
 
 return [
     'settings' => [

@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Factory\Service;
+namespace Ekklesion\People\Factory\Service;
 
-use IglesiaUNO\People\Infrastructure\Templating\TwigTemplating;
+use Ekklesion\People\Infrastructure\Templating\TwigTemplating;
 use Psr\Container\ContainerInterface;
 use Twig\Loader\FilesystemLoader;
 

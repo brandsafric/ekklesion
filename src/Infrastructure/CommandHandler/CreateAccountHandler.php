@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the IglesiaUNO\People project.
+ * This file is part of the Ekklesion\People project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\CommandHandler;
+namespace Ekklesion\People\Infrastructure\CommandHandler;
 
-use IglesiaUNO\People\Domain\Command\CreateAccount;
-use IglesiaUNO\People\Domain\Model\Account;
-use IglesiaUNO\People\Domain\Presenter\AccountArrayPresenter;
+use Ekklesion\People\Domain\Command\CreateAccount;
+use Ekklesion\People\Domain\Model\Account;
+use Ekklesion\People\Domain\Presenter\AccountArrayPresenter;
 
 /**
  * Class CreateAccountHandler.
