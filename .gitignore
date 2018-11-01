@@ -7,3 +7,4 @@ yarn.lock
 public/build
 storage
 public/storage
+.env
