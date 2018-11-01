@@ -10,6 +10,7 @@
 namespace IglesiaUNO\People\Domain\Repository;
 
 use IglesiaUNO\People\Domain\Model\Account;
+use IglesiaUNO\People\Domain\Model\Username;
 use MNC\PhpDdd\Domain\Model\Collection;
 
 /**
@@ -23,6 +24,13 @@ interface AccountRepository
      * @return Collection
      */
     public function all(): Collection;
+
+    /**
+     * @param string $username
+     *
+     * @return Account|null
+     */
+    public function ofUsername(string $username): ?Account;
 
     /**
      * @param Account $account

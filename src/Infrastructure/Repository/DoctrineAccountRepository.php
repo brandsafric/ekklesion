@@ -10,6 +10,13 @@
 namespace IglesiaUNO\People\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use IglesiaUNO\People\Domain\Model\Account;
+use IglesiaUNO\People\Domain\Repository\AccountRepository;
+use MNC\PhpDdd\Domain\Model\Collection;
+use MNC\PhpDdd\Infrastructure\Domain\Model\DoctrineCollection;
 
 /**
  * Class DoctrineAccountRepository.
@@ -17,6 +24,45 @@ use Doctrine\ORM\EntityRepository;
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class DoctrineAccountRepository extends EntityRepository
+class DoctrineAccountRepository extends EntityRepository implements AccountRepository
 {
+    public function all(): Collection
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        return new DoctrineCollection(new Paginator($qb->getQuery()));
+    }
+
+    /**
+     * @param string $username
+     *
+     * @return Account|null
+     */
+    public function ofUsername(string $username): ?Account
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->andWhere($qb->expr()->orX(
+            $qb->expr()->eq('a.username.normal', ':username'),
+            $qb->expr()->eq('a.username.canonical', ':username')
+        ))
+        ->setParameter('username', $username);
+
+        try {
+            return $qb->getQuery()->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
+    }
+
+    public function add(Account $account): void
+    {
+        $this->getEntityManager()->persist($account);
+    }
+
+    public function remove(Account $account): void
+    {
+        $this->getEntityManager()->remove($account);
+    }
 }

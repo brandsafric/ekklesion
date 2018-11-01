@@ -8,6 +8,7 @@ db-validate:
 	vendor/bin/doctrine orm:validate-schema
 
 migration:
+	vendor/bin/doctrine orm:clear-cache:metadata
 	vendor/bin/doctrine-migrations migrations:diff
 
 migrate:

@@ -62,7 +62,7 @@ class ArgonHashedPassword implements HashedPassword
         if ($this->isValid($plainPassword)) {
             return;
         }
-        throw new \DomainException('The provided password is invalid');
+        throw new \DomainException('The provided password is not valid', 401);
     }
 
     /**

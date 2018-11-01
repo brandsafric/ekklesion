@@ -16,9 +16,9 @@ use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\Tools\Setup;
 use IglesiaUNO\People\Infrastructure\Persistence\PsrSqlLogger;
 use IglesiaUNO\People\Infrastructure\Persistence\Types\ChronosType;
+use IglesiaUNO\People\Infrastructure\Persistence\Types\UuidType;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Ramsey\Uuid\Uuid;
 
 class EntityManagerFactory
 {
@@ -40,7 +40,7 @@ class EntityManagerFactory
 
         $config->setSQLLogger(new PsrSqlLogger($container->get(LoggerInterface::class)));
 
-        Type::addType('uuid', Uuid::class);
+        Type::addType('uuid', UuidType::class);
         Type::addType('chronos', ChronosType::class);
 
         $conn = [

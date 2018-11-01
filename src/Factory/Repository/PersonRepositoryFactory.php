@@ -9,14 +9,27 @@
 
 namespace IglesiaUNO\People\Factory\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use IglesiaUNO\People\Domain\Model\Person;
 use IglesiaUNO\People\Domain\Repository\PersonRepository;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class PersonRepositoryFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class PersonRepositoryFactory extends EntityRepository implements PersonRepository
+class PersonRepositoryFactory
 {
+    /**
+     * @param ContainerInterface $container
+     *
+     * @return PersonRepository
+     */
+    public function __invoke(ContainerInterface $container): PersonRepository
+    {
+        $manager = $container->get(EntityManagerInterface::class);
+
+        return $manager->getRepository(Person::class);
+    }
 }

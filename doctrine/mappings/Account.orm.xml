@@ -5,7 +5,7 @@
 
     <entity name="IglesiaUNO\People\Domain\Model\Account" repository-class="IglesiaUNO\People\Infrastructure\Repository\DoctrineAccountRepository">
 
-        <id name="uuid" type="uuid"/>
+        <id name="uuid" type="uuid" column="uuid"/>
         <embedded name="username" class="IglesiaUNO\People\Domain\Model\Username" column-prefix="username_"/>
         <embedded name="password" class="IglesiaUNO\People\Domain\Model\ArgonHashedPassword" column-prefix="password_"/>
         <embedded name="actionToken" class="IglesiaUNO\People\Domain\Model\ActionToken" column-prefix="token_"/>

@@ -10,33 +10,104 @@
 namespace IglesiaUNO\People\Infrastructure\Persistence\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\GuidType;
+use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Type;
+use InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class UuidType.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class UuidType extends GuidType
+class UuidType extends Type
 {
-    public function getName(): string
+    /**
+     * @var string
+     */
+    public const NAME = 'uuid';
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param array                                     $fieldDeclaration
+     * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
+     */
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'uuid';
+        return $platform->getGuidTypeDeclarationSQL($fieldDeclaration);
     }
 
     /**
-     * @param mixed            $value
-     * @param AbstractPlatform $platform
+     * {@inheritdoc}
      *
-     * @return mixed|\Ramsey\Uuid\UuidInterface
+     * @param string|UuidInterface|null                 $value
+     * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
+     *
+     * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): UuidInterface
     {
-        if (null === $value || $value instanceof Uuid) {
+        if (empty($value)) {
+            return null;
+        }
+        if ($value instanceof UuidInterface) {
             return $value;
         }
+        try {
+            $uuid = Uuid::fromString($value);
+        } catch (InvalidArgumentException $e) {
+            throw ConversionException::conversionFailed($value, static::NAME);
+        }
 
-        return Uuid::fromString($value);
+        return $uuid;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param UuidInterface|string|null                 $value
+     * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
+     *
+     * @throws ConversionException
+     */
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    {
+        if (empty($value)) {
+            return null;
+        }
+        if (
+            $value instanceof UuidInterface
+            || (
+                (\is_string($value) || method_exists($value, '__toString'))
+                && Uuid::isValid((string) $value)
+            )
+        ) {
+            return (string) $value;
+        }
+        throw ConversionException::conversionFailed($value, static::NAME);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return static::NAME;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
+     *
+     * @return bool
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
     }
 }

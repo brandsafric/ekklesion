@@ -9,9 +9,12 @@
 
 namespace IglesiaUNO\People\Infrastructure\Http\Controller;
 
+use IglesiaUNO\People\Infrastructure\CommandBus\CommandBus;
+use IglesiaUNO\People\Infrastructure\Http\Security\Authenticator;
 use IglesiaUNO\People\Infrastructure\Templating\Templating;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Http\Uri;
 
 /**
  * Class BaseController.
@@ -33,6 +36,19 @@ abstract class BaseController
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+    }
+
+    /**
+     * @param $command
+     *
+     * @return mixed
+     */
+    protected function dispatchCommand($command)
+    {
+        /** @var CommandBus $commandBus */
+        $commandBus = $this->get(CommandBus::class);
+
+        return $commandBus->dispatch($command);
     }
 
     /**
@@ -62,5 +78,57 @@ abstract class BaseController
         $response = $response->withStatus(200);
 
         return $response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @param array             $data
+     * @param int               $status
+     *
+     * @return ResponseInterface
+     */
+    protected function json(ResponseInterface $response, array $data = [], int $status = 200): ResponseInterface
+    {
+        $response->getBody()->write(json_encode($data));
+
+        $response = $response->withHeader('Content-Type', 'application/json;charset=UTF-8');
+        $response = $response->withStatus($status);
+
+        return $response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @param string            $path
+     *
+     * @return ResponseInterface
+     */
+    protected function redirect(ResponseInterface $response, string $path): ResponseInterface
+    {
+        $response = $response->withRedirect(Uri::createFromString($path));
+
+        return $response;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function thereIsAnAuthenticatedUser(): bool
+    {
+        /** @var Authenticator $authenticator */
+        $authenticator = $this->get(Authenticator::class);
+
+        return null !== $authenticator->getAuthenticatedAccountId();
+    }
+
+    /**
+     * @return null|string
+     */
+    protected function authenticatedAccountId(): ?string
+    {
+        /** @var Authenticator $authenticator */
+        $authenticator = $this->get(Authenticator::class);
+
+        return $authenticator->getAuthenticatedAccountId();
     }
 }

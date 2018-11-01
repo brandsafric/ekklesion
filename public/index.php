@@ -7,18 +7,30 @@
  * file that was distributed with this source code.
  */
 
-require_once __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.env');
 
 use IglesiaUNO\People\Infrastructure\Http\Controller;
+use IglesiaUNO\People\Infrastructure\Http\Middleware\AuthenticationMiddleware;
+use IglesiaUNO\People\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
 
-$app = new \Slim\App(require __DIR__.'/../container.php');
+$services = include __DIR__.'/../container.php';
+$app = new \Slim\App($services);
 
 // Middleware
 $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware($app));
+$app->add(AuthenticationMiddleware::class);
 
 // Routes
-$app->get('/', Controller\HomeController::class);
+$app->get('/', Controller\HomeController::class)->add(RequiresAuthenticationMiddleware::class);
+
+// Auth Endpoints
+$app->group('/auth', function () use ($app) {
+    $app->get('/login', Controller\SecurityController::class.':renderLogin');
+    $app->post('/login', Controller\SecurityController::class.':doLogin');
+    $app->post('/create-account', Controller\SecurityController::class.':createAccount');
+    $app->post('/logout', Controller\SecurityController::class.':logout');
+});
 
 $app->run();

@@ -7,26 +7,24 @@
  * file that was distributed with this source code.
  */
 
-namespace IglesiaUNO\People\Infrastructure\Http\Controller;
+namespace IglesiaUNO\People\Infrastructure\Http\Middleware;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * Class HomeController.
+ * Interface InvokableMiddleware.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class HomeController extends BaseController
+interface InvokableMiddleware
 {
     /**
      * @param Request  $request
      * @param Response $response
+     * @param callable $next
      *
      * @return Response
      */
-    public function __invoke(Request $request, Response $response): Response
-    {
-        return $this->render($response, 'layout/dashboard.html.twig');
-    }
+    public function __invoke(Request $request, Response $response, callable $next): Response;
 }

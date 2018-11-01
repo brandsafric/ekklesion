@@ -5,7 +5,7 @@
 
     <entity name="IglesiaUNO\People\Domain\Model\Person" repository-class="IglesiaUNO\People\Infrastructure\Repository\DoctrinePersonRepository">
 
-        <id name="uuid" type="uuid"/>
+        <id name="uuid" type="uuid" column="uuid"/>
         <embedded name="name" class="IglesiaUNO\People\Domain\Model\Name" column-prefix="name_"/>
         <field name="avatar" nullable="true"/>
         <embedded name="role" class="IglesiaUNO\People\Domain\Model\PersonRole" column-prefix="role_"/>
