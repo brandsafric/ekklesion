@@ -10,7 +10,7 @@
 namespace Ekklesion\People\Infrastructure\CommandHandler;
 
 use Ekklesion\People\Domain\Command\ListPeople;
-use Ekklesion\People\Domain\Presenter\PersonArrayPresenter;
+use Ekklesion\People\Domain\Presenter\PersonPresenter;
 use MNC\PhpDdd\Application\Presentation\PresentableCollection;
 
 /**
@@ -31,6 +31,6 @@ class ListPeopleHandler implements PeopleAware
     {
         $collection = $this->people->all();
 
-        return new PresentableCollection($collection, new PersonArrayPresenter());
+        return new PresentableCollection($collection, new PersonPresenter());
     }
 }

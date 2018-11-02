@@ -33,6 +33,11 @@ $app->group('/people', function () use ($app) {
     $app->get('/new', Controller\PeopleController::class.':new');
 })->add(RequiresAuthenticationMiddleware::class);
 
+// People Api
+$app->group('/api/v1/people', function () use ($app) {
+    $app->get('', Controller\JsonPeopleController::class.':index');
+})->add(RequiresAuthenticationMiddleware::class);
+
 // Auth Endpoints
 $app->group('/auth', function () use ($app) {
     $app->get('/login', Controller\SecurityController::class.':renderLogin');

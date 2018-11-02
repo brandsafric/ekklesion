@@ -33,9 +33,10 @@ class PeopleController extends BaseController
     {
         /** @var Collection $collection */
         $collection = $this->dispatchCommand(new ListPeople());
-        $collection->setPageAndSize(1, 20);
 
-        return $this->json($response, $collection->getIterator()->getArrayCopy());
+        return $this->render($response, 'views/people/list.html.twig', [
+            'people' => $collection,
+        ]);
     }
 
     /**

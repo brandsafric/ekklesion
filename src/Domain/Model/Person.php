@@ -129,6 +129,8 @@ class Person
         $person->role = $role;
         $person->createdBy = $createdBy;
         $person->createdAt = Chronos::now();
+
+        return $person;
     }
 
     /**

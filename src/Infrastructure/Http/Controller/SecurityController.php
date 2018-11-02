@@ -37,7 +37,7 @@ class SecurityController extends BaseController
             return $this->redirect($response, '/');
         }
 
-        return $this->render($response, 'login.html.twig');
+        return $this->render($response, 'layout/login.html.twig');
     }
 
     /**
@@ -55,7 +55,7 @@ class SecurityController extends BaseController
         try {
             $accountId = $this->dispatchCommand(new Login($body['username'], $body['password']));
         } catch (\DomainException $e) {
-            return $this->render($response, 'login.html.twig', [
+            return $this->render($response, 'layout/login.html.twig', [
                 'error' => 'Credenciales invalidas',
             ]);
         }

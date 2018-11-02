@@ -12,8 +12,10 @@ namespace Ekklesion\People\Infrastructure\Http\Controller;
 use Ekklesion\People\Infrastructure\CommandBus\CommandBus;
 use Ekklesion\People\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\People\Infrastructure\Templating\Templating;
+use MNC\PhpDdd\Domain\Model\Collection;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\Http\Uri;
 
 /**
@@ -130,5 +132,34 @@ abstract class BaseController
         $authenticator = $this->get(Authenticator::class);
 
         return $authenticator->getAuthenticatedAccountId();
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param Collection             $collection
+     *
+     * @return ResponseInterface
+     */
+    protected function jsonCollection(ServerRequestInterface $request, ResponseInterface $response, Collection $collection): ResponseInterface
+    {
+        $this->setPaginationDataToCollection($request, $collection);
+        $response = $this->json($response, $collection->getIterator()->getArrayCopy());
+
+        return $response->withHeader('X-Pagination-Items-Count', $collection->getItemsCount())
+            ->withHeader('X-Pagination-Current-Page', $collection->getCurrentPage())
+            ->withHeader('X-Pagination-Total-Pages', $collection->getTotalPages())
+            ->withHeader('X-Pagination-Page-Size', $collection->getPageSize())
+            ->withHeader('X-Pagination-Total-Count', $collection->getTotalCount());
+    }
+
+    /**
+     * @param ServerRequestInterface $request
+     * @param Collection             $collection
+     */
+    protected function setPaginationDataToCollection(ServerRequestInterface $request, Collection $collection): void
+    {
+        $params = $request->getQueryParams();
+        $collection->setPageAndSize($params['page'] ?? 1, $params['size'] ?? 20);
     }
 }

@@ -9,6 +9,7 @@
 
 namespace Ekklesion\People\Domain\Presenter;
 
+use Ekklesion\People\Domain\Model\Name;
 use Ekklesion\People\Domain\Model\Person;
 use Ekklesion\People\Domain\Model\PersonRole;
 
@@ -19,6 +20,12 @@ use Ekklesion\People\Domain\Model\PersonRole;
  */
 class PersonArrayPresenter
 {
+    private static $genderMap = [
+        'male' => 'Masculino',
+        'female' => 'Femenino',
+        'other' => 'Otro',
+    ];
+
     /**
      * @param Person $person
      *
@@ -27,13 +34,10 @@ class PersonArrayPresenter
     public function __invoke(Person $person): array
     {
         $array = [];
+        $array['_self'] = '/people/'.$person->uuid()->toString();
         $array['uuid'] = $person->uuid()->toString();
-        $array['name'] = [
-            'given' => $person->name()->given(),
-            'father' => $person->name()->father(),
-            'mother' => $person->name()->mother(),
-        ];
-        $array['gender'] = $person->gender()->value();
+        $array['name'] = $person->name()->format(Name::FORMAT_LIST);
+        $array['gender'] = self::$genderMap[$person->gender()->value()];
         $array['roles'] = [
             'isMember' => $person->role()->is(PersonRole::MEMBER),
             'isDeacon' => $person->role()->is(PersonRole::DEACON),
@@ -41,12 +45,19 @@ class PersonArrayPresenter
         ];
         $array['avatar'] = $person->avatar();
         $array['birthday'] = $person->birthday() ? $person->birthday()->format(DATE_ATOM) : null;
+        $array['_birthdayString'] = $person->birthday()
+            ? sprintf(
+                '%s (%s años)',
+                $person->birthday()->format('M d'),
+                $person->birthday()->diffInYears()
+            )
+            : 'desconocido';
         $array['age'] = $person->birthday() ? $person->birthday()->diffInYears() : null;
         $array['hasAccount'] = null !== $person->accountId();
         $array['household'] = $person->household();
         $array['householdRole'] = $person->householdRole();
         $array['email'] = (string) $person->email();
-        $array['phoneNumber'] = $person->phoneNumber();
+        $array['phoneNumber'] = (string) $person->phoneNumber();
         $array['facebook'] = $person->facebook();
         $array['firstVisit'] = $person->firstVisit() ? $person->firstVisit()->format(DATE_ATOM) : null;
         $array['baptizedAt'] = $person->baptizedAt() ? $person->baptizedAt()->format(DATE_ATOM) : null;
