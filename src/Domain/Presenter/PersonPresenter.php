@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -40,9 +40,38 @@ class PersonPresenter
      *
      * @return PersonPresenter
      */
-    public function __invoke(Person $person): PersonPresenter
+    public function __invoke(Person  $person): PersonPresenter
     {
         return new self($person);
+    }
+
+    /**
+     * @return string
+     */
+    public function uuid(): string
+    {
+        return $this->person->uuid()->toString();
+    }
+
+    /**
+     * @return string
+     */
+    public function avatar(): string
+    {
+        return $this->person->avatar() ? '/storage'.$this->person->avatar() : '/build/images/avatar.jpg';
+    }
+
+    public function createdAt(): string
+    {
+        return $this->person->createdAt()->format('d/m/Y');
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAccount(): bool
+    {
+        return null !== $this->person->accountId();
     }
 
     public function link(): string
@@ -53,6 +82,16 @@ class PersonPresenter
     public function listName(): string
     {
         return $this->person->name()->format(Name::FORMAT_LIST);
+    }
+
+    public function shortName(): string
+    {
+        return $this->person->name()->format(Name::FORMAT_NORMAL);
+    }
+
+    public function fullName(): string
+    {
+        return $this->person->name()->format(Name::FORMAT_FULL);
     }
 
     /**
@@ -103,6 +142,9 @@ class PersonPresenter
         return $roles;
     }
 
+    /**
+     * @return string
+     */
     public function age(): string
     {
         if (null !== $this->person->birthday()) {
@@ -110,5 +152,13 @@ class PersonPresenter
         }
 
         return 'Desconocida';
+    }
+
+    /**
+     * @return string
+     */
+    public function nickname(): string
+    {
+        return $this->person->nickname() ?? '---';
     }
 }

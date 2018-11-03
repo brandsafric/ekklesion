@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,17 +11,25 @@ require __DIR__.'/../vendor/autoload.php';
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.env');
 
+use Cake\Chronos\Chronos;
+use Cake\Chronos\DifferenceFormatter;
 use Ekklesion\People\Infrastructure\Http\Controller;
+use Ekklesion\People\Infrastructure\Http\Middleware\ApplicationContextMiddleware;
 use Ekklesion\People\Infrastructure\Http\Middleware\AuthenticationMiddleware;
 use Ekklesion\People\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
+use Ekklesion\People\Infrastructure\Persistence\Helper\SpanishTranslator;
+
+// Change the diff formatter in chronos
+Chronos::diffFormatter(new DifferenceFormatter(new SpanishTranslator()));
 
 $services = include __DIR__.'/../container.php';
 $app = new \Slim\App($services);
 
 // Middleware
 $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware($app));
-// TODO: Installation middleware
+$app->add(ApplicationContextMiddleware::class);
 $app->add(AuthenticationMiddleware::class);
+// TODO: Installation middleware. Sets up db, church details and first user.
 
 // Routes
 $app->get('/', Controller\HomeController::class)->add(RequiresAuthenticationMiddleware::class);

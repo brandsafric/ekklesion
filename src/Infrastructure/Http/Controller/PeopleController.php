@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -33,9 +33,10 @@ class PeopleController extends BaseController
     {
         /** @var Collection $collection */
         $collection = $this->dispatchCommand(new ListPeople());
+        $this->setPaginationDataToCollection($request, $collection);
 
-        return $this->render($response, 'views/people/list.html.twig', [
-            'people' => $collection,
+        return $this->render($response, 'views/people-list.html.twig', [
+            'collection' => $collection,
         ]);
     }
 
@@ -58,6 +59,7 @@ class PeopleController extends BaseController
      */
     public function new(Request $request, Response $response): Response
     {
+        return $this->render($response, 'views/people-new.html.twig');
     }
 
     /**

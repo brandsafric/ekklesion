@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,7 +17,7 @@ use Ekklesion\People\Domain\Model\Name;
 use Ekklesion\People\Domain\Model\Person;
 use Ekklesion\People\Domain\Model\PersonRole;
 use Ekklesion\People\Domain\Model\PhoneNumber;
-use Ekklesion\People\Domain\Presenter\PersonArrayPresenter;
+use Ekklesion\People\Domain\Presenter\PersonPresenter;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -36,7 +36,7 @@ class CreatePersonHandler implements PeopleAware
      */
     public function __invoke(CreatePerson $command)
     {
-        $person = $this->findByAccountIdOrFail(Uuid::fromString($command->account()));
+        $person = $this->findPersonByAccountIdOrFail(Uuid::fromString($command->account()));
         $command->email() && $this->ensureEmailIsUnique(Email::fromEmail($command->email()));
 
         $person = Person::create(
@@ -46,6 +46,8 @@ class CreatePersonHandler implements PeopleAware
             PersonRole::fromNumber($command->role())
         );
 
+        $command->nickname()
+            && $person->setNickname($command->nickname());
         $command->phone()
             && $person->setPhoneNumber(PhoneNumber::fromCountryCodeAndNumber('+56', $command->phone()));
         $command->email()
@@ -59,6 +61,6 @@ class CreatePersonHandler implements PeopleAware
 
         $this->people->add($person);
 
-        return \call_user_func(new PersonArrayPresenter(), $person);
+        return \call_user_func(new PersonPresenter(), $person);
     }
 }

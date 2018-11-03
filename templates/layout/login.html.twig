@@ -6,7 +6,7 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="#">Iglesia<b>UNO</b></a>
+                <a href="#">{{ context.settings.churchHtmlLongText|raw }}</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
@@ -33,7 +33,7 @@
                         <div class="col-xs-12">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> Recordarme por una semana
+                                    <input name="remember" type="checkbox"> Recordarme por una semana
                                 </label>
                             </div>
                         </div>

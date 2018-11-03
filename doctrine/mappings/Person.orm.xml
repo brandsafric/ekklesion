@@ -7,6 +7,7 @@
 
         <id name="uuid" type="uuid" column="uuid"/>
         <embedded name="name" class="Ekklesion\People\Domain\Model\Name" column-prefix="name_"/>
+        <field name="nickname" type="string" nullable="true"/>
         <field name="gender" type="gender"/>
         <embedded name="role" class="Ekklesion\People\Domain\Model\PersonRole" column-prefix="role_"/>
         <field name="avatar" type="filename" nullable="true"/>

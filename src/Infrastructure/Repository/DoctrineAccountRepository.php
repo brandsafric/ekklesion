@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -17,12 +17,15 @@ use Ekklesion\People\Domain\Model\Account;
 use Ekklesion\People\Domain\Repository\AccountRepository;
 use MNC\PhpDdd\Domain\Model\Collection;
 use MNC\PhpDdd\Infrastructure\Domain\Model\DoctrineCollection;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class DoctrineAccountRepository.
 
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
+ *
+ * @method Account|null find(Uuid $id)
  */
 class DoctrineAccountRepository extends EntityRepository implements AccountRepository
 {
@@ -31,6 +34,11 @@ class DoctrineAccountRepository extends EntityRepository implements AccountRepos
         $qb = $this->createQueryBuilder('a');
 
         return new DoctrineCollection(new Paginator($qb->getQuery()));
+    }
+
+    public function ofId(Uuid $id): ?Account
+    {
+        return $this->find($id);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -28,6 +28,10 @@ class Person
      * @var Name
      */
     private $name;
+    /**
+     * @var string|null
+     */
+    private $nickname;
     /**
      * @var Gender
      */
@@ -150,6 +154,14 @@ class Person
     }
 
     /**
+     * @return string|null
+     */
+    public function nickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    /**
      * @return Gender
      */
     public function gender(): Gender
@@ -259,6 +271,14 @@ class Person
     public function createdAt(): Chronos
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param string $nickname
+     */
+    public function setNickname(string $nickname): void
+    {
+        $this->nickname = $nickname;
     }
 
     /**

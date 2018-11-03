@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -46,6 +46,13 @@ interface PersonRepository
      * @return Person|null
      */
     public function ofEmail(Email $email): ?Person;
+
+    /**
+     * @param string $name
+     *
+     * @return Collection
+     */
+    public function ofName(string $name): Collection;
 
     /**
      * @param Person $person

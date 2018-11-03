@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -32,6 +32,10 @@ class CreatePerson
      * @var string|null
      */
     private $mother;
+    /**
+     * @var null|string
+     */
+    private $nickname;
     /**
      * @var string
      */
@@ -86,6 +90,7 @@ class CreatePerson
         string $given,
         string $father,
         ?string $mother,
+        ?string $nickname,
         string $gender,
         int $role,
         ?string $birthday,
@@ -99,6 +104,7 @@ class CreatePerson
         $this->given = $given;
         $this->father = $father;
         $this->mother = $mother;
+        $this->nickname = $nickname;
         $this->gender = $gender;
         $this->role = $role;
         $this->birthday = $birthday;
@@ -136,6 +142,14 @@ class CreatePerson
     public function mother(): ?string
     {
         return $this->mother;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function nickname(): ?string
+    {
+        return $this->nickname;
     }
 
     /**

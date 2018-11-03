@@ -7,7 +7,7 @@ People management for churches.
 
 - [x] Create a Person
 - [x] List People
-- [ ] See a Person
+- [x] See a Person
 - [ ] Update a Person
 - [ ] Delete a person
 - [ ] Make person a member (api)

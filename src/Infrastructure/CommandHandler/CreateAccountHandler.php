@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,7 +11,7 @@ namespace Ekklesion\People\Infrastructure\CommandHandler;
 
 use Ekklesion\People\Domain\Command\CreateAccount;
 use Ekklesion\People\Domain\Model\Account;
-use Ekklesion\People\Domain\Presenter\AccountArrayPresenter;
+use Ekklesion\People\Domain\Presenter\AccountPresenter;
 
 /**
  * Class CreateAccountHandler.
@@ -34,6 +34,6 @@ class CreateAccountHandler implements AccountsAware
         $account = Account::create($command->username(), $command->plainPassword());
         $this->accounts->add($account);
 
-        return \call_user_func(new AccountArrayPresenter(), $account);
+        return \call_user_func(new AccountPresenter(), $account);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -53,7 +53,7 @@ trait People
      *
      * @return Person
      */
-    protected function findByAccountIdOrFail(Uuid $accountId): Person
+    protected function findPersonByAccountIdOrFail(Uuid $accountId): Person
     {
         $person = $this->people->ofAccountId($accountId);
         if ($person instanceof Person) {

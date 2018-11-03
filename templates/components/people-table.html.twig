@@ -1,0 +1,77 @@
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Listado de Personas</h3>
+
+        <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="Buscar">
+
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    {% if collection.itemsCount is not same as(0) %}
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tbody><tr>
+                <th>Nombre</th>
+                <th>Apodo</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Cumpleaños</th>
+                <th>Roles</th>
+                <th>¿Tiene cuenta?</th>
+                <th>Añadido el</th>
+            </tr>
+            {% for person in collection %}
+            <tr>
+                <td><a href="{{ person.link }}">{{ person.listName }}</a></td>
+                <td>{{ person.nickname }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.phone }}</td>
+                <td>{{ person.birthday }}</td>
+                <td>
+                    {% for role in person.roles %}
+                        <span class="label label-success">{{ role }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% if person.hasAccount %}
+                        <span class="label label-success">Si</span>
+                    {% else %}
+                        <span class="label label-danger">No</span>
+                    {% endif %}
+                </td>
+                <td>{{ person.createdAt }}</td>
+            </tr>
+            {% endfor %}
+            </tbody></table>
+    </div>
+    <div class="box-footer clearfix">
+        <ul class="pagination pagination-sm no-margin pull-right">
+            {% if collection.hasPreviousPage %}
+                <li><a href="{{ collection.linkToPreviousPage }}">«</a></li>
+            {% endif %}
+            {% for i in 1..collection.totalPages %}
+                {% if collection.currentPage is same as(i) %}
+                    <li><a href="{{ collection.linkToPage(i) }}"><b>{{ i }}</b></a></li>
+                {% else %}
+                    <li><a href="{{ collection.linkToPage(i) }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if collection.hasNextPage %}
+                <li><a href="{{ collection.linkToNextPage }}">»</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="box-body">
+        <p>No hay resultados...</p>
+    </div>
+    {% endif %}
+    <!-- /.box-body -->
+</div>

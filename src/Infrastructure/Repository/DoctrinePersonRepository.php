@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Ekklesion\People project.
+ * This file is part of the Ekklesion project.
  * (c) Matías Navarro Carter <mnavarrocarter@gmail.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -68,6 +68,28 @@ class DoctrinePersonRepository extends EntityRepository implements PersonReposit
     public function ofEmail(Email $email): ?Person
     {
         return $this->findOneByEmail($email);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Collection
+     */
+    public function ofName(string $name): Collection
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->like('p.name.father', ':name'),
+                $qb->expr()->like('p.name.mother', ':name'),
+                $qb->expr()->like('p.name.given', ':name'),
+                $qb->expr()->like('p.nickname', ':name'),
+                $qb->expr()->like('p.email', ':name')
+            ))
+            ->setParameter('name', $name)
+            ->orderBy('p.name.father');
+
+        return new DoctrineCollection(new Paginator($qb->getQuery()));
     }
 
     /**
