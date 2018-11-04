@@ -55,14 +55,15 @@ class ApplicationLoader
         $services['settings']['templates'] = $resourceLoader->getTemplates();
         $services['settings']['mappings'] = $resourceLoader->getOrmMappings();
         $services['settings']['types'] = $resourceLoader->getOrmTypes();
+        $services['settings']['debug'] = (bool) getenv('APP_DEBUG');
         $services['settings'] = array_merge($services['settings'], $settings);
 
         $app = new App($services);
 
-        $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware($app));
         foreach ($middlewareLoader->getMiddleware() as $middleware) {
             $app->add($middleware);
         }
+        $app->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware($app));
 
         $routeLoader = new RouteLoader($app);
         foreach ($this->modules as $module) {

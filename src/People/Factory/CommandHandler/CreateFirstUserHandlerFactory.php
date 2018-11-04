@@ -9,7 +9,7 @@
 
 namespace Ekklesion\People\Factory\CommandHandler;
 
-use Ekklesion\People\Domain\Repository\AccountRepository;
+use Ekklesion\Core\Domain\Repository\AccountRepository;
 use Ekklesion\People\Domain\Repository\PersonRepository;
 use Ekklesion\People\Infrastructure\CommandHandler\CreateFirstUserHandler;
 use Psr\Container\ContainerInterface;

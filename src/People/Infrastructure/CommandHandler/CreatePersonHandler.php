@@ -61,6 +61,6 @@ class CreatePersonHandler implements PeopleAware
 
         $this->people->add($person);
 
-        return \call_user_func(new PersonPresenter(), $person);
+        return new PersonPresenter($person);
     }
 }

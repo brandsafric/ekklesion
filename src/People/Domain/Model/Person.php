@@ -10,7 +10,8 @@
 namespace Ekklesion\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
-use Ekklesion\People\Infrastructure\Filesystem\Filename;
+use Ekklesion\Core\Domain\Model\Account;
+use Ekklesion\Core\Infrastructure\Filesystem\Filename;
 use Ramsey\Uuid\Uuid;
 
 /**

@@ -55,6 +55,7 @@ class CoreModule implements EkklesionModule
             Templating::class => new ServiceFactory\TwigTemplatingFactory(),
             CommandBus::class => new ServiceFactory\CommandBusFactory(),
             Authenticator::class => new ServiceFactory\JwtAuthenticatorFactory(),
+            'notFoundHandler' => new ServiceFactory\NotFoundHandlerFactory(),
 
             // Middleware
             AuthenticationMiddleware::class => new MiddlewareFactory\AuthenticationMiddlewareFactory(),
@@ -75,7 +76,6 @@ class CoreModule implements EkklesionModule
     public function getSettings(): array
     {
         return [
-            'debug' => (bool) getenv('APP_DEBUG'),
             'secret' => getenv('APP_SECRET'),
             'db_url' => getenv('DATABASE_URL'),
             'env' => getenv('APP_ENV'),

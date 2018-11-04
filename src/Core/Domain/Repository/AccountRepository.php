@@ -10,7 +10,6 @@
 namespace Ekklesion\Core\Domain\Repository;
 
 use Ekklesion\Core\Domain\Model\Account;
-use Ekklesion\Core\Domain\Model\Username;
 use MNC\PhpDdd\Domain\Model\Collection;
 use Ramsey\Uuid\Uuid;
 
