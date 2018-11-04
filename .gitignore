@@ -9,3 +9,4 @@ storage
 public/storage
 .env
 settings.json
+cache
