@@ -11,9 +11,15 @@ require_once 'vendor/autoload.php';
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Ekklesion\Core\Infrastructure\Module\Loader\ApplicationLoader;
 
 (new \Symfony\Component\Dotenv\Dotenv())->load('.env');
 
-$container = new \Slim\Container(require 'container.php');
+$appLoader = new ApplicationLoader(
+    new \Ekklesion\Core\CoreModule(),
+    new Ekklesion\People\PeopleModule()
+);
 
-return ConsoleRunner::createHelperSet($container->get(EntityManagerInterface::class));
+$app = $appLoader->load();
+
+return ConsoleRunner::createHelperSet($app->getContainer()->get(EntityManagerInterface::class));

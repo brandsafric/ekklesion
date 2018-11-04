@@ -1,22 +1,16 @@
-Ekklesion - People
-==================
+Ekklesion
+=========
 
-People management for churches.
+Church management made simple, fast and free.
 
-## Use Cases
-
-- [x] Create a Person
-- [x] List People
-- [x] See a Person
-- [ ] Update a Person
-- [ ] Delete a person
-- [ ] Make person a member (api)
-- [ ] Make person a deacon (api)
-- [ ] Make person an elder (api)
-- [ ] Remove person membership (api)
-- [ ] Remove person deaconship (api)
-- [ ] Remove person eldership (api)
-- [x] Create an account
-- [ ] Assign an account to a person (api)
-- [ ] Assign people to a family (api)
-- [ ] Remove people from a family (api)
+## Features
+- Last generation PHP 7.2 required
+- Modular
+- People management module
+- Household management module (In progress)
+- Groups management module (In progress)
+- Events management module (In progress)
+- Finances management module (In progress)
+- Powered by Slim 3.0
+- PSR compliant
+- Best object oriented practices for better maintainability

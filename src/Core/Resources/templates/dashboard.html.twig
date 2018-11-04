@@ -1,0 +1,23 @@
+{% extends '@core/layout/main.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block main %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>Una vista rápida de todo lo que sucede en tu congregación</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content container-fluid">
+            {% include '@core/components/counters.html.twig' %}
+        </section>
+    </div>
+{% endblock %}
