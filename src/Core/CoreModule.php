@@ -19,6 +19,7 @@ use Ekklesion\Core\Factory\Service as ServiceFactory;
 use Ekklesion\Core\Infrastructure\CommandBus\CommandBus;
 use Ekklesion\Core\Infrastructure\Http\Controller;
 use Ekklesion\Core\Infrastructure\Http\Middleware\AuthenticationMiddleware;
+use Ekklesion\Core\Infrastructure\Http\Middleware\LocalizationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\Core\Infrastructure\Module\EkklesionModule;
@@ -60,6 +61,7 @@ class CoreModule implements EkklesionModule
             // Middleware
             AuthenticationMiddleware::class => new MiddlewareFactory\AuthenticationMiddlewareFactory(),
             RequiresAuthenticationMiddleware::class => new MiddlewareFactory\RequiresAuthenticationMiddlewareFactory(),
+            LocalizationMiddleware::class => new MiddlewareFactory\LocalizationMiddlewareFactory(),
 
             // Repository
             AccountRepository::class => new AccountRepositoryFactory(),
@@ -80,6 +82,7 @@ class CoreModule implements EkklesionModule
             'db_url' => getenv('DATABASE_URL'),
             'env' => getenv('APP_ENV'),
             'log_path' => getenv('LOG_PATH'),
+            'locale' => getenv('LOCALE'),
             'login_route' => '/auth/login',
         ];
     }
@@ -96,6 +99,7 @@ class CoreModule implements EkklesionModule
     public function loadMiddleware(MiddlewareLoader $middlewareLoader): void
     {
         $middlewareLoader->load(100, AuthenticationMiddleware::class);
+        $middlewareLoader->load(200, LocalizationMiddleware::class);
     }
 
     public function loadRoutes(RouteLoader $routeLoader): void

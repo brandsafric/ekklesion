@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-04 13:03-0300\n"
+"POT-Creation-Date: 2018-11-04 13:26-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,4 +51,58 @@ msgstr ""
 
 #: src/Core/Domain/Model/Privileges.php:132
 msgid "Manage permissions"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:28
+msgid "People List"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:35
+msgid "Search"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:54
+msgid "Name"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:58
+msgid "Nickname"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:62
+msgid "Gender"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:66
+msgid "Email"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:70
+msgid "Phone"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:74
+msgid "Birthday"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:78
+msgid "Role"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:82
+msgid "Has account?"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:86
+msgid "Added at"
+msgstr ""
+
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:35
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:47
+msgid "People"
+msgstr ""
+
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:50
+msgid ""
+"Here you can see a list of all the people registered in the congregation"
 msgstr ""
