@@ -35,7 +35,7 @@ class SpanishTranslator
         'second' => '1 segundo',
         'second_plural' => '{count} segundos',
         'ago' => 'hace {time}',
-        'from_now' => 'en {time} más',
+        'from_now' => 'en {time}',
         'after' => '{time} después',
         'before' => '{time} antes',
     ];
