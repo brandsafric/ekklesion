@@ -21,7 +21,7 @@ class SpanishTranslator
      */
     public static $strings = [
         'year' => '1 año',
-        'year_plural' => '{count} años',
+        'year_plural' => '{count} años)',
         'month' => '1 mes',
         'month_plural' => '{count} meses',
         'week' => '1 semana',

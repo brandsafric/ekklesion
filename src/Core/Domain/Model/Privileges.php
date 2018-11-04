@@ -120,4 +120,16 @@ class Privileges
     {
         return $this->value;
     }
+
+    /**
+     * @return array
+     */
+    public function values(): array
+    {
+        return [
+            self::MANAGE_PEOPLE => _('Manage people'),
+            self::MANAGE_NOTES => _('Manage notes'),
+            self::MANAGE_PERMISSIONS => _('Manage permissions'),
+        ];
+    }
 }

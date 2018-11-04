@@ -1,11 +1,11 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Listado de Personas</h3>
+        <h3 class="box-title">{% trans 'People List' %}</h3>
 
         <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control pull-right" placeholder="Buscar">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="{% trans 'Search' %}...">
 
                 <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -18,19 +18,21 @@
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
             <tbody><tr>
-                <th>Nombre</th>
-                <th>Apodo</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Cumpleaños</th>
-                <th>Roles</th>
-                <th>¿Tiene cuenta?</th>
-                <th>Añadido el</th>
+                <th>{% trans 'Name' %}</th>
+                <th>{% trans 'Nickname' %}</th>
+                <th>{% trans 'Gender' %}</th>
+                <th>{% trans 'Email' %}</th>
+                <th>{% trans 'Phone' %}</th>
+                <th>{% trans 'Birthday' %}</th>
+                <th>{% trans 'Role' %}</th>
+                <th>{% trans 'Has account?' %}</th>
+                <th>{% trans 'Added at' %}</th>
             </tr>
             {% for person in collection %}
             <tr>
                 <td><a href="{{ person.link }}">{{ person.listName }}</a></td>
                 <td>{{ person.nickname }}</td>
+                <td>{{ person.gender }}</td>
                 <td>{{ person.email }}</td>
                 <td>{{ person.phone }}</td>
                 <td>{{ person.birthday }}</td>

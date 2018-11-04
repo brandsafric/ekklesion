@@ -18,7 +18,6 @@ use Assert\Assertion;
  */
 final class Gender
 {
-    private const OTHER = 'other';
     private const MALE = 'male';
     private const FEMALE = 'female';
 
@@ -34,21 +33,13 @@ final class Gender
      */
     private function __construct(string $value)
     {
-        Assertion::inArray($value, [self::MALE, self::FEMALE, self::OTHER]);
+        Assertion::inArray($value, [self::MALE, self::FEMALE]);
         $this->value = $value;
     }
 
     public function __toString(): string
     {
         return $this->value();
-    }
-
-    /**
-     * @return Gender
-     */
-    public static function other(): Gender
-    {
-        return new self(self::OTHER);
     }
 
     /**
@@ -78,5 +69,16 @@ final class Gender
     public function value(): string
     {
         return $this->value;
+    }
+
+    /**
+     * @return array
+     */
+    public function values(): array
+    {
+        return [
+            self::MALE => _('Male'),
+            self::FEMALE => _('Female'),
+        ];
     }
 }

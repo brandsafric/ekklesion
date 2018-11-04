@@ -74,6 +74,11 @@ class PersonPresenter
         return null !== $this->person->accountId();
     }
 
+    public function gender(): string
+    {
+        return $this->person->gender()->values()[$this->person->gender()->value()];
+    }
+
     public function link(): string
     {
         return sprintf('/people/%s', $this->person->uuid());
@@ -127,16 +132,16 @@ class PersonPresenter
     {
         $roles = [];
         if ($this->person->role()->is(PersonRole::ELDER)) {
-            $roles[] = 'Anciano';
+            $roles[] = _('Elder');
         }
         if ($this->person->role()->is(PersonRole::DEACON)) {
-            $roles[] = 'Diácono';
+            $roles[] = _('Deacon');
         }
         if ($this->person->role()->is(PersonRole::MEMBER)) {
-            $roles[] = 'Miembro';
+            $roles[] = _('Member');
         }
         if ($this->person->role()->is(PersonRole::ATTENDEE)) {
-            $roles[] = 'Asistente';
+            $roles[] = _('Attendee');
         }
 
         return $roles;
