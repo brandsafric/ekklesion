@@ -13,10 +13,11 @@ use Cake\Chronos\Chronos;
 use Ekklesion\People\Domain\Command\CreatePerson;
 use Ekklesion\People\Domain\Model\Email;
 use Ekklesion\People\Domain\Model\Gender;
+use Ekklesion\People\Domain\Model\Membership;
 use Ekklesion\People\Domain\Model\Name;
 use Ekklesion\People\Domain\Model\Person;
-use Ekklesion\People\Domain\Model\PersonRole;
 use Ekklesion\People\Domain\Model\PhoneNumber;
+use Ekklesion\People\Domain\Model\Website;
 use Ekklesion\People\Domain\Presenter\PersonPresenter;
 use Ramsey\Uuid\Uuid;
 
@@ -37,27 +38,41 @@ class CreatePersonHandler implements PeopleAware
     public function __invoke(CreatePerson $command)
     {
         $person = $this->findPersonByAccountIdOrFail(Uuid::fromString($command->account()));
-        $command->email() && $this->ensureEmailIsUnique(Email::fromEmail($command->email()));
+
+        $command->emailPrimary() && $this->ensureEmailIsUnique(Email::fromEmail($command->emailPrimary()));
+        $command->emailSecondary() && $this->ensureEmailIsUnique(Email::fromEmail($command->emailSecondary()));
+
+        $memberDate = null !== $command->membershipDate() ? Chronos::createFromFormat('d/m/Y', $command->membershipDate()) : null;
+        $deaconDate = null !== $command->deaconshipDate() ? Chronos::createFromFormat('d/m/Y', $command->deaconshipDate()) : null;
+        $elderDate = null !== $command->eldershipDate() ? Chronos::createFromFormat('d/m/Y', $command->eldershipDate()) : null;
 
         $person = Person::create(
             $person->uuid(),
             Name::fromParts($command->given(), $command->father(), $command->mother()),
             Gender::fromValue($command->gender()),
-            PersonRole::fromNumber($command->role())
+            Membership::fromDates($memberDate, $deaconDate, $elderDate)
         );
 
         $command->nickname()
             && $person->setNickname($command->nickname());
-        $command->phone()
-            && $person->setPhoneNumber(PhoneNumber::fromCountryCodeAndNumber('+56', $command->phone()));
-        $command->email()
-            && $person->setEmail(Email::fromEmail($command->email()));
+        $command->phonePrimary()
+            && $person->setPhonePrimary(PhoneNumber::fromValue($command->phonePrimary()));
+        $command->phoneSecondary()
+            && $person->setPhoneSecondary(PhoneNumber::fromValue($command->phoneSecondary()));
+        $command->emailPrimary()
+            && $person->setEmailPrimary(Email::fromEmail($command->emailPrimary()));
+        $command->emailSecondary()
+            && $person->setEmailSecondary(Email::fromEmail($command->emailSecondary()));
+        $command->facebook()
+            && $person->setFacebook(Website::fromUrl($command->facebook()));
         $command->birthday()
-            && $person->setBirthday(Chronos::createFromFormat('', $command->birthday()));
+            && $person->setBirthday(Chronos::createFromFormat('d/m/Y', $command->birthday()));
         $command->firstVisit()
-            && $person->setFirstVisit(Chronos::createFromFormat('', $command->firstVisit()));
+            && $person->setFirstVisit(Chronos::createFromFormat('d/m/Y', $command->firstVisit()));
+        $command->isBaptized()
+            && $person->markAsBaptized();
         $command->baptizedAt()
-            && $person->setBaptizedAt(Chronos::createFromFormat('', $command->baptizedAt()));
+            && $person->setBaptizedAt(Chronos::createFromFormat('d/m/Y', $command->baptizedAt()));
 
         $this->people->add($person);
 

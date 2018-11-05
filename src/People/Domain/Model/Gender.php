@@ -74,7 +74,7 @@ final class Gender
     /**
      * @return array
      */
-    public function values(): array
+    public static function values(): array
     {
         return [
             self::MALE => _('Male'),

@@ -34,6 +34,13 @@ interface PersonRepository
     public function ofId(Uuid $id): ?Person;
 
     /**
+     * @param Uuid ...$ids
+     *
+     * @return Collection
+     */
+    public function ofIds(Uuid ...$ids): Collection;
+
+    /**
      * @param Uuid $id
      *
      * @return Person|null

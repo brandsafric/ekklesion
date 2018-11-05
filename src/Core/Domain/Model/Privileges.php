@@ -124,7 +124,7 @@ class Privileges
     /**
      * @return array
      */
-    public function values(): array
+    public static function values(): array
     {
         return [
             self::MANAGE_PEOPLE => _('Manage people'),

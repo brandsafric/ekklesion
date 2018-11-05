@@ -41,21 +41,25 @@ class CreatePerson
      */
     private $gender;
     /**
-     * @var int
-     */
-    private $role;
-    /**
      * @var null|string
      */
     private $birthday;
     /**
      * @var null|string
      */
-    private $email;
+    private $phonePrimary;
+    /**
+     * @var string|null
+     */
+    private $phoneSecondary;
     /**
      * @var null|string
      */
-    private $phone;
+    private $emailPrimary;
+    /**
+     * @var null|string
+     */
+    private $emailSecondary;
     /**
      * @var null|string
      */
@@ -68,6 +72,22 @@ class CreatePerson
      * @var null|string
      */
     private $baptizedAt;
+    /**
+     * @var null|string
+     */
+    private $membershipDate;
+    /**
+     * @var null|string
+     */
+    private $deaconshipDate;
+    /**
+     * @var null|string
+     */
+    private $eldershipDate;
+    /**
+     * @var bool
+     */
+    private $isBaptized;
 
     /**
      * CreatePerson constructor.
@@ -75,14 +95,20 @@ class CreatePerson
      * @param string      $account
      * @param string      $given
      * @param string      $father
-     * @param string      $mother
      * @param string      $gender
-     * @param int         $role
+     * @param null|string $membershipDate
+     * @param null|string $deaconshipDate
+     * @param null|string $eldershipDate
+     * @param string      $mother
+     * @param null|string $nickname
      * @param null|string $birthday
-     * @param null|string $email
-     * @param null|string $phone
+     * @param null|string $emailPrimary
+     * @param null|string $emailSecondary
+     * @param null|string $phonePrimary
+     * @param null|string $phoneSecondary
      * @param null|string $facebook
      * @param null|string $firstVisit
+     * @param bool        $isBaptized
      * @param null|string $baptizedAt
      */
     public function __construct(
@@ -90,14 +116,19 @@ class CreatePerson
         string $given,
         string $father,
         ?string $mother,
-        ?string $nickname,
         string $gender,
-        int $role,
+        ?string $membershipDate,
+        ?string $deaconshipDate,
+        ?string $eldershipDate,
+        ?string $nickname,
         ?string $birthday,
-        ?string $email,
-        ?string $phone,
+        ?string $emailPrimary,
+        ?string $emailSecondary,
+        ?string $phonePrimary,
+        ?string $phoneSecondary,
         ?string $facebook,
         ?string $firstVisit,
+        bool $isBaptized,
         ?string $baptizedAt
     ) {
         $this->account = $account;
@@ -106,13 +137,18 @@ class CreatePerson
         $this->mother = $mother;
         $this->nickname = $nickname;
         $this->gender = $gender;
-        $this->role = $role;
         $this->birthday = $birthday;
-        $this->email = $email;
-        $this->phone = $phone;
         $this->facebook = $facebook;
         $this->firstVisit = $firstVisit;
         $this->baptizedAt = $baptizedAt;
+        $this->emailPrimary = $emailPrimary;
+        $this->emailSecondary = $emailSecondary;
+        $this->phonePrimary = $phonePrimary;
+        $this->phoneSecondary = $phoneSecondary;
+        $this->membershipDate = $membershipDate;
+        $this->deaconshipDate = $deaconshipDate;
+        $this->eldershipDate = $eldershipDate;
+        $this->isBaptized = $isBaptized;
     }
 
     public function account(): string
@@ -161,35 +197,11 @@ class CreatePerson
     }
 
     /**
-     * @return int
-     */
-    public function role(): int
-    {
-        return $this->role;
-    }
-
-    /**
      * @return null|string
      */
     public function birthday(): ?string
     {
         return $this->birthday;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function email(): ?string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function phone(): ?string
-    {
-        return $this->phone;
     }
 
     /**
@@ -214,5 +226,69 @@ class CreatePerson
     public function baptizedAt(): ?string
     {
         return $this->baptizedAt;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function phonePrimary(): ?string
+    {
+        return $this->phonePrimary;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function phoneSecondary(): ?string
+    {
+        return $this->phoneSecondary;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function emailPrimary(): ?string
+    {
+        return $this->emailPrimary;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function emailSecondary(): ?string
+    {
+        return $this->emailSecondary;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function membershipDate(): ?string
+    {
+        return $this->membershipDate;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function deaconshipDate(): ?string
+    {
+        return $this->deaconshipDate;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function eldershipDate(): ?string
+    {
+        return $this->eldershipDate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBaptized(): bool
+    {
+        return $this->isBaptized;
     }
 }

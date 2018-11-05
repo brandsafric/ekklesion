@@ -13,6 +13,7 @@ use Ekklesion\Core\Infrastructure\Http\Controller\BaseController;
 use Ekklesion\Core\Infrastructure\Http\Form\FormExtractor;
 use Ekklesion\People\Domain\Command\CreatePerson;
 use Ekklesion\People\Domain\Command\ListPeople;
+use Ekklesion\People\Domain\Model\Gender;
 use MNC\PhpDdd\Domain\Model\Collection;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -60,7 +61,9 @@ class PeopleController extends BaseController
      */
     public function new(Request $request, Response $response): Response
     {
-        return $this->render($response, '@people/views/people-new.html.twig');
+        return $this->render($response, '@people/views/people-new.html.twig', [
+            'genders' => Gender::values(),
+        ]);
     }
 
     /**
@@ -73,20 +76,28 @@ class PeopleController extends BaseController
     {
         $extractor = new FormExtractor($request);
 
-        $person = $this->dispatchCommand(new CreatePerson(
+        $command = new CreatePerson(
             $this->authenticatedAccountId(),
-            $extractor->get('given'),
+            $extractor->get('names'),
             $extractor->get('father'),
             $extractor->get('mother'),
             $extractor->get('gender'),
-            $extractor->getInt('role'),
+            $extractor->get('membershipDate'),
+            $extractor->get('deaconshipDate'),
+            $extractor->get('eldershipDate'),
+            $extractor->get('nickname'),
             $extractor->get('birthday'),
-            $extractor->get('email'),
-            $extractor->get('phone'),
+            $extractor->get('emailPrimary'),
+            $extractor->get('emailSecondary'),
+            $extractor->get('phonePrimary'),
+            $extractor->get('phoneSecondary'),
             $extractor->get('facebook'),
             $extractor->get('firstVisit'),
+            $extractor->getBool('isBaptized'),
             $extractor->get('baptizedAt')
-        ));
+        );
+
+        $person = $this->dispatchCommand($command);
 
         return $this->redirect($response, '/people');
     }

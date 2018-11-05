@@ -30,6 +30,7 @@ class PhoneNumber
     /**
      * PhoneNumber constructor.
      *
+     * @param string $type
      * @param string $countryCode
      * @param string $number
      */

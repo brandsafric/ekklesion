@@ -21,10 +21,10 @@
                 <th>{% trans 'Name' %}</th>
                 <th>{% trans 'Nickname' %}</th>
                 <th>{% trans 'Gender' %}</th>
-                <th>{% trans 'Email' %}</th>
-                <th>{% trans 'Phone' %}</th>
+                <th>{% trans 'Primary Email' %}</th>
+                <th>{% trans 'Primary Phone' %}</th>
                 <th>{% trans 'Birthday' %}</th>
-                <th>{% trans 'Role' %}</th>
+                <th>{% trans 'Roles' %}</th>
                 <th>{% trans 'Has account?' %}</th>
                 <th>{% trans 'Added at' %}</th>
             </tr>
@@ -33,19 +33,19 @@
                 <td><a href="{{ person.link }}">{{ person.listName }}</a></td>
                 <td>{{ person.nickname }}</td>
                 <td>{{ person.gender }}</td>
-                <td>{{ person.email }}</td>
-                <td>{{ person.phone }}</td>
+                <td>{{ person.emailPrimary }}</td>
+                <td>{{ person.phonePrimary }}</td>
                 <td>{{ person.birthday }}</td>
                 <td>
-                    {% for role in person.roles %}
-                        <span class="label label-success">{{ role }}</span>
+                    {% for name in person.membership %}
+                        <span class="label label-success">{{ name }}</span>
                     {% endfor %}
                 </td>
                 <td>
                     {% if person.hasAccount %}
-                        <span class="label label-success">Si</span>
+                        <span class="label label-success">{% trans 'Yes' %}</span>
                     {% else %}
-                        <span class="label label-danger">No</span>
+                        <span class="label label-danger">{% trans 'No' %}</span>
                     {% endif %}
                 </td>
                 <td>{{ person.createdAt }}</td>

@@ -41,7 +41,7 @@ class FormExtractor
      */
     public function get(string $key, $default = null)
     {
-        if (isset($this->request->getParsedBody()[$key])) {
+        if (isset($this->request->getParsedBody()[$key]) && !empty($this->request->getParsedBody()[$key])) {
             return $this->request->getParsedBody()[$key];
         }
 

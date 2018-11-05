@@ -9,14 +9,16 @@
         <embedded name="name" class="Ekklesion\People\Domain\Model\Name" column-prefix="name_"/>
         <field name="nickname" type="string" nullable="true"/>
         <field name="gender" type="gender"/>
-        <embedded name="role" class="Ekklesion\People\Domain\Model\PersonRole" column-prefix="role_"/>
+        <embedded name="membership" class="Ekklesion\People\Domain\Model\Membership" column-prefix="membership_"/>
         <field name="avatar" type="filename" nullable="true"/>
         <field name="birthday" type="chronos" nullable="true"/>
         <field name="accountId" type="uuid" nullable="true"/>
         <field name="household" type="uuid" nullable="true"/>
         <field name="householdRole" type="uuid" nullable="true"/>
-        <field name="email" type="email" nullable="true"/>
-        <field name="phoneNumber" type="phone" nullable="true"/>
+        <field name="emailPrimary" type="email" nullable="true"/>
+        <field name="emailSecondary" type="email" nullable="true"/>
+        <field name="phonePrimary" type="phone" nullable="true"/>
+        <field name="phoneSecondary" type="phone" nullable="true"/>
         <field name="facebook" type="website" nullable="true"/>
         <field name="firstVisit" type="chronos" nullable="true"/>
         <field name="baptizedAt" type="chronos" nullable="true"/>

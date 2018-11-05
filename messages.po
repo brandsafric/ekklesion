@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 08:14-0300\n"
+"POT-Creation-Date: 2018-11-05 14:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/People/Domain/Presenter/PersonPresenter.php:135
-msgid "Elder"
-msgstr ""
-
-#: src/People/Domain/Presenter/PersonPresenter.php:138
-msgid "Deacon"
-msgstr ""
-
-#: src/People/Domain/Presenter/PersonPresenter.php:141
+#: src/People/Domain/Presenter/PersonPresenter.php:134
 msgid "Member"
 msgstr ""
 
-#: src/People/Domain/Presenter/PersonPresenter.php:144
-msgid "Attendee"
+#: src/People/Domain/Presenter/PersonPresenter.php:137
+msgid "Deacon"
+msgstr ""
+
+#: src/People/Domain/Presenter/PersonPresenter.php:140
+msgid "Elder"
 msgstr ""
 
 #: src/People/Domain/Model/Gender.php:80
@@ -66,27 +62,32 @@ msgid "Name"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:84
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:144
 msgid "Nickname"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:88
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:79
 msgid "Gender"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:92
-msgid "Email"
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:185
+msgid "Primary Email"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:96
-msgid "Phone"
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:173
+msgid "Primary Phone"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:100
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:125
 msgid "Birthday"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:104
-msgid "Role"
+msgid "Roles"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:108
@@ -95,6 +96,118 @@ msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:112
 msgid "Added at"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:171
+msgid "Yes"
+msgstr ""
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:177
+msgid "No"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:31
+msgid "New person"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:43
+msgid "New Person"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:46
+msgid "Here you can create a new person"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:64
+msgid "Personal Details"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:69
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:163
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:273
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:340
+msgid "(*) Required"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:104
+msgid "Names"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:111
+msgid "Last Name"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:118
+msgid "Last Name (Mother)"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:133
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:291
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:306
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:321
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:367
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:382
+msgid "dd/mm/yyyy"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:158
+msgid "Contact Information"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:197
+msgid "Secondary Phone"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:209
+msgid "Secondary Email"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:225
+msgid "Facebook"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:237
+msgid "Twitter"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:249
+msgid "LinkedIn"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:268
+msgid "Membership Info"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:283
+msgid "Became Member On"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:298
+msgid "Became Deacon On"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:313
+msgid "Became Elder On"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:335
+msgid "Other Information"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:350
+msgid "Is Baptized"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:359
+msgid "Baptism Date"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:374
+msgid "First Visit"
+msgstr ""
+
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:392
+msgid "Submit"
 msgstr ""
 
 #: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:31

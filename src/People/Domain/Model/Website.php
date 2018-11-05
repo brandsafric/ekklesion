@@ -46,7 +46,7 @@ class Website
      */
     public static function fromUrl(string $url): Website
     {
-        new self($url);
+        return new self($url);
     }
 
     public function url(): string

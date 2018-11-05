@@ -1,13 +1,13 @@
 {% extends '@core/layout/main.html.twig' %}
 
-{% block title %}Añadir Nueva Persona{% endblock %}
+{% block title %}{% trans 'New person' %}{% endblock %}
 
 {% block main %}
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Nueva Persona
-                <small>Aquí puedes crear una nueva persona</small>
+                {% trans 'New Person' %}
+                <small>{% trans 'Here you can create a new person' %}</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -17,9 +17,228 @@
 
         <!-- Main content -->
         <section class="content container-fluid">
+            <form action="/people" method="post">
 
-            
+                <!-- Personal Details -->
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Personal Details' %}</h3>
+                        <div class="box-tools">
+                            <p>{% trans '(*) Required'%}</p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Gender' %}: *</label>
+                                    <select name="gender" required class="form-control">
+                                        {% for value,gender in genders %}
+                                            <option value="{{ value }}">{{ gender }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Names' %}: *</label>
+                                    <input type="text" name="names" required class="form-control">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Last Name' %}: *</label>
+                                    <input type="text" name="father" required class="form-control">
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Last Name (Mother)' %}:</label>
+                                    <input type="text" name="mother" class="form-control">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Birthday' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="birthday" class="form-control pull-right" data-date-language="es_ES" data-date-end-date="0d" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Nickname' %}:</label>
+                                    <input type="text" name="nickname" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Contact Info -->
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Contact Information' %}</h3>
+                        <div class="box-tools">
+                            <p>{% trans '(*) Required'%}</p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Primary Phone' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input type="text" name="phonePrimary" class="form-control pull-right phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>{% trans 'Primary Email' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" name="emailPrimary" class="form-control pull-right">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Secondary Phone' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input type="text" name="phoneSecondary" class="form-control pull-right phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>{% trans 'Secondary Email' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" name="emailSecondary" class="form-control pull-right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>{% trans 'Facebook' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <input type="url" name="facebook" class="form-control pull-right">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>{% trans 'Twitter' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-twitter"></i>
+                                        </div>
+                                        <input type="url" name="twitter" class="form-control pull-right">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>{% trans 'LinkedIn' %}:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-linkedin"></i>
+                                        </div>
+                                        <input type="url" name="linkedin" class="form-control pull-right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership Info -->
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Membership Info' %}</h3>
+                        <div class="box-tools">
+                            <p>{% trans '(*) Required'%}</p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Became Member On' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="membershipDate" class="form-control pull-right" data-date-language="es_ES" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Became Deacon On' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="deaconshipDate" class="form-control pull-right" data-date-language="es_ES" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Became Elder On' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="eldershipDate" class="form-control pull-right" data-date-language="es_ES" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Info -->
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">{% trans 'Other Information' %}</h3>
+                        <div class="box-tools">
+                            <p>{% trans '(*) Required'%}</p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <label>{% trans 'Is Baptized' %}: </label>
+                                    <div class="checkbox icheck">
+                                        <input name="isBaptized" type="checkbox" id="checkbox" class="minimal-red">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'Baptism Date' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="baptizedAt" class="form-control pull-right" data-date-language="es_ES" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>{% trans 'First Visit' %}:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input placeholder="{% trans 'dd/mm/yyyy' %}" type="text" name="firstVisit" class="form-control pull-right" data-date-language="es_ES" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+            </form>
         </section>
     </div>
 {% endblock %}

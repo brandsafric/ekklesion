@@ -11,7 +11,6 @@ namespace Ekklesion\People\Domain\Presenter;
 
 use Ekklesion\People\Domain\Model\Name;
 use Ekklesion\People\Domain\Model\Person;
-use Ekklesion\People\Domain\Model\PersonRole;
 
 /**
  * Class PersonPresenter.
@@ -102,14 +101,14 @@ class PersonPresenter
     /**
      * @return string
      */
-    public function email(): string
+    public function emailPrimary(): string
     {
-        return $this->person->email();
+        return $this->person->emailPrimary() ?? '---';
     }
 
-    public function phone(): string
+    public function phonePrimary(): string
     {
-        return $this->person->phoneNumber() ?? '---';
+        return $this->person->phonePrimary() ?? '---';
     }
 
     public function birthday(bool $withAge = true): string
@@ -128,20 +127,17 @@ class PersonPresenter
     /**
      * @return array
      */
-    public function roles(): array
+    public function membership(): array
     {
         $roles = [];
-        if ($this->person->role()->is(PersonRole::ELDER)) {
-            $roles[] = _('Elder');
-        }
-        if ($this->person->role()->is(PersonRole::DEACON)) {
-            $roles[] = _('Deacon');
-        }
-        if ($this->person->role()->is(PersonRole::MEMBER)) {
+        if ($this->person->membership()->isMember()) {
             $roles[] = _('Member');
         }
-        if ($this->person->role()->is(PersonRole::ATTENDEE)) {
-            $roles[] = _('Attendee');
+        if ($this->person->membership()->isDeacon()) {
+            $roles[] = _('Deacon');
+        }
+        if ($this->person->membership()->isElder()) {
+            $roles[] = _('Elder');
         }
 
         return $roles;

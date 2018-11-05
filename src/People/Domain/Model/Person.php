@@ -38,9 +38,9 @@ class Person
      */
     private $gender;
     /**
-     * @var PersonRole
+     * @var Membership
      */
-    private $role;
+    private $membership;
     /**
      * @var Filename|null
      */
@@ -64,11 +64,19 @@ class Person
     /**
      * @var Email|null
      */
-    private $email;
+    private $emailPrimary;
+    /**
+     * @var Email|null
+     */
+    private $emailSecondary;
     /**
      * @var PhoneNumber|null
      */
-    private $phoneNumber;
+    private $phonePrimary;
+    /**
+     * @var PhoneNumber|null
+     */
+    private $phoneSecondary;
     /**
      * @var Website|null
      */
@@ -77,6 +85,10 @@ class Person
      * @var Chronos|null
      */
     private $firstVisit;
+    /**
+     * @var bool
+     */
+    private $isBaptized;
     /**
      * @var Chronos|null
      */
@@ -98,40 +110,20 @@ class Person
     }
 
     /**
-     * @param Name  $name
-     * @param Email $email
-     *
-     * @return Person
-     */
-    public static function createInitial(Name $name, Email $email): Person
-    {
-        $person = new self();
-        $person->uuid = Uuid::uuid4();
-        $person->name = $name;
-        $person->email = $email;
-        $person->gender = Gender::other();
-        $person->role = PersonRole::init();
-        $person->createdBy = $person->uuid;
-        $person->createdAt = Chronos::now();
-
-        return $person;
-    }
-
-    /**
      * @param Uuid       $createdBy
      * @param Name       $name
      * @param Gender     $gender
-     * @param PersonRole $role
+     * @param Membership $membership
      *
      * @return Person
      */
-    public static function create(Uuid $createdBy, Name $name, Gender $gender, PersonRole $role): Person
+    public static function create(Uuid $createdBy, Name $name, Gender $gender, Membership $membership): Person
     {
         $person = new self();
         $person->uuid = Uuid::uuid4();
         $person->name = $name;
         $person->gender = $gender;
-        $person->role = $role;
+        $person->membership = $membership;
         $person->createdBy = $createdBy;
         $person->createdAt = Chronos::now();
 
@@ -171,11 +163,11 @@ class Person
     }
 
     /**
-     * @return PersonRole
+     * @return Membership
      */
-    public function role(): PersonRole
+    public function membership(): Membership
     {
-        return $this->role;
+        return $this->membership;
     }
 
     /**
@@ -221,17 +213,33 @@ class Person
     /**
      * @return Email|null
      */
-    public function email(): ?Email
+    public function emailPrimary(): ?Email
     {
-        return $this->email;
+        return $this->emailPrimary;
+    }
+
+    /**
+     * @return Email|null
+     */
+    public function emailSecondary(): ?Email
+    {
+        return $this->emailSecondary;
     }
 
     /**
      * @return PhoneNumber|null
      */
-    public function phoneNumber(): ?PhoneNumber
+    public function phonePrimary(): ?PhoneNumber
     {
-        return $this->phoneNumber;
+        return $this->phonePrimary;
+    }
+
+    /**
+     * @return PhoneNumber|null
+     */
+    public function phoneSecondary(): ?PhoneNumber
+    {
+        return $this->phoneSecondary;
     }
 
     /**
@@ -248,6 +256,14 @@ class Person
     public function firstVisit(): ?Chronos
     {
         return $this->firstVisit;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBaptized(): bool
+    {
+        return $this->isBaptized;
     }
 
     /**
@@ -283,19 +299,35 @@ class Person
     }
 
     /**
-     * @param PhoneNumber $phoneNumber
+     * @param Email $email
      */
-    public function setPhoneNumber(PhoneNumber $phoneNumber): void
+    public function setEmailPrimary(Email $email): void
     {
-        $this->phoneNumber = $phoneNumber;
+        $this->emailPrimary = $email;
     }
 
     /**
      * @param Email $email
      */
-    public function setEmail(Email $email): void
+    public function setEmailSecondary(Email $email): void
     {
-        $this->email = $email;
+        $this->emailSecondary = $email;
+    }
+
+    /**
+     * @param PhoneNumber $phoneNumber
+     */
+    public function setPhonePrimary(PhoneNumber $phoneNumber): void
+    {
+        $this->phonePrimary = $phoneNumber;
+    }
+
+    /**
+     * @param PhoneNumber $phoneNumber
+     */
+    public function setPhoneSecondary(PhoneNumber $phoneNumber): void
+    {
+        $this->phoneSecondary = $phoneNumber;
     }
 
     /**
@@ -307,6 +339,14 @@ class Person
     }
 
     /**
+     * @param Website $website
+     */
+    public function setFacebook(Website $website): void
+    {
+        $this->facebook = $website;
+    }
+
+    /**
      * @param Chronos $firstVisit
      */
     public function setFirstVisit(Chronos $firstVisit): void
@@ -314,11 +354,17 @@ class Person
         $this->firstVisit = $firstVisit;
     }
 
+    public function markAsBaptized(): void
+    {
+        $this->isBaptized = true;
+    }
+
     /**
      * @param Chronos $baptizedAt
      */
     public function setBaptizedAt(Chronos $baptizedAt): void
     {
+        $this->isBaptized = true;
         $this->baptizedAt = $baptizedAt;
     }
 

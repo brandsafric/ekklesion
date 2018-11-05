@@ -10,6 +10,8 @@
 namespace Ekklesion\People\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Ekklesion\People\Domain\Model\Email;
 use Ekklesion\People\Domain\Model\Person;
@@ -51,6 +53,20 @@ class DoctrinePersonRepository extends EntityRepository implements PersonReposit
     }
 
     /**
+     * @param Uuid ...$ids
+     *
+     * @return Collection
+     */
+    public function ofIds(Uuid ...$ids): Collection
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->andWhere($qb->expr()->in('p.uuid', ':ids'))
+            ->setParameter('ids', $ids);
+
+        return new DoctrineCollection(new Paginator($qb->getQuery()));
+    }
+
+    /**
      * @param Uuid $id
      *
      * @return Person|null
@@ -67,7 +83,19 @@ class DoctrinePersonRepository extends EntityRepository implements PersonReposit
      */
     public function ofEmail(Email $email): ?Person
     {
-        return $this->findOneByEmail($email);
+        $qb = $this->createQueryBuilder('p');
+        $qb->andWhere($qb->expr()->orX(
+            $qb->expr()->eq('p.emailPrimary', ':email'),
+            $qb->expr()->eq('p.emailSecondary', ':email')
+        ))->setParameter('email', $email);
+
+        try {
+            return $qb->getQuery()->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
     }
 
     /**

@@ -5,9 +5,8 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     //.setManifestKeyPrefix('build/')
-    .addEntry('app', './assets/js/app')
     .autoProvidejQuery()
-
+    .addEntry('app', './assets/js/app')
     .addPlugin(new CopyWebpackPlugin([
         { from: './assets/images', to: 'images' },
     ]))
