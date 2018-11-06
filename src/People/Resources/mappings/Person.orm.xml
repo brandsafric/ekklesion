@@ -22,7 +22,7 @@
         <field name="facebook" type="website" nullable="true"/>
         <field name="firstVisit" type="chronos" nullable="true"/>
         <field name="baptizedAt" type="chronos" nullable="true"/>
-        <field name="createdBy" type="uuid"/>
+        <field name="createdBy" type="uuid" nullable="true"/>
         <field name="createdAt" type="chronos"/>
 
     </entity>

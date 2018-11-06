@@ -19,6 +19,7 @@ use Ekklesion\Core\Factory\Service as ServiceFactory;
 use Ekklesion\Core\Infrastructure\CommandBus\CommandBus;
 use Ekklesion\Core\Infrastructure\Http\Controller;
 use Ekklesion\Core\Infrastructure\Http\Middleware\AuthenticationMiddleware;
+use Ekklesion\Core\Infrastructure\Http\Middleware\ForcedPasswordChangeMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\LocalizationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
@@ -44,6 +45,11 @@ class CoreModule implements EkklesionModule
         return self::NAME;
     }
 
+    public function dependentModules(): array
+    {
+        return [];
+    }
+
     /**
      * @return array
      */
@@ -57,11 +63,15 @@ class CoreModule implements EkklesionModule
             CommandBus::class => new ServiceFactory\CommandBusFactory(),
             Authenticator::class => new ServiceFactory\JwtAuthenticatorFactory(),
             'notFoundHandler' => new ServiceFactory\NotFoundHandlerFactory(),
+            'flash' => function () {
+                return new \Slim\Flash\Messages();
+            },
 
             // Middleware
             AuthenticationMiddleware::class => new MiddlewareFactory\AuthenticationMiddlewareFactory(),
             RequiresAuthenticationMiddleware::class => new MiddlewareFactory\RequiresAuthenticationMiddlewareFactory(),
             LocalizationMiddleware::class => new MiddlewareFactory\LocalizationMiddlewareFactory(),
+            ForcedPasswordChangeMiddleware::class => new MiddlewareFactory\ForcedPasswordChangeMiddlewareFactory(),
 
             // Repository
             AccountRepository::class => new AccountRepositoryFactory(),
@@ -89,7 +99,7 @@ class CoreModule implements EkklesionModule
 
     public function loadResources(ResourceLoader $resourceLoader): void
     {
-        $resourceLoader->loadTemplate('core', __DIR__.'/Resources/templates');
+        $resourceLoader->loadTemplate(self::NAME, __DIR__.'/Resources/templates');
         $resourceLoader->loadORMMapping('Ekklesion\Core\Domain\Model', __DIR__.'/Resources/mappings');
         $resourceLoader->loadORMType('uuid', Types\UuidType::class);
         $resourceLoader->loadORMType('chronos', Types\ChronosType::class);
@@ -98,14 +108,17 @@ class CoreModule implements EkklesionModule
 
     public function loadMiddleware(MiddlewareLoader $middlewareLoader): void
     {
-        $middlewareLoader->load(100, AuthenticationMiddleware::class);
         $middlewareLoader->load(200, LocalizationMiddleware::class);
+        $middlewareLoader->load(100, AuthenticationMiddleware::class);
+        $middlewareLoader->load(50, ForcedPasswordChangeMiddleware::class);
     }
 
     public function loadRoutes(RouteLoader $routeLoader): void
     {
         $routeLoader->get('/', Controller\HomeController::class)
             ->add(RequiresAuthenticationMiddleware::class);
+
+        $routeLoader->get('/auth/reset-password', Controller\SecurityController::class.':resetPassword');
 
         // Auth Endpoints
         $routeLoader->group('/auth', function () use ($routeLoader) {

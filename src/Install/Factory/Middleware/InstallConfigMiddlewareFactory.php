@@ -7,29 +7,26 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\People\Factory\Service;
+namespace Ekklesion\Install\Factory\Middleware;
 
-use Ekklesion\People\Infrastructure\Context\ApplicationContext;
+use Ekklesion\Install\Infrastructure\Http\Middleware\InstallConfigMiddleware;
 use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class ApplicationContextFactory.
+ * Class InstallConfigMiddlewareFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class ApplicationContextFactory
+class InstallConfigMiddlewareFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return ApplicationContext
+     * @return InstallConfigMiddleware
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new ApplicationContext(
-            $container->get(ApplicationSettings::class),
-            $container->get('settings')['installedModules']
-        );
+        return new InstallConfigMiddleware($container->get(ApplicationSettings::class));
     }
 }

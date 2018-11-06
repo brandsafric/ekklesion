@@ -1,6 +1,6 @@
 {% extends '@core/base.html.twig' %}
 
-{% block title %}Inicio de Sesión{% endblock %}
+{% block title %}{% trans 'Sign In' %}{% endblock %}
 
 {% block body %}
     <body class="hold-transition login-page">
@@ -10,41 +10,41 @@
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">Inicio de Sesión</p>
+                <p class="login-box-msg">{% trans 'Sign In' %}</p>
 
                 {% if error %}
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-ban"></i> ¡Error!</h4>
+                        <h3><i class="icon fa fa-ban"></i> {% trans 'Error!' %}</h3>
                         {{ error }}
                     </div>
                 {% endif %}
 
                 <form action="/auth/login" method="post">
                     <div class="form-group has-feedback">
-                        <input name="username" type="text" class="form-control" placeholder="Usuario">
+                        <input name="username" type="text" class="form-control" placeholder="{% trans 'Username' %}">
                         <span class="fa fa-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input name="password" type="password" class="form-control" placeholder="Contraseña">
+                        <input name="password" type="password" class="form-control" placeholder="{% trans 'Password' %}">
                         <span class="fa fa-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="checkbox">
                                 <label>
-                                    <input name="remember" type="checkbox"> Recordarme por una semana
+                                    <input name="remember" type="checkbox"> {% trans 'Remember me for a week' %}
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-8">
-                            <a href="#">Olvidé mi contraseña</a><br>
+                            <a href="#">{% trans 'Forgot my password' %}</a><br>
                         </div>
                         <!-- /.col -->
                         <div class="col-xs-4">
-                            <button type="submit" class="btn btn-danger btn-block btn-flat">Entrar</button>
+                            <button type="submit" class="btn btn-danger btn-block btn-flat">{% trans 'Login' %}</button>
                         </div>
                         <!-- /.col -->
                     </div>

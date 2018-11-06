@@ -135,4 +135,15 @@ class SecurityController extends BaseController
 
         return $this->redirect($response, '/');
     }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     *
+     * @return Response
+     */
+    public function resetPassword(Request $request, Response $response): Response
+    {
+        return $response->write('You must change the password');
+    }
 }

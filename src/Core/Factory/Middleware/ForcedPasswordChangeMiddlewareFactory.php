@@ -7,29 +7,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\People\Factory\Service;
+namespace Ekklesion\Core\Factory\Middleware;
 
+use Ekklesion\Core\Infrastructure\Http\Middleware\ForcedPasswordChangeMiddleware;
 use Ekklesion\People\Infrastructure\Context\ApplicationContext;
-use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class ApplicationContextFactory.
+ * Class ForcedPasswordChangeMiddlewareFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class ApplicationContextFactory
+class ForcedPasswordChangeMiddlewareFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return ApplicationContext
+     * @return ForcedPasswordChangeMiddleware
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new ApplicationContext(
-            $container->get(ApplicationSettings::class),
-            $container->get('settings')['installedModules']
+        return new ForcedPasswordChangeMiddleware(
+            $container->get(ApplicationContext::class)
         );
     }
 }

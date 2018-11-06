@@ -34,15 +34,21 @@ class ApplicationContext
      * @var PersonPresenter|null
      */
     private $activePerson;
+    /**
+     * @var array
+     */
+    private $installedModules;
 
     /**
      * Context constructor.
      *
      * @param ApplicationSettings $settings
+     * @param array               $installedModules
      */
-    public function __construct(ApplicationSettings $settings)
+    public function __construct(ApplicationSettings $settings, array $installedModules)
     {
         $this->settings = $settings;
+        $this->installedModules = $installedModules;
     }
 
     /**
@@ -51,6 +57,16 @@ class ApplicationContext
     public function isAuthenticated(): bool
     {
         return null !== $this->activePerson && null !== $this->activeAccount;
+    }
+
+    /**
+     * @param string $moduleName
+     *
+     * @return bool
+     */
+    public function isModuleInstalled(string $moduleName): bool
+    {
+        return \in_array($moduleName, $this->installedModules, true);
     }
 
     /**
@@ -72,7 +88,7 @@ class ApplicationContext
     }
 
     /**
-     * @return Person|null
+     * @return PersonPresenter|null
      */
     public function activePerson(): ?PersonPresenter
     {
@@ -80,7 +96,7 @@ class ApplicationContext
     }
 
     /**
-     * @return Account|null
+     * @return AccountPresenter|null
      */
     public function activeAccount(): ?AccountPresenter
     {

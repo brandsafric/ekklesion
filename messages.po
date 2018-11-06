@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 14:08-0300\n"
+"POT-Creation-Date: 2018-11-06 00:26-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,36 @@ msgstr ""
 
 #: src/Core/Domain/Model/Privileges.php:132
 msgid "Manage permissions"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:31
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:50
+msgid "Sign In"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:61
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:53
+msgid "Error!"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:76
+msgid "Username"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:83
+msgid "Password"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:93
+msgid "Remember me for a week"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:103
+msgid "Forgot my password"
+msgstr ""
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:110
+msgid "Login"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:54
@@ -208,6 +238,57 @@ msgstr ""
 
 #: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:392
 msgid "Submit"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:47
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:75
+msgid ""
+"In order for Ekklession to be installed, you need to provide your church "
+"information and valid database credentials."
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:51
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:79
+msgid ""
+"If the information you provided is correct, a new user with username "
+"<b>admin</b> will be created. You will set up the information for that user "
+"in further screen."
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:58
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:86
+msgid "Church Name"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:69
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:97
+msgid "Database Host"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:80
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:108
+msgid "Database Name"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:91
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:119
+msgid "Database User"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:102
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:130
+msgid "Database Password"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:113
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:141
+msgid "Database Port"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:125
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:31
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:153
+msgid "Install"
 msgstr ""
 
 #: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:31

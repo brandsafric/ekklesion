@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\Tools\Setup;
 use Ekklesion\Core\Infrastructure\Persistence\PsrSqlLogger;
+use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 
@@ -40,8 +41,15 @@ class EntityManagerFactory
             Type::addType($name, $class);
         }
 
+        $settings = $container->get(ApplicationSettings::class);
+
         $conn = [
-            'url' => $container->get('settings')['core']['db_url'],
+            'dbname' => $settings->databaseName(),
+            'user' => $settings->databaseUser(),
+            'password' => $settings->databasePass(),
+            'host' => $settings->databaseHost(),
+            'port' => $settings->databasePort(),
+            'driver' => 'pdo_'.$settings->databaseEngine(),
         ];
 
         return EntityManager::create($conn, $config);

@@ -11,6 +11,8 @@ namespace Ekklesion\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
 use Ekklesion\Core\Domain\Model\Account;
+use Ekklesion\Core\Domain\Model\Privileges;
+use Ekklesion\Core\Domain\Model\Username;
 use Ekklesion\Core\Infrastructure\Filesystem\Filename;
 use Ramsey\Uuid\Uuid;
 
@@ -125,6 +127,23 @@ class Person
         $person->gender = $gender;
         $person->membership = $membership;
         $person->createdBy = $createdBy;
+        $person->createdAt = Chronos::now();
+
+        return $person;
+    }
+
+    /**
+     * @param Name $name
+     *
+     * @return Person
+     */
+    public static function createInitial(Name $name): Person
+    {
+        $person = new self();
+        $person->uuid = Uuid::uuid4();
+        $person->name = $name;
+        $person->gender = Gender::male();
+        $person->membership = Membership::fromDates(null, null, null);
         $person->createdAt = Chronos::now();
 
         return $person;
@@ -369,14 +388,15 @@ class Person
     }
 
     /**
-     * @param string $username
-     * @param string $plainPassword
+     * @param string     $username
+     * @param string     $plainPassword
+     * @param Privileges $privileges
      *
      * @return Account
      */
-    public function createAccount(string $username, string $plainPassword): Account
+    public function createAccount(string $username, string $plainPassword, Privileges $privileges): Account
     {
-        $account = Account::create($this->uuid, $username, $plainPassword);
+        $account = Account::create($username, $plainPassword, $privileges);
         $this->accountId = $account->uuid();
 
         return $account;

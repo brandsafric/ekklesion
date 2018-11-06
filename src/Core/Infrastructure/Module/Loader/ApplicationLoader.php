@@ -25,6 +25,11 @@ class ApplicationLoader
     private $modules;
 
     /**
+     * @var string[]
+     */
+    private $installedModules = [];
+
+    /**
      * ApplicationLoader constructor.
      *
      * @param EkklesionModule ...$modules
@@ -43,9 +48,14 @@ class ApplicationLoader
         $resourceLoader = new ResourceLoader();
         $middlewareLoader = new MiddlewareLoader();
 
+        foreach ($this->modules as $module) {
+            $this->installedModules[] = $module->getModuleName();
+        }
+
         $settings = [];
         $services = [];
         foreach ($this->modules as $module) {
+            $this->ensureDependenciesAreIncluded($module);
             $settings[$module->getModuleName()] = $module->getSettings();
             $services[] = $module->getServices();
             $module->loadResources($resourceLoader);
@@ -56,10 +66,11 @@ class ApplicationLoader
         $services['settings']['mappings'] = $resourceLoader->getOrmMappings();
         $services['settings']['types'] = $resourceLoader->getOrmTypes();
         $services['settings']['debug'] = (bool) getenv('APP_DEBUG');
+        $services['settings']['determineRouteBeforeAppMiddleware'] = false;
+        $services['settings']['installedModules'] = $this->installedModules;
         $services['settings'] = array_merge($services['settings'], $settings);
 
         $app = new App($services);
-
         foreach ($middlewareLoader->getMiddleware() as $middleware) {
             $app->add($middleware);
         }
@@ -71,5 +82,22 @@ class ApplicationLoader
         }
 
         return $app;
+    }
+
+    /**
+     * @param EkklesionModule $module
+     */
+    private function ensureDependenciesAreIncluded(EkklesionModule $module): void
+    {
+        foreach ($module->dependentModules() as $dependentModule) {
+            if (!\in_array($dependentModule, $this->installedModules, true)) {
+                echo sprintf(
+                    'Module "%s" requires "%s" module to work but it is not installed.',
+                    $module->getModuleName(),
+                    $dependentModule
+                );
+                exit;
+            }
+        }
     }
 }

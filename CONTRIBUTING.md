@@ -9,7 +9,8 @@ Feel free to submit issues and enhancement requests.
 Please refer to [Atlassian's version of github flow](https://www.atlassian.com/blog/archives/simple-git-workflow-simple)
 before contributing. In general, we follow the "fork-work-rebase-commit-push" Git workflow.
 
-Also, we encourage you to read the [dev docs](docs/dev/README.md).
+Also, we encourage you to read the [dev docs](docs/dev/README.md) if you are not
+familiar with the project.
 
 1. Fork the repo on GitHub
 2. Clone the project to your own machine
@@ -20,6 +21,10 @@ keep it updated with the last changes.
 6. When ready, do a last rebase, commit and push.
 7. Submit a Pull request so that we can review your changes
 
+### Testing
+Please try to unit test every class of the features you create. Also, pull
+requests that cover untested classes of the application are very welcomed.
+
 ## Using Make
 You can commit using `make commit`. This will run the code style fix with licencing info,
-will run the tests and create the commit of all the changed files.
+run the tests, create the translations file, and create the commit of all the changed files.

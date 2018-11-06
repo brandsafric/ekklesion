@@ -19,11 +19,14 @@ use Ekklesion\Core\Infrastructure\Persistence\Helper\SpanishTranslator;
 // Change the diff formatter in chronos
 Chronos::diffFormatter(new DifferenceFormatter(new SpanishTranslator()));
 
+session_start();
+
 define('ROOT_PATH', realpath(__DIR__.'/..'));
 
 $appLoader = new ApplicationLoader(
     new \Ekklesion\Core\CoreModule(),
-    new \Ekklesion\People\PeopleModule()
+    new \Ekklesion\People\PeopleModule(),
+    new \Ekklesion\Install\InstallModule()
 );
 
 $appLoader->load()->run();

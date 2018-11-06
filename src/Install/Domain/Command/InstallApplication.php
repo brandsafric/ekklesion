@@ -7,6 +7,13 @@
  * file that was distributed with this source code.
  */
 
-return [
-    'url' => getenv('DATABASE_URL'),
-];
+namespace Ekklesion\Install\Domain\Command;
+
+/**
+ * Class InstallApplication.
+ *
+ * @author Matías Navarro Carter <mnavarro@option.cl>
+ */
+class InstallApplication
+{
+}

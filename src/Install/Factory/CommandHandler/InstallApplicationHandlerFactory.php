@@ -7,29 +7,26 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\People\Factory\Service;
+namespace Ekklesion\Install\Factory\CommandHandler;
 
-use Ekklesion\People\Infrastructure\Context\ApplicationContext;
-use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
+use Ekklesion\Install\Domain\Installer\Installer;
+use Ekklesion\Install\Infrastructure\CommandHandler\InstallApplicationHandler;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class ApplicationContextFactory.
+ * Class InstallApplicationHandlerFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class ApplicationContextFactory
+class InstallApplicationHandlerFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return ApplicationContext
+     * @return InstallApplicationHandler
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new ApplicationContext(
-            $container->get(ApplicationSettings::class),
-            $container->get('settings')['installedModules']
-        );
+        return new InstallApplicationHandler($container->get(Installer::class));
     }
 }

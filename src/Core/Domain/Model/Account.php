@@ -24,10 +24,6 @@ class Account
      */
     private $uuid;
     /**
-     * @var Uuid
-     */
-    private $personId;
-    /**
      * @var HashedPassword
      */
     private $password;
@@ -35,6 +31,10 @@ class Account
      * @var Username
      */
     private $username;
+    /**
+     * @var Privileges
+     */
+    private $privileges;
     /**
      * @var ActionToken
      */
@@ -47,6 +47,10 @@ class Account
      * @var Chronos
      */
     private $createdAt;
+    /**
+     * @var bool
+     */
+    private $requiresPasswordChange;
 
     private function __construct()
     {
@@ -54,21 +58,22 @@ class Account
     }
 
     /**
-     * @param Uuid   $personId
      * @param string $username
      * @param string $plainPassword
+     * @param int    $privileges
      *
      * @return Account
      */
-    public static function create(Uuid $personId, string $username, string $plainPassword): Account
+    public static function create(string $username, string $plainPassword, Privileges $privileges): Account
     {
         $self = new self();
         $self->uuid = Uuid::uuid4();
-        $self->personId = $personId;
         $self->username = Username::create($username);
         $self->password = ArgonHashedPassword::fromPlainPassword($plainPassword);
         $self->actionToken = ActionToken::generate();
+        $self->privileges = $privileges;
         $self->createdAt = Chronos::now();
+        $self->requiresPasswordChange = false;
 
         return $self;
     }
@@ -87,14 +92,6 @@ class Account
     public function username(): Username
     {
         return $this->username;
-    }
-
-    /**
-     * @return Uuid
-     */
-    public function personId(): Uuid
-    {
-        return $this->personId;
     }
 
     /**
@@ -119,11 +116,27 @@ class Account
     /**
      * @return string
      */
+    public function actionToken(): string
+    {
+        return $this->actionToken->value();
+    }
+
+    /**
+     * @return string
+     */
     public function startPasswordResetProcess(): string
     {
         $this->actionToken = ActionToken::generate();
 
         return $this->actionToken->value();
+    }
+
+    /**
+     * @return bool
+     */
+    public function doesRequirePasswordChange(): bool
+    {
+        return $this->requiresPasswordChange;
     }
 
     /**
@@ -134,6 +147,7 @@ class Account
     {
         $this->actionToken->ensureTokenIsValid($token);
         $this->password = ArgonHashedPassword::fromPlainPassword($newPassword);
+        $this->requiresPasswordChange = false;
     }
 
     /**
@@ -142,6 +156,11 @@ class Account
     public function lastLogin(): ?Chronos
     {
         return $this->lastLogin;
+    }
+
+    public function forcePasswordChange(): void
+    {
+        $this->requiresPasswordChange = true;
     }
 
     public function createdAt(): Chronos

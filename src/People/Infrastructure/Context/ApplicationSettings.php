@@ -20,6 +20,12 @@ class ApplicationSettings
         'ChurchName' => 'Some Church',
         'ChurchHtmlLongText' => 'Some<b>Church</b>',
         'ChurchHtmlShortText' => 'S<b>Ch</b>',
+        'DatabaseEngine' => 'mysql',
+        'DatabaseHost' => 'localhost',
+        'DatabaseName' => 'ekklesion',
+        'DatabaseUser' => 'root',
+        'DatabasePass' => 'root',
+        'DatabasePort' => 3306,
     ];
 
     /**
@@ -50,8 +56,7 @@ class ApplicationSettings
      */
     public static function fromFile(string $file): ApplicationSettings
     {
-        $array = json_decode($file, true);
-        if (!$array) {
+        if (!file_exists($file) || !($array = json_decode(file_get_contents($file), true))) {
             $array = [];
         }
 
@@ -59,67 +64,151 @@ class ApplicationSettings
     }
 
     /**
+     * @param string $churchName
+     *
      * @return string
      */
-    public function getChurchName(): string
+    public function churchName(string $churchName = null): ?string
     {
+        if (null !== $churchName) {
+            $this->data['ChurchName'] = $churchName;
+
+            return null;
+        }
+
         return $this->data['ChurchName'];
     }
 
     /**
-     * @param string $churchName
+     * @param string $churchHtmlLongText
      *
-     * @return ApplicationSettings
-     */
-    public function setChurchName(string $churchName): ApplicationSettings
-    {
-        $this->data['ChurchName'] = $churchName;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getChurchHtmlLongText(): string
+    public function churchHtmlLongText(string $churchHtmlLongText = null): ?string
     {
+        if (null !== $churchHtmlLongText) {
+            $this->data['ChurchHtmlLongText'] = $churchHtmlLongText;
+
+            return null;
+        }
+
         return $this->data['ChurchHtmlLongText'];
     }
 
     /**
-     * @param string $churchName
+     * @param string|null $churchHtmlShortText
      *
-     * @return ApplicationSettings
-     */
-    public function setChurchHtmlLongText(string $churchName): ApplicationSettings
-    {
-        $this->data['ChurchHtmlLongText'] = $churchName;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getChurchHtmlShortText(): string
+    public function churchHtmlShortText(string $churchHtmlShortText = null): ?string
     {
+        if (null !== $churchHtmlShortText) {
+            $this->data['ChurchHtmlShortText'] = $churchHtmlShortText;
+
+            return null;
+        }
+
         return $this->data['ChurchHtmlShortText'];
     }
 
     /**
-     * @param string $churchName
+     * @param string|null $databaseHost
      *
-     * @return ApplicationSettings
+     * @return string
      */
-    public function setChurchHtmlShortText(string $churchName): ApplicationSettings
+    public function databaseHost(string $databaseHost = null): ?string
     {
-        $this->data['ChurchHtmlShortText'] = $churchName;
+        if (null !== $databaseHost) {
+            $this->data['DatabaseHost'] = $databaseHost;
 
-        return $this;
+            return null;
+        }
+
+        return $this->data['DatabaseHost'];
+    }
+
+    /**
+     * @param string|null $databaseName
+     *
+     * @return string
+     */
+    public function databaseName(string $databaseName = null): ?string
+    {
+        if (null !== $databaseName) {
+            $this->data['DatabaseName'] = $databaseName;
+
+            return null;
+        }
+
+        return $this->data['DatabaseName'];
+    }
+
+    /**
+     * @param string|null $databaseUser
+     *
+     * @return string
+     */
+    public function databaseUser(string $databaseUser = null): ?string
+    {
+        if (null !== $databaseUser) {
+            $this->data['DatabaseUser'] = $databaseUser;
+
+            return null;
+        }
+
+        return $this->data['DatabaseUser'];
+    }
+
+    /**
+     * @param string|null $databasePass
+     *
+     * @return string
+     */
+    public function databasePass(string $databasePass = null): ?string
+    {
+        if (null !== $databasePass) {
+            $this->data['DatabasePass'] = $databasePass;
+
+            return null;
+        }
+
+        return $this->data['DatabasePass'];
+    }
+
+    /**
+     * @param string|null $databasePort
+     *
+     * @return string
+     */
+    public function databasePort(string $databasePort = null): ?string
+    {
+        if (null !== $databasePort) {
+            $this->data['DatabasePort'] = $databasePort;
+
+            return null;
+        }
+
+        return $this->data['DatabasePort'];
+    }
+
+    /**
+     * @param string|null $databaseEngine
+     *
+     * @return string
+     */
+    public function databaseEngine(string $databaseEngine = null): ?string
+    {
+        if (null !== $databaseEngine) {
+            $this->data['DatabaseEngine'] = $databaseEngine;
+
+            return null;
+        }
+
+        return $this->data['DatabaseEngine'];
     }
 
     public function save(): void
     {
-        file_put_contents($this->file, json_encode($this->data));
+        file_put_contents($this->file, json_encode($this->data, JSON_PRETTY_PRINT));
     }
 }

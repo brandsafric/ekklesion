@@ -60,6 +60,22 @@ class AccountPresenter
     }
 
     /**
+     * @return bool
+     */
+    public function requiresPasswordChange(): bool
+    {
+        return $this->account->doesRequirePasswordChange();
+    }
+
+    /**
+     * @return string
+     */
+    public function actionToken(): string
+    {
+        return $this->account->actionToken();
+    }
+
+    /**
      * @return string
      */
     public function lastLoginAt(): string

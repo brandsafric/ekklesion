@@ -10,12 +10,5 @@ translations:
 db-validate:
 	vendor/bin/doctrine orm:validate-schema
 
-migration:
-	vendor/bin/doctrine orm:clear-cache:metadata
-	vendor/bin/doctrine-migrations migrations:diff
-
-migrate:
-	vendor/bin/doctrine-migrations migrations:migrate --no-interaction --write-sql
-
 commit: translations cs coverage
 	git add . && git commit

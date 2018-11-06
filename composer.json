@@ -1,6 +1,6 @@
 {
-    "name": "ekklesion/people",
-    "description": "People management for churches",
+    "name": "ekklesion/app",
+    "description": "Church management made simple, fast and free.",
     "type": "project",
     "require": {
         "php": "^7.2",
@@ -9,7 +9,6 @@
         "ext-intl": "*",
         "slim/slim": "^3.11",
         "doctrine/orm": "^2.6",
-        "doctrine/migrations": "^1.8",
         "psr/container": "^1.0",
         "monolog/monolog": "^1.23",
         "twig/twig": "^2.5",
@@ -23,7 +22,9 @@
         "beberlei/assert": "^3.1",
         "hansott/psr7-cookies": "^2.0",
         "firebase/php-jwt": "^5.0",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "slim/flash": "^0.4.0",
+        "kanellov/slim-twig-flash": "^0.2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4",

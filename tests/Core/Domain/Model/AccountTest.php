@@ -11,6 +11,7 @@ namespace Ekklesion\Core\Tests\Domain\Model;
 
 use Cake\Chronos\Chronos;
 use Ekklesion\Core\Domain\Model\Account;
+use Ekklesion\Core\Domain\Model\Privileges;
 use Ekklesion\Core\Domain\Model\Username;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -24,7 +25,7 @@ class AccountTest extends TestCase
 {
     public function testAccountPasswordCanBeChanged(): void
     {
-        $account = Account::create(Uuid::uuid4(), 'username', 'password');
+        $account = Account::create('username', 'password', Privileges::all());
         $account->changePassword('password', 'newPassword');
         $account->login('newPassword');
         $this->assertNotNull($account->lastLogin());
@@ -32,14 +33,14 @@ class AccountTest extends TestCase
 
     public function testWrongPasswordInChangingFails(): void
     {
-        $account = Account::create(Uuid::uuid4(), 'username', 'password');
+        $account = Account::create('username', 'password', Privileges::all());
         $this->expectException(\DomainException::class);
         $account->changePassword('wrongPassword', 'newPassword');
     }
 
     public function testPasswordCanBeResseted(): void
     {
-        $account = Account::create(Uuid::uuid4(), 'username', 'password');
+        $account = Account::create('username', 'password', Privileges::all());
         $token = $account->startPasswordResetProcess();
         $account->resetPassword($token, 'newPassword');
         $account->login('newPassword');
@@ -48,7 +49,7 @@ class AccountTest extends TestCase
 
     public function testAccessors(): void
     {
-        $account = Account::create(Uuid::uuid4(), 'username', 'password');
+        $account = Account::create('username', 'password', Privileges::all());
         $this->assertInstanceOf(Chronos::class, $account->createdAt());
         $this->assertInstanceOf(Username::class, $account->username());
         $this->assertInstanceOf(Uuid::class, $account->uuid());

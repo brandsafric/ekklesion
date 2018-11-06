@@ -25,6 +25,8 @@ interface EkklesionModule
      */
     public function getModuleName(): string;
 
+    public function dependentModules(): array;
+
     /**
      * @return array
      */

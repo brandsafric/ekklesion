@@ -9,6 +9,7 @@
 
 namespace Ekklesion\People;
 
+use Ekklesion\Core\CoreModule;
 use Ekklesion\Core\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
 use Ekklesion\Core\Infrastructure\Module\EkklesionModule;
 use Ekklesion\Core\Infrastructure\Module\Loader\MiddlewareLoader;
@@ -20,7 +21,9 @@ use Ekklesion\People\Factory\CommandHandler as HandlerFactory;
 use Ekklesion\People\Factory\Middleware\ApplicationContextMiddlewareFactory;
 use Ekklesion\People\Factory\Repository\PersonRepositoryFactory;
 use Ekklesion\People\Factory\Service\ApplicationContextFactory;
+use Ekklesion\People\Factory\Service\ApplicationSettingsFactory;
 use Ekklesion\People\Infrastructure\Context\ApplicationContext;
+use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
 use Ekklesion\People\Infrastructure\Http\Controller;
 use Ekklesion\People\Infrastructure\Http\Middleware\ApplicationContextMiddleware;
 use Ekklesion\People\Infrastructure\Persistence\Types\EmailType;
@@ -42,11 +45,19 @@ class PeopleModule implements EkklesionModule
         return self::NAME;
     }
 
+    public function dependentModules(): array
+    {
+        return [
+            CoreModule::NAME,
+        ];
+    }
+
     public function getServices(): array
     {
         return [
             // Services
             ApplicationContext::class => new ApplicationContextFactory(),
+            ApplicationSettings::class => new ApplicationSettingsFactory(),
             ApplicationContextMiddleware::class => new ApplicationContextMiddlewareFactory(),
 
             // Repository
@@ -71,7 +82,7 @@ class PeopleModule implements EkklesionModule
      */
     public function loadResources(ResourceLoader $resourceLoader): void
     {
-        $resourceLoader->loadTemplate('people', __DIR__.'/Resources/templates');
+        $resourceLoader->loadTemplate(self::NAME, __DIR__.'/Resources/templates');
         $resourceLoader->loadORMMapping('Ekklesion\People\Domain\Model', __DIR__.'/Resources/mappings');
         $resourceLoader->loadORMType('gender', GenderType::class);
         $resourceLoader->loadORMType('email', EmailType::class);

@@ -16,6 +16,7 @@ use MNC\PhpDdd\Domain\Model\Collection;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Flash\Messages;
 use Slim\Http\Uri;
 
 /**
@@ -132,6 +133,17 @@ abstract class BaseController
         $authenticator = $this->get(Authenticator::class);
 
         return $authenticator->getAuthenticatedAccountId();
+    }
+
+    /**
+     * @param string $key
+     * @param string $message
+     */
+    protected function flash(string $key, string $message): void
+    {
+        /** @var Messages $flash */
+        $flash = $this->container->get('flash');
+        $flash->addMessage($key, $message);
     }
 
     /**

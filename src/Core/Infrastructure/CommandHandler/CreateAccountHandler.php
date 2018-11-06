@@ -25,7 +25,7 @@ class CreateAccountHandler implements AccountsAware
     /**
      * @param CreateAccount $command
      *
-     * @return Account
+     * @return AccountPresenter
      */
     public function __invoke(CreateAccount $command)
     {
@@ -34,6 +34,6 @@ class CreateAccountHandler implements AccountsAware
         $account = Account::create($command->username(), $command->plainPassword());
         $this->accounts->add($account);
 
-        return \call_user_func(new AccountPresenter(), $account);
+        return new AccountPresenter($account);
     }
 }

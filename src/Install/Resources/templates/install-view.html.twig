@@ -1,0 +1,66 @@
+{% extends '@core/base.html.twig' %}
+
+{% block title %}{% trans 'Install' %}{% endblock %}
+
+{% block body %}
+    <body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Ekkle</b>sion</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            {% if flash('error') %}
+            <div class="text-center alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> {% trans 'Error!' %}</h4>
+                {% for msg in flash('error') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <p class="login-box-msg">{% trans 'In order for Ekklession to be installed, you need to provide your church information and valid database credentials.' %}</p>
+            <p class="login-box-msg">{% trans 'If the information you provided is correct, a new user with username <b>admin</b> will be created. You will set up the information for that user in further screen.' %}</p>
+
+            <form action="/install" method="post">
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Church Name' %}:</label>
+                    <input required name="churchName" type="text" class="form-control" placeholder="{{ context.settings.churchName }}">
+                    <span class="fa fa-home form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Database Host' %}:</label>
+                    <input required name="databaseHost" type="text" class="form-control" placeholder="{{ context.settings.databaseHost }}">
+                    <span class="fa fa-database form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Database Name' %}:</label>
+                    <input required name="databaseName" type="text" class="form-control" placeholder="{{ context.settings.databaseName }}">
+                    <span class="fa fa-database form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Database User' %}:</label>
+                    <input required name="databaseUser" type="text" class="form-control" placeholder="{{ context.settings.databaseUser }}">
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Database Password' %}:</label>
+                    <input required name="databasePass" type="password" class="form-control" placeholder="{{ context.settings.databasePass }}">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>{% trans 'Database Port' %}:</label>
+                    <input required name="databasePort" type="text" class="form-control" placeholder="{{ context.settings.databasePort }}">
+                    <span class="fa fa-link form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-danger btn-block btn-flat">{% trans 'Install' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    </body>
+{% endblock %}

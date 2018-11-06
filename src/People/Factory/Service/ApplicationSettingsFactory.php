@@ -9,27 +9,23 @@
 
 namespace Ekklesion\People\Factory\Service;
 
-use Ekklesion\People\Infrastructure\Context\ApplicationContext;
 use Ekklesion\People\Infrastructure\Context\ApplicationSettings;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class ApplicationContextFactory.
+ * Class ApplicationSettingsFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class ApplicationContextFactory
+class ApplicationSettingsFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return ApplicationContext
+     * @return ApplicationSettings
      */
     public function __invoke(ContainerInterface $container)
     {
-        return new ApplicationContext(
-            $container->get(ApplicationSettings::class),
-            $container->get('settings')['installedModules']
-        );
+        return ApplicationSettings::fromFile($container->get('settings')['people']['settings_file']);
     }
 }

@@ -9,6 +9,7 @@
         <embedded name="username" class="Ekklesion\Core\Domain\Model\Username" column-prefix="username_"/>
         <embedded name="password" class="Ekklesion\Core\Domain\Model\ArgonHashedPassword" column-prefix="password_"/>
         <embedded name="actionToken" class="Ekklesion\Core\Domain\Model\ActionToken" column-prefix="token_"/>
+        <field name="requiresPasswordChange" type="boolean"/>
         <field name="lastLogin" type="chronos" nullable="true"/>
         <field name="createdAt" type="chronos"/>
 

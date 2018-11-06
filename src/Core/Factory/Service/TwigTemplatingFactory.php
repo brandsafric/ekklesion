@@ -11,6 +11,7 @@ namespace Ekklesion\Core\Factory\Service;
 
 use Ekklesion\Core\Infrastructure\Templating\TwigTemplating;
 use Ekklesion\People\Infrastructure\Context\ApplicationContext;
+use Knlv\Slim\Views\TwigMessages;
 use Psr\Container\ContainerInterface;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -41,6 +42,7 @@ class TwigTemplatingFactory
             'auto_reload' => true,
         ]);
         $twig->addExtension(new \Twig_Extensions_Extension_I18n());
+        $twig->addExtension(new TwigMessages($container->get('flash')));
         $twig->addGlobal('context', $container->get(ApplicationContext::class));
 
         if ($forceReload) {
