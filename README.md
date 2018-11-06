@@ -29,7 +29,5 @@ To set up a dev environment you need:
 1. `git clone git@github.com:mnavarrocarter/ekklesion.git ekklesion`
 2. `composer install && yarn install`
 3. `yarn run dev`
-4. `cp .env.dist .env`
-5. Populate your environment variables with your values
-6. `sudo mysql -e "CREATE DATABASE ekklesion;"`
-7. Run the migrations with `make migrations`
+4. Serve with php built-in web server `php -S 0.0.0.0:8000 -t public`
+5. Complete installation steps.
