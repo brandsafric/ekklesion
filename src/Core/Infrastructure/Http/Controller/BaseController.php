@@ -102,15 +102,29 @@ abstract class BaseController
 
     /**
      * @param ResponseInterface $response
-     * @param string            $path
+     * @param string|Uri        $path
      *
      * @return ResponseInterface
      */
-    protected function redirect(ResponseInterface $response, string $path): ResponseInterface
+    protected function redirect(ResponseInterface $response, $path): ResponseInterface
     {
-        $response = $response->withRedirect(Uri::createFromString($path));
+        if (!$path instanceof Uri) {
+            $path = Uri::createFromString($path);
+        }
+        $response = $response->withRedirect($path);
 
         return $response;
+    }
+
+    /**
+     * @param ResponseInterface      $response
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    protected function redirectBack(ResponseInterface $response, ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->redirect($response, $request->getUri());
     }
 
     /**

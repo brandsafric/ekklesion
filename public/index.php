@@ -11,15 +11,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.env');
 
-use Cake\Chronos\Chronos;
-use Cake\Chronos\DifferenceFormatter;
 use Ekklesion\Core\Infrastructure\Module\Loader\ApplicationLoader;
-use Ekklesion\Core\Infrastructure\Persistence\Helper\SpanishTranslator;
-
-// Change the diff formatter in chronos
-Chronos::diffFormatter(new DifferenceFormatter(new SpanishTranslator()));
-
-session_start();
 
 define('ROOT_PATH', realpath(__DIR__.'/..'));
 

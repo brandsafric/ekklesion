@@ -130,7 +130,7 @@
 
                             <p>
                                 {{ context.activePerson.fullName }}
-                                <small>Último inicio de sesión: {{ context.activeAccount.lastLoginDiff }}</small>
+                                <small>{% trans 'Last log in' %}: {{ context.activeAccount.lastLoginDiff }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -151,11 +151,11 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                <a href="#" class="btn btn-default btn-flat">{% trans 'Profile' %}</a>
                             </div>
                             <div class="pull-right">
                                 <form action="/auth/logout" method="post">
-                                    <a href="/auth/logout" onclick="event.preventDefault(); this.parentNode.submit()" class="btn btn-default btn-flat">Salir</a>
+                                    <a href="/auth/logout" onclick="event.preventDefault(); this.parentNode.submit()" class="btn btn-default btn-flat">{% trans 'Logout' %}</a>
                                 </form>
                             </div>
                         </li>

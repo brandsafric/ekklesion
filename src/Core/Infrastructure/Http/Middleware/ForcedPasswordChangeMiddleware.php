@@ -51,15 +51,18 @@ class ForcedPasswordChangeMiddleware implements InvokableMiddleware
      */
     public function __invoke(Request $request, Response $response, callable $next): Response
     {
-        if ($request->getUri()->getPath() === $this->passwordChangeRoute) {
+        if (false !== strpos($request->getUri()->getPath(), $this->passwordChangeRoute)) {
             return $next($request, $response);
         }
         if (null !== $this->context->activeAccount() && $this->context->activeAccount()->requiresPasswordChange()) {
-            $uri = Uri::createFromString($this->passwordChangeRoute)
+            $uri = Uri::createFromString(sprintf(
+                '%s/%s',
+                $this->passwordChangeRoute,
+                $this->context->activeAccount()->uuid()
+            ))
                 ->withQuery(sprintf(
-                    'token=%s&id=%s',
-                    $this->context->activeAccount()->actionToken(),
-                    $this->context->activeAccount()->uuid()
+                    'token=%s',
+                    $this->context->activeAccount()->actionToken()
                 ));
 
             return $response->withRedirect($uri);

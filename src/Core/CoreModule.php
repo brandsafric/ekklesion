@@ -19,9 +19,11 @@ use Ekklesion\Core\Factory\Service as ServiceFactory;
 use Ekklesion\Core\Infrastructure\CommandBus\CommandBus;
 use Ekklesion\Core\Infrastructure\Http\Controller;
 use Ekklesion\Core\Infrastructure\Http\Middleware\AuthenticationMiddleware;
+use Ekklesion\Core\Infrastructure\Http\Middleware\ChronosFormatterMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\ForcedPasswordChangeMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\LocalizationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
+use Ekklesion\Core\Infrastructure\Http\Middleware\SessionStartMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\Core\Infrastructure\Module\EkklesionModule;
 use Ekklesion\Core\Infrastructure\Module\Loader\MiddlewareLoader;
@@ -79,6 +81,7 @@ class CoreModule implements EkklesionModule
             // Command => Command Handler
             Command\CreateAccount::class => new HandlerFactory\CreateAccountHandlerFactory(),
             Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
+            Command\ResetPassword::class => new HandlerFactory\ResetPasswordHandlerFactory(),
         ];
     }
 
@@ -97,6 +100,9 @@ class CoreModule implements EkklesionModule
         ];
     }
 
+    /**
+     * @param ResourceLoader $resourceLoader
+     */
     public function loadResources(ResourceLoader $resourceLoader): void
     {
         $resourceLoader->loadTemplate(self::NAME, __DIR__.'/Resources/templates');
@@ -106,8 +112,13 @@ class CoreModule implements EkklesionModule
         $resourceLoader->loadORMType('filename', Types\FilenameType::class);
     }
 
+    /**
+     * @param MiddlewareLoader $middlewareLoader
+     */
     public function loadMiddleware(MiddlewareLoader $middlewareLoader): void
     {
+        $middlewareLoader->load(700, new SessionStartMiddleware());
+        $middlewareLoader->load(650, new ChronosFormatterMiddleware());
         $middlewareLoader->load(200, LocalizationMiddleware::class);
         $middlewareLoader->load(100, AuthenticationMiddleware::class);
         $middlewareLoader->load(50, ForcedPasswordChangeMiddleware::class);
@@ -118,7 +129,8 @@ class CoreModule implements EkklesionModule
         $routeLoader->get('/', Controller\HomeController::class)
             ->add(RequiresAuthenticationMiddleware::class);
 
-        $routeLoader->get('/auth/reset-password', Controller\SecurityController::class.':resetPassword');
+        $routeLoader->get('/auth/reset-password/{id}', Controller\SecurityController::class.':resetPassword');
+        $routeLoader->post('/auth/reset-password/{id}', Controller\SecurityController::class.':doResetPassword');
 
         // Auth Endpoints
         $routeLoader->group('/auth', function () use ($routeLoader) {

@@ -11,6 +11,7 @@ namespace Ekklesion\Core\Infrastructure\CommandHandler;
 
 use Ekklesion\Core\Domain\Model\Account;
 use Ekklesion\Core\Domain\Repository\AccountRepository;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Trait Accounts.
@@ -40,6 +41,20 @@ trait Accounts
     protected function findAccountByUsernameOrFail(string $username): Account
     {
         $account = $this->accounts->ofUsername($username);
+        if ($account instanceof Account) {
+            return $account;
+        }
+        throw new \DomainException('Account not found', 404);
+    }
+
+    /**
+     * @param Uuid $accountId
+     *
+     * @return Account
+     */
+    protected function findAccountByIdOrFail(Uuid $accountId): Account
+    {
+        $account = $this->accounts->ofId($accountId);
         if ($account instanceof Account) {
             return $account;
         }

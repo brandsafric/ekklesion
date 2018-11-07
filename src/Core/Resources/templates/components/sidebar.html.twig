@@ -29,69 +29,79 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MENÚ</li>
+            <li class="header">{% trans 'MENU' %}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>{% trans 'Dashboard' %}</span></a></li>
+            {% if context.isModuleInstalled('people') %}
             <li class="treeview">
                 <a href="#"><i class="fa fa-user"></i>
-                    <span>Personas</span>
+                    <span>{% trans 'People' %}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/people">Listado</a></li>
-                    <li><a href="/people/new">Añadir Nueva</a></li>
+                    <li><a href="/people">{% trans 'List' %}</a></li>
+                    <li><a href="/people/new">{% trans 'Create New' %}</a></li>
                 </ul>
             </li>
+            {% endif %}
+            {% if context.isModuleInstalled('households') %}
             <li class="treeview">
                 <a href="#"><i class="fa fa-home"></i>
-                    <span>Hogares</span>
+                    <span>{% trans 'Households' %}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Listado</a></li>
-                    <li><a href="#">Registrar Nuevo</a></li>
+                    <li><a href="#">{% trans 'List' %}</a></li>
+                    <li><a href="#">{% trans 'Create New' %}</a></li>
                 </ul>
             </li>
+            {% endif %}
+            {% if context.isModuleInstalled('groups') %}
             <li class="treeview">
                 <a href="#"><i class="fa fa-group"></i>
-                    <span>Grupos</span>
+                    <span>{% trans 'Groups' %}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Listado</a></li>
-                    <li><a href="#">Añadir Nuevo</a></li>
+                    <li><a href="#">{% trans 'List' %}</a></li>
+                    <li><a href="#">{% trans 'Create New' %}</a></li>
                 </ul>
             </li>
+            {% endif %}
+            {% if context.isModuleInstalled('events') %}
             <li class="treeview">
                 <a href="#"><i class="fa fa-calendar"></i>
-                    <span>Eventos</span>
+                    <span>{% trans 'Events' %}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Listado</a></li>
-                    <li><a href="#">Crear Nuevo</a></li>
+                    <li><a href="#">{% trans 'List' %}</a></li>
+                    <li><a href="#">{% trans 'Create New' %}</a></li>
                 </ul>
             </li>
+            {% endif %}
+            {% if context.isModuleInstalled('accounting') %}
             <li class="treeview">
                 <a href="#"><i class="fa fa-money"></i>
-                    <span>Finanzas</span>
+                    <span>{% trans 'Accounting' %}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Balance</a></li>
-                    <li><a href="#">Contribuciones</a></li>
+                    <li><a href="#">{% trans 'Balance' %}</a></li>
+                    <li><a href="#">{% trans 'Transactions' %}</a></li>
                 </ul>
             </li>
+            {% endif %}
         </ul>
         <!-- /.sidebar-menu -->
     </section>
