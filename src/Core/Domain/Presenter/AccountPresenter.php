@@ -81,7 +81,7 @@ class AccountPresenter
     public function lastLoginAt(): string
     {
         if (null === $this->account->lastLogin()) {
-            return 'No registrado';
+            return _('Not registered');
         }
 
         return $this->account->lastLogin()->format('d/m/Y a las h:m');
@@ -93,7 +93,7 @@ class AccountPresenter
     public function lastLoginDiff(): string
     {
         if (null === $this->account->lastLogin()) {
-            return 'No registrado';
+            return _('Not registered');
         }
 
         return $this->account->lastLogin()->diffForHumans();

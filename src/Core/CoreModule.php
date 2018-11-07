@@ -24,6 +24,7 @@ use Ekklesion\Core\Infrastructure\Http\Middleware\ForcedPasswordChangeMiddleware
 use Ekklesion\Core\Infrastructure\Http\Middleware\LocalizationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\RequiresAuthenticationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\SessionStartMiddleware;
+use Ekklesion\Core\Infrastructure\Http\Middleware\StoragePathConfigMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\Core\Infrastructure\Module\EkklesionModule;
 use Ekklesion\Core\Infrastructure\Module\Loader\MiddlewareLoader;
@@ -74,6 +75,7 @@ class CoreModule implements EkklesionModule
             RequiresAuthenticationMiddleware::class => new MiddlewareFactory\RequiresAuthenticationMiddlewareFactory(),
             LocalizationMiddleware::class => new MiddlewareFactory\LocalizationMiddlewareFactory(),
             ForcedPasswordChangeMiddleware::class => new MiddlewareFactory\ForcedPasswordChangeMiddlewareFactory(),
+            StoragePathConfigMiddleware::class => new MiddlewareFactory\StoragePathConfigMiddlewareFactory(),
 
             // Repository
             AccountRepository::class => new AccountRepositoryFactory(),
@@ -96,6 +98,7 @@ class CoreModule implements EkklesionModule
             'env' => getenv('APP_ENV'),
             'log_path' => getenv('LOG_PATH'),
             'locale' => getenv('LOCALE'),
+            'base_path' => ROOT_PATH,
             'login_route' => '/auth/login',
         ];
     }
@@ -118,6 +121,7 @@ class CoreModule implements EkklesionModule
     public function loadMiddleware(MiddlewareLoader $middlewareLoader): void
     {
         $middlewareLoader->load(700, new SessionStartMiddleware());
+        $middlewareLoader->load(660, StoragePathConfigMiddleware::class);
         $middlewareLoader->load(650, new ChronosFormatterMiddleware());
         $middlewareLoader->load(200, LocalizationMiddleware::class);
         $middlewareLoader->load(100, AuthenticationMiddleware::class);

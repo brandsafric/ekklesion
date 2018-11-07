@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-06 23:37-0300\n"
+"POT-Creation-Date: 2018-11-07 00:14-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,11 @@ msgstr ""
 
 #: src/People/Domain/Model/Gender.php:81
 msgid "Female"
+msgstr ""
+
+#: src/Core/Domain/Presenter/AccountPresenter.php:84
+#: src/Core/Domain/Presenter/AccountPresenter.php:96
+msgid "Not registered"
 msgstr ""
 
 #: src/Core/Domain/Model/Privileges.php:130
@@ -236,15 +241,21 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:88
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:51
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:61
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:61
+msgid "Search"
+msgstr ""
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:65
 msgid "MENU"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:93
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:70
 msgid "Dashboard"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:103
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:80
 #: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:31
 #: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:43
 #: cache/templates/1d/1d2bf7ce539bd8c61ed5176728fc1819ecab7f1b38288af54966b5648d9b2499.php:31
@@ -252,41 +263,41 @@ msgstr ""
 msgid "People"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:112
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:139
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:166
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:193
-msgid "List"
-msgstr ""
-
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:89
 #: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:116
 #: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:143
 #: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:170
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:197
+msgid "List"
+msgstr ""
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:93
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:120
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:147
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:174
 msgid "Create New"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:130
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:107
 msgid "Households"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:157
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:134
 msgid "Groups"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:184
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:161
 msgid "Events"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:211
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:188
 msgid "Accounting"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:220
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:197
 msgid "Balance"
 msgstr ""
 
-#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:224
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:201
 msgid "Transactions"
 msgstr ""
 
@@ -333,11 +344,6 @@ msgstr ""
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:54
 #: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:54
 msgid "People List"
-msgstr ""
-
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:61
-#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:61
-msgid "Search"
 msgstr ""
 
 #: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:80
