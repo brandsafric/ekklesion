@@ -83,8 +83,16 @@ class Name
             case self::FORMAT_NORMAL:
                 return sprintf('%s %s', $this->given[0], $this->father);
             case self::FORMAT_FULL:
+                if ('' === $this->mother) {
+                    return sprintf('%s %s', $this->given(), $this->father);
+                }
+
                 return sprintf('%s %s %s', $this->given(), $this->father, $this->mother);
             case self::FORMAT_LIST:
+                if ('' === $this->mother) {
+                    return sprintf('%s, %s', $this->father, $this->given());
+                }
+
                 return sprintf('%s %s, %s', $this->father, $this->mother, $this->given());
             default:
                 throw new \InvalidArgumentException('Invalid format constant value.');
