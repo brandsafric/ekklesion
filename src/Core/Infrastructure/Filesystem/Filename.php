@@ -96,6 +96,14 @@ final class Filename
         return $clone;
     }
 
+    public function withName(string $name): Filename
+    {
+        $clone = clone $this;
+        $clone->name = $name;
+
+        return $clone;
+    }
+
     /**
      * @param string $path
      *

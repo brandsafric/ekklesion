@@ -30,21 +30,21 @@ class FilenameTest extends TestCase
     {
         $filenameOne = Filename::makeFrom($this->name)->withUniqueName();
         $filenameTwo = Filename::makeFrom($this->name)->withUniqueName();
-        $this->assertNotSame((string) $filenameOne, (string) $filenameTwo);
-        $this->assertNotSame($filenameOne->name(), $filenameTwo->name());
+        $this->assertNotEquals((string) $filenameOne, (string) $filenameTwo);
+        $this->assertNotEquals($filenameOne->name(), $filenameTwo->name());
     }
 
     public function testPathChange(): void
     {
         $filename = Filename::makeFrom($this->name)->inPath('/games/bro');
-        $this->assertSame('/games/bro/somefile.ext', (string) $filename);
-        $this->assertSame('games/bro', $filename->path());
+        $this->assertEquals('/games/bro/somefile.ext', (string) $filename);
+        $this->assertEquals('games/bro', $filename->path());
     }
 
     public function testExtensionChange(): void
     {
         $filename = Filename::makeFrom($this->name)->inPath('files')->withExtension('jpeg');
-        $this->assertSame('/files/somefile.jpeg', $filename->__toString());
-        $this->assertSame('jpeg', $filename->extension());
+        $this->assertEquals('/files/somefile.jpeg', $filename->__toString());
+        $this->assertEquals('jpeg', $filename->extension());
     }
 }

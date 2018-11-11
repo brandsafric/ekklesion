@@ -24,18 +24,36 @@ interface Filesystem
     /**
      * @param Filename $filename
      * @param          $contents
+     *
+     * @return int
      */
-    public function write(Filename $filename, $contents): void;
+    public function write(Filename $filename, $contents): int;
+
+    /**
+     * @param Filename $filename
+     *
+     * @return resource
+     */
+    public function read(Filename $filename);
 
     /**
      * @param Filename $filename
      * @param          $contents
+     * @param bool     $append
+     *
+     * @return int
      */
-    public function read(Filename $filename, $contents): void;
+    public function put(Filename $filename, $contents, bool $append = false): int;
 
     /**
      * @param Filename $filename
-     * @param          $contents
+     *
+     * @return bool
      */
-    public function put(Filename $filename, $contents): void;
+    public function has(Filename $filename): bool;
+
+    /**
+     * @param Filename $filename
+     */
+    public function destroy(Filename $filename): void;
 }

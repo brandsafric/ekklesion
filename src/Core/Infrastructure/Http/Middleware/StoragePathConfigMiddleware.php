@@ -53,7 +53,7 @@ class StoragePathConfigMiddleware implements InvokableMiddleware
         if (!@mkdir($this->storageRealPath, 0775, true) && !is_dir($this->storageRealPath)) {
             throw new \RuntimeException(sprintf('There was a problem creating the storage folder in %s', $this->storageRealPath));
         }
-        if (!@symlink($this->storageRealPath, $this->storageLinkPath) && !is_file($this->storageLinkPath)) {
+        if (!@symlink($this->storageRealPath, $this->storageLinkPath) && !is_dir($this->storageLinkPath)) {
             throw new \RuntimeException(sprintf('Could not create symlink from %s to %s', $this->storageRealPath, $this->storageLinkPath));
         }
 

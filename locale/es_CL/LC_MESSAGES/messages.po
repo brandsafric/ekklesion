@@ -3,35 +3,31 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: messages\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-04 10:04-0300\n"
-"PO-Revision-Date: 2018-11-04 10:31-0300\n"
-"Language: es\n"
+"POT-Creation-Date: 2018-11-07 00:14-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.2\n"
 
-#: src/People/Domain/Presenter/PersonPresenter.php:135
-msgid "Elder"
-msgstr "Anciano"
-
-#: src/People/Domain/Presenter/PersonPresenter.php:138
-msgid "Deacon"
-msgstr "Diácono"
-
-#: src/People/Domain/Presenter/PersonPresenter.php:141
+#: src/People/Domain/Presenter/PersonPresenter.php:134
 msgid "Member"
 msgstr "Miembro"
 
-#: src/People/Domain/Presenter/PersonPresenter.php:144
-msgid "Attendee"
-msgstr "Asistente"
+#: src/People/Domain/Presenter/PersonPresenter.php:137
+msgid "Deacon"
+msgstr "Diácono"
+
+#: src/People/Domain/Presenter/PersonPresenter.php:140
+msgid "Elder"
+msgstr "Anciano"
 
 #: src/People/Domain/Model/Gender.php:80
 msgid "Male"
@@ -40,6 +36,11 @@ msgstr "Hombre"
 #: src/People/Domain/Model/Gender.php:81
 msgid "Female"
 msgstr "Mujer"
+
+#: src/Core/Domain/Presenter/AccountPresenter.php:84
+#: src/Core/Domain/Presenter/AccountPresenter.php:96
+msgid "Not registered"
+msgstr "No registrado"
 
 #: src/Core/Domain/Model/Privileges.php:130
 msgid "Manage people"
@@ -53,55 +54,400 @@ msgstr "Administrar notas"
 msgid "Manage permissions"
 msgstr "Administrar permisos"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:28
-msgid "People List"
-msgstr "Listado de personas"
+#: src/Core/Infrastructure/Http/Controller/SecurityController.php:166
+msgid "Passwords do not match"
+msgstr "Las contraseñas no coinciden"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:35
-msgid "Search"
-msgstr "Buscar"
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:31
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:31
+msgid "New person"
+msgstr "Nueva persona"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:54
-msgid "Name"
-msgstr "Nombre"
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:43
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:43
+msgid "New Person"
+msgstr "Nueva Persona"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:58
-msgid "Nickname"
-msgstr "Apodo"
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:46
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:46
+msgid "Here you can create a new person"
+msgstr "Aquí puedes crear una nueva persona"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:62
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:64
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:64
+msgid "Personal Details"
+msgstr "Información Personal"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:69
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:163
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:273
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:340
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:69
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:163
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:273
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:340
+msgid "(*) Required"
+msgstr "(*) Requerido"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:79
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:88
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:79
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:88
 msgid "Gender"
 msgstr "Sexo"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:66
-msgid "Email"
-msgstr ""
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:104
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:104
+msgid "Names"
+msgstr "Nombres"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:70
-msgid "Phone"
-msgstr ""
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:111
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:111
+msgid "Last Name"
+msgstr "Apellido Paterno"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:74
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:118
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:118
+msgid "Last Name (Mother)"
+msgstr "Apellido Materno"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:125
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:100
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:125
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:100
 msgid "Birthday"
-msgstr ""
+msgstr "Fecha Nacimiento"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:78
-msgid "Role"
-msgstr ""
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:133
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:291
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:306
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:321
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:367
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:382
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:133
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:291
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:306
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:321
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:367
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:382
+msgid "dd/mm/yyyy"
+msgstr "dd/mm/aaaa"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:82
-msgid "Has account?"
-msgstr ""
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:144
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:84
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:144
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:84
+msgid "Nickname"
+msgstr "Apodo"
 
-#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:86
-msgid "Added at"
-msgstr ""
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:158
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:158
+msgid "Contact Information"
+msgstr "Información de Contacto"
 
-#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:35
-#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:47
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:173
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:96
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:173
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:96
+msgid "Primary Phone"
+msgstr "Teléfono Primario"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:185
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:92
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:185
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:92
+msgid "Primary Email"
+msgstr "Email Primario"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:197
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:197
+msgid "Secondary Phone"
+msgstr "Teléfono Secundario"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:209
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:209
+msgid "Secondary Email"
+msgstr "Email Secundario"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:225
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:225
+msgid "Facebook"
+msgstr "Facebook"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:237
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:237
+msgid "Twitter"
+msgstr "Twitter"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:249
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:249
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:268
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:268
+msgid "Membership Info"
+msgstr "Información de Membresía"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:283
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:283
+msgid "Became Member On"
+msgstr "Fué miembro en"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:298
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:298
+msgid "Became Deacon On"
+msgstr "Fué diácono en"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:313
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:313
+msgid "Became Elder On"
+msgstr "Fué anciano en"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:335
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:335
+msgid "Other Information"
+msgstr "Otra Información"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:350
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:350
+msgid "Is Baptized"
+msgstr "Está bautizado?"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:359
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:359
+msgid "Baptism Date"
+msgstr "Fecha de Bautismo"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:374
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:374
+msgid "First Visit"
+msgstr "Primera Visita"
+
+#: cache/templates/6c/6c58395eb67a696150e302447f0639de56aac0cb6e1114a42feffde6621088ff.php:392
+#: cache/templates/59/59368cc21d81619f197ca994239570151752285ee2a48ddeeb824f032e28246d.php:392
+msgid "Submit"
+msgstr "Enviar"
+
+#: cache/templates/b0/b0dca5a0dc048a05c735e85a81f7a0e08a7e523a98230ebfe049cad52a0c5926.php:201
+msgid "Last log in"
+msgstr "Último inicio de sesión"
+
+#: cache/templates/b0/b0dca5a0dc048a05c735e85a81f7a0e08a7e523a98230ebfe049cad52a0c5926.php:227
+msgid "Profile"
+msgstr "Perfil"
+
+#: cache/templates/b0/b0dca5a0dc048a05c735e85a81f7a0e08a7e523a98230ebfe049cad52a0c5926.php:234
+msgid "Logout"
+msgstr "Salir"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:51
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:61
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:61
+msgid "Search"
+msgstr "Buscar"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:65
+msgid "MENU"
+msgstr "MENU"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:70
+msgid "Dashboard"
+msgstr "Panel"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:80
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:31
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:43
+#: cache/templates/1d/1d2bf7ce539bd8c61ed5176728fc1819ecab7f1b38288af54966b5648d9b2499.php:31
+#: cache/templates/1d/1d2bf7ce539bd8c61ed5176728fc1819ecab7f1b38288af54966b5648d9b2499.php:43
 msgid "People"
 msgstr "Personas"
 
-#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:50
-msgid "Here you can see a list of all the people registered in the congregation"
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:89
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:116
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:143
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:170
+msgid "List"
+msgstr "Listado"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:93
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:120
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:147
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:174
+msgid "Create New"
+msgstr "Crear Nueva"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:107
+msgid "Households"
+msgstr "Hogares"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:134
+msgid "Groups"
+msgstr "Grupos"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:161
+msgid "Events"
+msgstr "Eventos"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:188
+msgid "Accounting"
+msgstr "Contabilidad"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:197
+msgid "Balance"
+msgstr "Balance"
+
+#: cache/templates/ae/ae83fdb3bfa9645ec8d6a55c59a90f06cefc2ca2fbd6195870ca128459b9f75b.php:201
+msgid "Transactions"
+msgstr "Transacciones"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:31
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:50
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:31
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:50
+msgid "Sign In"
+msgstr "Entrar"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:61
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:61
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:53
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:61
+msgid "Error!"
+msgstr "¡Error!"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:76
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:76
+msgid "Username"
+msgstr "Usuario"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:83
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:90
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:83
+msgid "Password"
+msgstr "Contraseña"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:93
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:93
+msgid "Remember me for a week"
+msgstr "Recordarme por una semana"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:103
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:103
+msgid "Forgot my password"
+msgstr "Olvidé mi contraseña"
+
+#: cache/templates/a4/a49874c0720e1c0a1bf1711238d20df6898fb30e1928c6f0b2701e0265df36a2.php:110
+#: cache/templates/58/582f4bf7710ec4071e598837ef9d99b6018c3dee8c6bbd3567eceb0bdf1f4fca.php:110
+msgid "Login"
+msgstr "Entrar"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:54
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:54
+msgid "People List"
+msgstr "Listado de Personas"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:80
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:80
+msgid "Name"
+msgstr "Nombre"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:104
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:104
+msgid "Roles"
+msgstr "Roles"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:108
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:108
+msgid "Has account?"
+msgstr "Tiene cuenta?"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:112
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:112
+msgid "Added at"
+msgstr "Añadido en"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:171
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:171
+msgid "Yes"
+msgstr "Si"
+
+#: cache/templates/98/987edbf961dbd48ba9c62748a7f6cd5c6d96c16acfd05664a424ac8d29ea6e37.php:177
+#: cache/templates/2c/2ce4f214afcc25bd309dde6357c93ba149f55d8989c37e68ea1e3aa80fa81fbc.php:177
+msgid "No"
+msgstr "No"
+
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:31
+msgid "New Password"
+msgstr "Nueva Contraseña"
+
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:50
+msgid "Select a new password"
+msgstr "Elije una nueva contraseña"
+
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:97
+msgid "Confirm New Password"
+msgstr "Confirmar Contraseña"
+
+#: cache/templates/a3/a3b8a3768f79636708558d26c5901869a09113e62ae170cbc095cfb52c70df8c.php:107
+msgid "Change"
+msgstr "Cambiar"
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:47
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:75
+msgid ""
+"In order for Ekklession to be installed, you need to provide your church "
+"information and valid database credentials."
 msgstr ""
+"Para que Ekklesion pueda ser instalado, necesitas proveer tu infirmación "
+"de iglesia y credenciales de base de datos válidas."
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:51
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:79
+msgid ""
+"If the information you provided is correct, a new user with username "
+"<b>admin</b> will be created. You will set up the information for that user "
+"in further screen."
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:58
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:86
+msgid "Church Name"
+msgstr "Nombre de la Iglesia"
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:69
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:97
+msgid "Database Host"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:80
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:108
+msgid "Database Name"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:91
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:119
+msgid "Database User"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:102
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:130
+msgid "Database Password"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:113
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:141
+msgid "Database Port"
+msgstr ""
+
+#: cache/templates/6f/6ffa416904c92dbbdd6b4aeec8a6bd91c7e7ee456c807c672d3588fa37003f4c.php:125
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:31
+#: cache/templates/da/da91e103590418110a80cf59efae1fcde021c15d05cd2405bdaae4c6edc3c280.php:153
+msgid "Install"
+msgstr ""
+
+#: cache/templates/10/10311615b44bc35caadaed38e777a2222819bc34b415afe8e15aa862ba2e0191.php:46
+#: cache/templates/1d/1d2bf7ce539bd8c61ed5176728fc1819ecab7f1b38288af54966b5648d9b2499.php:46
+msgid ""
+"Here you can see a list of all the people registered in the congregation"
+msgstr ""
+"Aquí puedes ver un listado de todas las personas registradas en la congregación"

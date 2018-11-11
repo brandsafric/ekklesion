@@ -17,6 +17,7 @@ use Ekklesion\Core\Factory\Middleware as MiddlewareFactory;
 use Ekklesion\Core\Factory\Repository\AccountRepositoryFactory;
 use Ekklesion\Core\Factory\Service as ServiceFactory;
 use Ekklesion\Core\Infrastructure\CommandBus\CommandBus;
+use Ekklesion\Core\Infrastructure\Filesystem\Filesystem;
 use Ekklesion\Core\Infrastructure\Http\Controller;
 use Ekklesion\Core\Infrastructure\Http\Middleware\AuthenticationMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Middleware\ChronosFormatterMiddleware;
@@ -63,8 +64,10 @@ class CoreModule implements EkklesionModule
             EntityManagerInterface::class => new ServiceFactory\EntityManagerFactory(),
             LoggerInterface::class => new ServiceFactory\LoggerFactory(),
             Templating::class => new ServiceFactory\TwigTemplatingFactory(),
+            \Twig_Environment::class => new ServiceFactory\TwigEnvironmentFactory(),
             CommandBus::class => new ServiceFactory\CommandBusFactory(),
             Authenticator::class => new ServiceFactory\JwtAuthenticatorFactory(),
+            Filesystem::class => new ServiceFactory\FilesystemFactory(),
             'notFoundHandler' => new ServiceFactory\NotFoundHandlerFactory(),
             'flash' => function () {
                 return new \Slim\Flash\Messages();

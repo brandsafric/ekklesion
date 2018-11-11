@@ -4,11 +4,11 @@ coverage:
 cs:
 	vendor/bin/php-cs-fixer fix --diff --verbose
 
-translations:
+main-translation:
 	find . -iname '*.php' | xargs xgettext -L PHP -o messages.po
 
 db-validate:
 	vendor/bin/doctrine orm:validate-schema
 
-commit: translations cs coverage
+commit: main-translation cs coverage
 	git add . && git commit

@@ -55,16 +55,18 @@ class LocalizationMiddleware implements InvokableMiddleware
      */
     public function __invoke(Request $request, Response $response, callable $next): Response
     {
-        // Set language to Spanish
-        putenv('LC_ALL='.$this->locale);
-        if (false === setlocale(LC_ALL, $this->locale)) {
-            throw new \RuntimeException(sprintf('Locale %s does not exist on the system.', $this->locale));
+        if (\defined('LC_MESSAGES')) {
+            setlocale(LC_MESSAGES, $this->locale); // Linux
+            $result = bindtextdomain($this->domain, $this->translationsPath);
+        } else {
+            putenv('LC_ALL='.$this->locale); // windows
+            $result = bindtextdomain($this->domain, $this->translationsPath);
         }
 
-        // Specify the location of the translation tables
-        if (false === bindtextdomain($this->domain, $this->translationsPath)) {
+        if (false === $result) {
             throw new \RuntimeException(sprintf('Could not set translations folder to %s', $this->translationsPath));
         }
+
 
         // Choose domain
         textdomain($this->domain);
