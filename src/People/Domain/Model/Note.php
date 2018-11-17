@@ -46,6 +46,19 @@ class Note
     private $writtenOn;
 
     /**
+     * @param Person        $author
+     * @param UuidInterface $subjectId
+     * @param string        $text
+     * @param bool          $isPrivate
+     *
+     * @return Note
+     */
+    public static function create(Person $author, UuidInterface $subjectId, string $text, bool $isPrivate = false): Note
+    {
+        return new self($author, $subjectId, $text, $isPrivate);
+    }
+
+    /**
      * Note constructor.
      *
      * @param Person        $author
@@ -53,7 +66,7 @@ class Note
      * @param string        $text
      * @param bool          $isPrivate
      */
-    public function __construct(Person $author, UuidInterface $subjectId, string $text, bool $isPrivate = false)
+    private function __construct(Person $author, UuidInterface $subjectId, string $text, bool $isPrivate = false)
     {
         $this->uuid = Uuid::uuid4();
         $this->author = $author;

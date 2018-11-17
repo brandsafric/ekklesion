@@ -9,8 +9,6 @@
 
 namespace Ekklesion\People\Infrastructure\CommandHandler;
 
-use Ekklesion\Core\Infrastructure\CommandHandler\Accounts;
-use Ekklesion\Core\Infrastructure\CommandHandler\AccountsAware;
 use Ekklesion\People\Domain\Command\CreateFirstUser;
 use Ekklesion\People\Domain\Model\Email;
 use Ekklesion\People\Domain\Model\Name;

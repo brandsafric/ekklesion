@@ -9,11 +9,12 @@
 
 namespace Ekklesion\People\Infrastructure\Context;
 
-use Ekklesion\Core\Domain\Model\Account;
-use Ekklesion\Core\Domain\Presenter\AccountPresenter;
-use Ekklesion\People\Domain\Model\Person;
+use Ekklesion\People\Domain\Presenter\AccountPresenter;
 use Ekklesion\People\Domain\Presenter\PersonPresenter;
 use Ramsey\Uuid\UuidInterface;
+
+
+// TODO: Separate application context from global settings. Settings should be in core, and this probably should be called ActionContext.
 
 /**
  * Class Context.

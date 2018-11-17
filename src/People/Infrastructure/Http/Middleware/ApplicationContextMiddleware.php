@@ -9,8 +9,8 @@
 
 namespace Ekklesion\People\Infrastructure\Http\Middleware;
 
-use Ekklesion\Core\Domain\Presenter\AccountPresenter;
-use Ekklesion\Core\Domain\Repository\AccountRepository;
+use Ekklesion\People\Domain\Presenter\AccountPresenter;
+use Ekklesion\People\Domain\Repository\AccountRepository;
 use Ekklesion\Core\Infrastructure\Http\Middleware\InvokableMiddleware;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\People\Domain\Presenter\PersonPresenter;

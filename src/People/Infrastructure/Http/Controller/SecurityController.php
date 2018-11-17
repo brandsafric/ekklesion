@@ -7,9 +7,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\Core\Infrastructure\Http\Controller;
+namespace Ekklesion\People\Infrastructure\Http\Controller;
 
 use Cake\Chronos\Chronos;
+use Ekklesion\Core\Infrastructure\Http\Controller\BaseController;
 use Ekklesion\People\Domain\Command\CreateAccount;
 use Ekklesion\People\Domain\Command\Login;
 use Ekklesion\People\Domain\Command\ResetPassword;

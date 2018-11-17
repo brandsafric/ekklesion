@@ -9,7 +9,7 @@
 
 namespace Ekklesion\People\Factory\Middleware;
 
-use Ekklesion\Core\Domain\Repository\AccountRepository;
+use Ekklesion\People\Domain\Repository\AccountRepository;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\People\Domain\Repository\PersonRepository;
 use Ekklesion\People\Infrastructure\Context\ApplicationContext;

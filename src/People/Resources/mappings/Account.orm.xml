@@ -1,0 +1,22 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Ekklesion\People\Domain\Model\Account" repository-class="Ekklesion\People\Infrastructure\Repository\DoctrineAccountRepository">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <one-to-one field="person" target-entity="Ekklesion\People\Domain\Model\Person" fetch="EAGER">
+            <cascade><cascade-all/></cascade>
+            <join-column referenced-column-name="uuid" on-delete="CASCADE"/>
+        </one-to-one>
+        <embedded name="username" class="Ekklesion\People\Domain\Model\Username" column-prefix="username_"/>
+        <embedded name="password" class="Ekklesion\People\Domain\Model\ArgonHashedPassword" column-prefix="password_"/>
+        <embedded name="actionToken" class="Ekklesion\People\Domain\Model\ActionToken" column-prefix="token_"/>
+        <field name="requiresPasswordChange" type="boolean"/>
+        <field name="lastLogin" type="chronos" nullable="true"/>
+        <field name="createdAt" type="chronos"/>
+
+    </entity>
+
+</doctrine-mapping>

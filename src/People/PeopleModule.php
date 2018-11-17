@@ -16,12 +16,10 @@ use Ekklesion\Core\Infrastructure\Module\Loader\MiddlewareLoader;
 use Ekklesion\Core\Infrastructure\Module\Loader\ResourceLoader;
 use Ekklesion\Core\Infrastructure\Module\Loader\RouteLoader;
 use Ekklesion\People\Domain\Command;
-use Ekklesion\People\Domain\Repository\NoteRepository;
-use Ekklesion\People\Domain\Repository\PersonRepository;
+use Ekklesion\People\Domain\Repository;
 use Ekklesion\People\Factory\CommandHandler as HandlerFactory;
 use Ekklesion\People\Factory\Middleware\ApplicationContextMiddlewareFactory;
-use Ekklesion\People\Factory\Repository\NoteRepositoryFactory;
-use Ekklesion\People\Factory\Repository\PersonRepositoryFactory;
+use Ekklesion\People\Factory\Repository as RepositoryFactory;
 use Ekklesion\People\Factory\Service\ApplicationContextFactory;
 use Ekklesion\People\Factory\Service\ApplicationSettingsFactory;
 use Ekklesion\People\Infrastructure\Context\ApplicationContext;
@@ -78,16 +76,22 @@ class PeopleModule implements EkklesionModule
             ApplicationContextMiddleware::class => new ApplicationContextMiddlewareFactory(),
 
             // Repository
-            PersonRepository::class => new PersonRepositoryFactory(),
-            NoteRepository::class => new NoteRepositoryFactory(),
+            Repository\AccountRepository::class => new RepositoryFactory\AccountRepositoryFactory(),
+            Repository\PersonRepository::class => new RepositoryFactory\PersonRepositoryFactory(),
+            Repository\NoteRepository::class => new RepositoryFactory\NoteRepositoryFactory(),
 
             // Command => Command Handler
+            Command\CreateAccount::class => new HandlerFactory\CreateAccountHandlerFactory(),
+            Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
+            Command\ResetPassword::class => new HandlerFactory\ResetPasswordHandlerFactory(),
             Command\CreateFirstUser::class => new HandlerFactory\CreateFirstUserHandlerFactory(),
+
             Command\ListPeople::class => new HandlerFactory\ListPeopleHandlerFactory(),
-            Command\CreatePerson::class => new HandlerFactory\CreatePersonHandlerFactory(),
             Command\SeePerson::class => new HandlerFactory\SeePersonHandlerFactory(),
-            Command\ListNotesAbout::class => new HandlerFactory\ListNotesAboutHandlerFactory(),
+            Command\CreatePerson::class => new HandlerFactory\CreatePersonHandlerFactory(),
+
             Command\CreateNote::class => new HandlerFactory\CreateNoteHandlerFactory(),
+            Command\ListNotesAbout::class => new HandlerFactory\ListNotesAboutHandlerFactory(),
         ];
     }
 
@@ -118,22 +122,31 @@ class PeopleModule implements EkklesionModule
     }
 
     /**
-     * @param RouteLoader $routeLoader
+     * @param RouteLoader $loader
      */
-    public function loadRoutes(RouteLoader $routeLoader): void
+    public function loadRoutes(RouteLoader $loader): void
     {
-        $routeLoader->group('/people', function () use ($routeLoader) {
-            $routeLoader->get('', Controller\PeopleController::class.':index');
-            $routeLoader->post('', Controller\PeopleController::class.':create');
-            $routeLoader->get('/new', Controller\PeopleController::class.':new');
-            $routeLoader->get('/{id}', Controller\PeopleController::class.':show');
-            $routeLoader->post('/{id}/notes', Controller\PeopleController::class.':newNote');
-            $routeLoader->post('/{id}/create-account', Controller\PeopleController::class.':createAccount');
+        $loader->get('/auth/reset-password/{id}', Controller\SecurityController::class.':resetPassword');
+        $loader->post('/auth/reset-password/{id}', Controller\SecurityController::class.':doResetPassword');
+
+        // Auth Endpoints
+        $loader->group('/auth', function () use ($loader) {
+            $loader->post('/create-account', Controller\SecurityController::class.':createAccount');
+            $loader->post('/logout', Controller\SecurityController::class.':logout');
+        });
+
+        $loader->group('/people', function () use ($loader) {
+            $loader->get('', Controller\PeopleController::class.':index');
+            $loader->post('', Controller\PeopleController::class.':create');
+            $loader->get('/new', Controller\PeopleController::class.':new');
+            $loader->get('/{id}', Controller\PeopleController::class.':show');
+            $loader->post('/{id}/notes', Controller\PeopleController::class.':newNote');
+            $loader->post('/{id}/create-account', Controller\PeopleController::class.':createAccount');
         })->add(RequiresAuthenticationMiddleware::class);
 
         // People Api
-        $routeLoader->group('/api/v1/people', function () use ($routeLoader) {
-            $routeLoader->get('', Controller\JsonPeopleController::class.':index');
+        $loader->group('/api/v1/people', function () use ($loader) {
+            $loader->get('', Controller\JsonPeopleController::class.':index');
         })->add(RequiresAuthenticationMiddleware::class);
     }
 }

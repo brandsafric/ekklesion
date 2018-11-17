@@ -10,11 +10,10 @@
 namespace Ekklesion\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
-use Ekklesion\Core\Domain\Model\Account;
-use Ekklesion\Core\Domain\Model\Privileges;
-use Ekklesion\Core\Domain\Model\Username;
+// TODO: Change filename to model in core, along with filesystem
 use Ekklesion\Core\Infrastructure\Filesystem\Filename;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * A Person represents someone that has attended or attends a church.
@@ -373,6 +372,18 @@ class Person
         $this->firstVisit = $firstVisit;
     }
 
+    /**
+     * @param UuidInterface $personId
+     * @param string        $text
+     * @param bool          $isPrivate
+     *
+     * @return Note
+     */
+    public function writeNoteAbout(UuidInterface $personId, string $text, bool $isPrivate = false): Note
+    {
+        return Note::create($this, $personId, $text, $isPrivate);
+    }
+
     public function markAsBaptized(): void
     {
         $this->isBaptized = true;
@@ -396,6 +407,7 @@ class Person
      */
     public function createAccount(string $username, string $plainPassword, Privileges $privileges): Account
     {
+        // TODO: Refactor account like notes: embedding user.
         $account = Account::create($username, $plainPassword, $privileges);
         $this->accountId = $account->uuid();
 

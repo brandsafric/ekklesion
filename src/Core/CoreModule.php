@@ -10,11 +10,7 @@
 namespace Ekklesion\Core;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ekklesion\Core\Domain\Command;
-use Ekklesion\Core\Domain\Repository\AccountRepository;
-use Ekklesion\Core\Factory\CommandHandler as HandlerFactory;
 use Ekklesion\Core\Factory\Middleware as MiddlewareFactory;
-use Ekklesion\Core\Factory\Repository\AccountRepositoryFactory;
 use Ekklesion\Core\Factory\Service as ServiceFactory;
 use Ekklesion\Core\Infrastructure\CommandBus\CommandBus;
 use Ekklesion\Core\Infrastructure\Filesystem\Filesystem;
@@ -104,14 +100,6 @@ class CoreModule implements EkklesionModule
             LocalizationMiddleware::class => new MiddlewareFactory\LocalizationMiddlewareFactory(),
             ForcedPasswordChangeMiddleware::class => new MiddlewareFactory\ForcedPasswordChangeMiddlewareFactory(),
             StoragePathConfigMiddleware::class => new MiddlewareFactory\StoragePathConfigMiddlewareFactory(),
-
-            // Repository
-            AccountRepository::class => new AccountRepositoryFactory(),
-
-            // Command => Command Handler
-            Command\CreateAccount::class => new HandlerFactory\CreateAccountHandlerFactory(),
-            Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
-            Command\ResetPassword::class => new HandlerFactory\ResetPasswordHandlerFactory(),
         ];
     }
 
@@ -129,7 +117,6 @@ class CoreModule implements EkklesionModule
     public function loadResources(ResourceLoader $resourceLoader): void
     {
         $resourceLoader->loadTemplate(self::NAME, __DIR__.'/Resources/templates');
-        $resourceLoader->loadORMMapping('Ekklesion\Core\Domain\Model', __DIR__.'/Resources/mappings');
         $resourceLoader->loadORMType('uuid', Types\UuidType::class);
         $resourceLoader->loadORMType('chronos', Types\ChronosType::class);
         $resourceLoader->loadORMType('filename', Types\FilenameType::class);
@@ -152,18 +139,5 @@ class CoreModule implements EkklesionModule
     {
         $routeLoader->get('/', Controller\HomeController::class)
             ->add(RequiresAuthenticationMiddleware::class);
-
-        $routeLoader->get('/auth/reset-password/{id}', Controller\SecurityController::class.':resetPassword');
-        $routeLoader->post('/auth/reset-password/{id}', Controller\SecurityController::class.':doResetPassword');
-
-        // Auth Endpoints
-        $routeLoader->group('/auth', function () use ($routeLoader) {
-            $routeLoader->get('/login', Controller\SecurityController::class.':renderLogin');
-            $routeLoader->post('/login', Controller\SecurityController::class.':doLogin');
-            $routeLoader->post('/create-account', Controller\SecurityController::class.':createAccount');
-            $routeLoader->post('/logout', Controller\SecurityController::class.':logout');
-            $routeLoader->get('/install', Controller\SecurityController::class.':install');
-            $routeLoader->post('/install', Controller\SecurityController::class.':doInstall');
-        });
     }
 }

@@ -10,22 +10,20 @@
 namespace Ekklesion\People\Factory\CommandHandler;
 
 use Ekklesion\People\Domain\Repository\AccountRepository;
-use Ekklesion\People\Domain\Repository\PersonRepository;
-use Ekklesion\People\Infrastructure\CommandHandler\CreateFirstUserHandler;
+use Ekklesion\People\Infrastructure\CommandHandler\ResetPasswordHandler;
 use Psr\Container\ContainerInterface;
 
-class CreateFirstUserHandlerFactory
+class ResetPasswordHandlerFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return CreateFirstUserHandler
+     * @return ResetPasswordHandler
      */
     public function __invoke(ContainerInterface $container)
     {
-        $handler = new CreateFirstUserHandler();
+        $handler = new ResetPasswordHandler();
         $handler->setAccounts($container->get(AccountRepository::class));
-        $handler->setPeople($container->get(PersonRepository::class));
 
         return $handler;
     }
