@@ -57,7 +57,7 @@ class SecurityController extends BaseController
             $accountId = $this->dispatchCommand(new Login($body['username'], $body['password']));
         } catch (\DomainException $e) {
             return $this->render($response, '@core/layout/login.html.twig', [
-                'error' => 'Credenciales invalidas',
+                'error' => _('Invalid credentials.'),
             ]);
         }
 

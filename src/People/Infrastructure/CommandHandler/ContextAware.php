@@ -19,7 +19,7 @@ use Ekklesion\People\Infrastructure\Context\ApplicationContext;
 interface ContextAware
 {
     /**
-     * @param Context $context
+     * @param ApplicationContext $context
      */
     public function setApplicationContext(ApplicationContext $context): void;
 }

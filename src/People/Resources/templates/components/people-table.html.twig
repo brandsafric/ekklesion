@@ -31,11 +31,11 @@
             {% for person in collection %}
             <tr>
                 <td><a href="{{ person.link }}">{{ person.listName }}</a></td>
-                <td>{{ person.nickname }}</td>
+                <td>{% if person.nickname %}{{ person.nickname }}{% else %}{% trans 'Not registered' %}{% endif %}</td>
                 <td>{{ person.gender }}</td>
-                <td>{{ person.emailPrimary }}</td>
-                <td>{{ person.phonePrimary }}</td>
-                <td>{{ person.birthday }}</td>
+                <td>{% if person.emailPrimary %}{{ person.emailPrimary }}{% else %}{% trans 'Not registered' %}{% endif %}</td>
+                <td>{% if person.phonePrimary %}{{ person.phonePrimary }}{% else %}{% trans 'Not registered' %}{% endif %}</td>
+                <td>{% if person.birthday %}{{ person.birthday }}{% else %}{% trans 'Not registered' %}{% endif %}</td>
                 <td>
                     {% for name in person.membership %}
                         <span class="label label-success">{{ name }}</span>
@@ -72,7 +72,7 @@
     </div>
     {% else %}
     <div class="box-body">
-        <p>No hay resultados...</p>
+        <p>{% trans 'There are no results found' %}...</p>
     </div>
     {% endif %}
     <!-- /.box-body -->

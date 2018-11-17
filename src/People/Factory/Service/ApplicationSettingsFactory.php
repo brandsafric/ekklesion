@@ -26,6 +26,6 @@ class ApplicationSettingsFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        return ApplicationSettings::fromFile($container->get('settings')['people']['settings_file']);
+        return ApplicationSettings::fromFile($container->get('settings')['core']['settings_file']);
     }
 }

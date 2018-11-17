@@ -13,6 +13,7 @@ use Ekklesion\Core\Domain\Model\Account;
 use Ekklesion\Core\Domain\Presenter\AccountPresenter;
 use Ekklesion\People\Domain\Model\Person;
 use Ekklesion\People\Domain\Presenter\PersonPresenter;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Context.
@@ -25,7 +26,6 @@ class ApplicationContext
      * @var ApplicationSettings
      */
     private $settings;
-
     /**
      * @var AccountPresenter|null
      */
@@ -101,5 +101,15 @@ class ApplicationContext
     public function activeAccount(): ?AccountPresenter
     {
         return $this->activeAccount;
+    }
+
+    /**
+     * @param UuidInterface $uuid
+     *
+     * @return bool
+     */
+    public function personIsEqual(UuidInterface $uuid): bool
+    {
+        return $this->activeAccount->uuid() === $uuid->toString();
     }
 }

@@ -15,6 +15,7 @@ use Ekklesion\Core\Infrastructure\Http\Controller\BaseController;
 use Ekklesion\Core\Infrastructure\Http\Security\Authenticator;
 use Ekklesion\Install\Domain\Command\CreateInitialAccountAndPerson;
 use Ekklesion\Install\Domain\Command\InstallApplication;
+use Ekklesion\Install\Domain\Installer\Installer;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -33,6 +34,9 @@ class InstallationController extends BaseController
      */
     public function install(Request $request, Response $response): Response
     {
+        if ($this->get(Installer::class)->isInstalled()) {
+            return $this->redirect($response, '/');
+        }
         return $this->render($response, '@install/install-view.html.twig');
     }
 
@@ -44,6 +48,9 @@ class InstallationController extends BaseController
      */
     public function doInstall(Request $request, Response $response): Response
     {
+        if ($this->get(Installer::class)->isInstalled()) {
+            return $this->redirect($response, '/');
+        }
         $this->dispatchCommand(new InstallApplication());
 
         /** @var AccountPresenter $account */

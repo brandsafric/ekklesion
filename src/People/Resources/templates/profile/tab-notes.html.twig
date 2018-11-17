@@ -1,0 +1,54 @@
+<div class="tab-pane" id="notes">
+    {% if notes.count is same as(0) %}
+        <p>{% trans 'This person does not have any notes yet.' %}.</p>
+    {% else %}
+    {% for note in notes %}
+    <div class="post">
+        <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="{{ note.author.avatar }}" alt="user image">
+            <span class="username">
+                <a href="{{ note.author.link }}">{{ note.author.fullName }}</a>
+                <a href="#" data-action="post" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+            </span>
+            <span class="description">{% trans 'Wrote' %} {{ note.writtenSince }}</span>
+        </div>
+        {% if note.isPrivate %}
+            <p><span class="label label-danger">Private</span></p>
+        {% endif %}
+        <p>
+            {{ note.text }}
+        </p>
+        <!-- Maybe this could be helpful in the future!
+        <ul class="list-inline">
+            <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+            <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+            </li>
+            <li class="pull-right">
+                <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                    (5)</a></li>
+        </ul>
+
+
+        <input class="form-control input-sm" type="text" placeholder="Type a comment">
+        -->
+    </div>
+    {% endfor %}
+    {% endif %}
+    <hr>
+    <form class="post" action="{{ person.link }}/notes" method="post">
+        <div class="form-group">
+            <label>{% trans 'Write a note about' %} {{ person.givenName }}:</label>
+            <p>{% trans %}It should help others to know a little bit more about {{ possessive }}{% endtrans %}.</p>
+            <textarea required name="text" class="form-control" rows="5" draggable="false"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="checkbox icheck">
+                <input name="private" type="checkbox" class="minimal-red">
+                {% trans 'Mark this note as private' %}.
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+        </div>
+    </form>
+</div>

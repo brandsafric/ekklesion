@@ -9,6 +9,7 @@
 
 namespace Ekklesion\People\Domain\Presenter;
 
+use Ekklesion\People\Domain\Model\Gender;
 use Ekklesion\People\Domain\Model\Name;
 use Ekklesion\People\Domain\Model\Person;
 
@@ -60,6 +61,36 @@ class PersonPresenter
         return $this->person->avatar() ? '/storage'.$this->person->avatar() : '/build/images/avatar.jpg';
     }
 
+    /**
+     * @return string
+     */
+    public function possessivePronoun(): string
+    {
+        if ($this->person->gender()->isEqualTo(Gender::female())) {
+            return _('her');
+        }
+        return _('his');
+    }
+
+    /**
+     * @return string
+     */
+    public function pronoun(): string
+    {
+        if ($this->person->gender()->isEqualTo(Gender::female())) {
+            return _('she');
+        }
+        return _('he');
+    }
+
+    public function attendsSince(): ?string
+    {
+        if ($this->person->firstVisit() === null) {
+            return null;
+        }
+        return sprintf('%s %s', _('Attends to church'), $this->person->firstVisit()->diffForHumans());
+    }
+
     public function createdAt(): string
     {
         return $this->person->createdAt()->format('d/m/Y');
@@ -83,6 +114,14 @@ class PersonPresenter
         return sprintf('/people/%s', $this->person->uuid());
     }
 
+    /**
+     * @return string
+     */
+    public function givenName(): string
+    {
+        return $this->person->name()->given();
+    }
+
     public function listName(): string
     {
         return $this->person->name()->format(Name::FORMAT_LIST);
@@ -98,23 +137,66 @@ class PersonPresenter
         return $this->person->name()->format(Name::FORMAT_FULL);
     }
 
+    public function isBaptized(): ?bool
+    {
+        return $this->person->isBaptized();
+    }
+
     /**
      * @return string
      */
-    public function emailPrimary(): string
+    public function emailPrimary(): ?string
     {
-        return $this->person->emailPrimary() ?? '---';
+        return $this->person->emailPrimary();
     }
 
-    public function phonePrimary(): string
+    public function phonePrimary(): ?string
     {
-        return $this->person->phonePrimary() ?? '---';
+        return $this->person->phonePrimary();
     }
 
-    public function birthday(bool $withAge = true): string
+    /**
+     * @return string
+     */
+    public function emailSecondary(): ?string
+    {
+        return $this->person->emailSecondary();
+    }
+
+    public function phoneSecondary(): ?string
+    {
+        return $this->person->phoneSecondary();
+    }
+
+    public function hasFacebook(): bool
+    {
+        return $this->person->facebook() !== null;
+    }
+
+    public function facebook(): ?string
+    {
+        return $this->person->facebook();
+    }
+
+    public function twitter(): ?string
+    {
+        return null;
+    }
+
+    public function linkedIn(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @param bool $withAge
+     *
+     * @return null|string
+     */
+    public function birthday(bool $withAge = true): ?string
     {
         if (null === $this->person->birthday()) {
-            return '---';
+            return null;
         }
         $string = sprintf('%s', $this->person->birthday()->format('d M'));
         if (true === $withAge) {
@@ -156,10 +238,10 @@ class PersonPresenter
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function nickname(): string
+    public function nickname(): ?string
     {
-        return $this->person->nickname() ?? '---';
+        return $this->person->nickname();
     }
 }

@@ -42,6 +42,31 @@ use Psr\Log\LoggerInterface;
  */
 class CoreModule implements EkklesionModule
 {
+    protected static $defaultSettings = [
+        'secret' => 'c4ad2e3bb60ad33f238dc82afd12fa2712abab2fb1a502202cc608eb1b8a62ab',
+        'db_url' => 'sqlite://data.db',
+        'env' => 'dev',
+        'log_path' => './log.txt',
+        'locale' => 'en_US',
+        'login_route' => '/auth/login',
+        'settings_file' => './settings.json',
+    ];
+
+    /**
+     * @var array
+     */
+    private $settings;
+
+    /**
+     * CoreModule constructor.
+     *
+     * @param array $settings
+     */
+    public function __construct(array $settings = [])
+    {
+        $this->settings = array_merge(self::$defaultSettings, $settings);
+    }
+
     public const NAME = 'core';
 
     public function getModuleName(): string
@@ -95,15 +120,7 @@ class CoreModule implements EkklesionModule
      */
     public function getSettings(): array
     {
-        return [
-            'secret' => getenv('APP_SECRET'),
-            'db_url' => getenv('DATABASE_URL'),
-            'env' => getenv('APP_ENV'),
-            'log_path' => getenv('LOG_PATH'),
-            'locale' => getenv('LOCALE'),
-            'base_path' => ROOT_PATH,
-            'login_route' => '/auth/login',
-        ];
+        return $this->settings;
     }
 
     /**

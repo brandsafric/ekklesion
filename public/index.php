@@ -8,16 +8,22 @@
  */
 
 require __DIR__.'/../vendor/autoload.php';
+chdir(__DIR__.'/../');
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.env');
 
 use Ekklesion\Core\Infrastructure\Module\Loader\ApplicationLoader;
 
-define('ROOT_PATH', realpath(__DIR__.'/..'));
-
 $appLoader = new ApplicationLoader(
-    new \Ekklesion\Core\CoreModule(),
-    new \Ekklesion\People\PeopleModule(),
+    new \Ekklesion\Core\CoreModule([
+        'secret' => getenv('APP_SECRET'),
+        'locale' => getenv('LOCALE'),
+        'base_path' => getcwd(),
+        'log_path' => 'php://stderr'
+    ]),
+    new \Ekklesion\People\PeopleModule([
+        'allow_private_notes' => true
+    ]),
     new \Ekklesion\Install\InstallModule()
 );
 

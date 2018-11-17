@@ -88,7 +88,7 @@ class Person
      */
     private $firstVisit;
     /**
-     * @var bool
+     * @var bool|null
      */
     private $isBaptized;
     /**
@@ -278,9 +278,9 @@ class Person
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function isBaptized(): bool
+    public function isBaptized(): ?bool
     {
         return $this->isBaptized;
     }

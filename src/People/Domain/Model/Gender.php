@@ -64,6 +64,16 @@ final class Gender
     }
 
     /**
+     * @param Gender $gender
+     *
+     * @return bool
+     */
+    public function isEqualTo(Gender $gender): bool
+    {
+        return $this->value === $gender->value;
+    }
+
+    /**
      * @return string
      */
     public function value(): string

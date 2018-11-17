@@ -21,6 +21,7 @@
         <field name="phoneSecondary" type="phone" nullable="true"/>
         <field name="facebook" type="website" nullable="true"/>
         <field name="firstVisit" type="chronos" nullable="true"/>
+        <field name="isBaptized" type="boolean" nullable="true"/>
         <field name="baptizedAt" type="chronos" nullable="true"/>
         <field name="createdBy" type="uuid" nullable="true"/>
         <field name="createdAt" type="chronos"/>

@@ -16,9 +16,11 @@ use Ekklesion\Core\Infrastructure\Module\Loader\MiddlewareLoader;
 use Ekklesion\Core\Infrastructure\Module\Loader\ResourceLoader;
 use Ekklesion\Core\Infrastructure\Module\Loader\RouteLoader;
 use Ekklesion\People\Domain\Command;
+use Ekklesion\People\Domain\Repository\NoteRepository;
 use Ekklesion\People\Domain\Repository\PersonRepository;
 use Ekklesion\People\Factory\CommandHandler as HandlerFactory;
 use Ekklesion\People\Factory\Middleware\ApplicationContextMiddlewareFactory;
+use Ekklesion\People\Factory\Repository\NoteRepositoryFactory;
 use Ekklesion\People\Factory\Repository\PersonRepositoryFactory;
 use Ekklesion\People\Factory\Service\ApplicationContextFactory;
 use Ekklesion\People\Factory\Service\ApplicationSettingsFactory;
@@ -38,6 +40,21 @@ use Ekklesion\People\Infrastructure\Persistence\Types\WebsiteType;
  */
 class PeopleModule implements EkklesionModule
 {
+    /**
+     * @var array
+     */
+    private $settings;
+
+    /**
+     * PeopleModule constructor.
+     *
+     * @param array $settings
+     */
+    public function __construct(array $settings = [])
+    {
+        $this->settings = $settings;
+    }
+
     public const NAME = 'people';
 
     public function getModuleName(): string
@@ -62,19 +79,21 @@ class PeopleModule implements EkklesionModule
 
             // Repository
             PersonRepository::class => new PersonRepositoryFactory(),
+            NoteRepository::class => new NoteRepositoryFactory(),
 
             // Command => Command Handler
             Command\CreateFirstUser::class => new HandlerFactory\CreateFirstUserHandlerFactory(),
             Command\ListPeople::class => new HandlerFactory\ListPeopleHandlerFactory(),
             Command\CreatePerson::class => new HandlerFactory\CreatePersonHandlerFactory(),
+            Command\SeePerson::class => new HandlerFactory\SeePersonHandlerFactory(),
+            Command\ListNotesAbout::class => new HandlerFactory\ListNotesAboutHandlerFactory(),
+            Command\CreateNote::class => new HandlerFactory\CreateNoteHandlerFactory(),
         ];
     }
 
     public function getSettings(): array
     {
-        return [
-            'settings_file' => __DIR__.'/../../settings.json',
-        ];
+        return $this->settings;
     }
 
     /**
@@ -107,6 +126,9 @@ class PeopleModule implements EkklesionModule
             $routeLoader->get('', Controller\PeopleController::class.':index');
             $routeLoader->post('', Controller\PeopleController::class.':create');
             $routeLoader->get('/new', Controller\PeopleController::class.':new');
+            $routeLoader->get('/{id}', Controller\PeopleController::class.':show');
+            $routeLoader->post('/{id}/notes', Controller\PeopleController::class.':newNote');
+            $routeLoader->post('/{id}/create-account', Controller\PeopleController::class.':createAccount');
         })->add(RequiresAuthenticationMiddleware::class);
 
         // People Api

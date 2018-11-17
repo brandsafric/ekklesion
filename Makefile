@@ -4,6 +4,9 @@ coverage:
 cs:
 	vendor/bin/php-cs-fixer fix --diff --verbose
 
+schema:
+	vendor/bin/doctrine orm:schema-tool:update --dump-sql --force
+
 main-translation:
 	find . -iname '*.php' | xargs xgettext -L PHP -o messages.po
 

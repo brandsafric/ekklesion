@@ -1,0 +1,19 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Ekklesion\People\Domain\Model\Note" repository-class="Ekklesion\People\Infrastructure\Repository\DoctrineNoteRepository">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <many-to-one field="author" target-entity="Ekklesion\People\Domain\Model\Person" fetch="EAGER">
+            <cascade><cascade-all/></cascade>
+            <join-column referenced-column-name="uuid" on-delete="CASCADE" nullable="false"/>
+        </many-to-one>
+        <field name="isPrivate" type="boolean"/>
+        <field name="text" type="text"/>
+        <field name="subjectId" type="uuid"/>
+        <field name="writtenOn" type="chronos"/>
+    </entity>
+
+</doctrine-mapping>

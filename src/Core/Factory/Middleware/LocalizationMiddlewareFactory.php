@@ -27,7 +27,7 @@ class LocalizationMiddlewareFactory
     public function __invoke(ContainerInterface $container)
     {
         $locale = $container->get('settings')['core']['locale'];
-        $path = ROOT_PATH.'/locale';
+        $path = getcwd().'/locale';
 
         return new LocalizationMiddleware($path, $locale);
     }

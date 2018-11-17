@@ -151,7 +151,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">{% trans 'Profile' %}</a>
+                                <a href="{{ context.activePerson.link }}" class="btn btn-default btn-flat">{% trans 'Profile' %}</a>
                             </div>
                             <div class="pull-right">
                                 <form action="/auth/logout" method="post">

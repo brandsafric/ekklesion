@@ -1,0 +1,44 @@
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#info" data-toggle="tab">{% trans 'Personal Info' %}</a></li>
+        {% if person.uuid is not same as(context.activePerson.uuid) %}
+            <li><a href="#notes" data-toggle="tab">{% trans 'Notes' %}</a></li>
+        {% endif %}
+        {% if person.hasAccount %}
+            <li><a href="#account" data-toggle="tab">{% trans 'Account' %}</a></li>
+        {% endif %}
+        {% if context.isModuleInstalled('household') %}
+            <li><a href="#household" data-toggle="tab">{% trans 'Household' %}</a></li>
+        {% endif %}
+        {% if context.isModuleInstalled('groups') %}
+            <li><a href="#groups" data-toggle="tab">{% trans 'Groups' %}</a></li>
+        {% endif %}
+        {% if context.isModuleInstalled('accounting') %}
+            <li><a href="#contributions" data-toggle="tab">{% trans 'Contributions' %}</a></li>
+        {% endif %}
+        {% if context.isModuleInstalled('events') %}
+            <li><a href="#events" data-toggle="tab">{% trans 'Events' %}</a></li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        {% include '@people/profile/tab-info.html.twig' %}
+        {% if person.uuid is not same as(context.activePerson.uuid) %}
+            {% include '@people/profile/tab-notes.html.twig' %}
+        {% endif %}
+        {% if person.hasAccount %}
+            {% include '@people/profile/tab-account.html.twig' %}
+        {% endif %}
+        {% if context.isModuleInstalled('household') %}
+            {% include '@household/people/tab-household.html.twig' %}
+        {% endif %}
+        {% if context.isModuleInstalled('groups') %}
+            {% include '@groups/people/tab-groups.html.twig' %}
+        {% endif %}
+        {% if context.isModuleInstalled('accounting') %}
+            {% include '@contributions/people/tab-contributions.html.twig' %}
+        {% endif %}
+        {% if context.isModuleInstalled('events') %}
+            {% include '@events/people/tab-events.html.twig' %}
+        {% endif %}
+    </div>
+</div>

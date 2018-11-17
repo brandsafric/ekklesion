@@ -9,7 +9,7 @@
 
 namespace Ekklesion\People\Infrastructure\CommandHandler;
 
-use Ekklesion\People\Infrastructure\Context\ApplicationContext as Context;
+use Ekklesion\People\Infrastructure\Context\ApplicationContext as AppContext;
 
 /**
  * Trait Context.
@@ -19,14 +19,14 @@ use Ekklesion\People\Infrastructure\Context\ApplicationContext as Context;
 trait Context
 {
     /**
-     * @var Context
+     * @var AppContext
      */
     protected $context;
 
     /**
-     * @param Context $context
+     * @param AppContext $context
      */
-    public function setApplicationContext(Context $context): void
+    public function setApplicationContext(AppContext $context): void
     {
         $this->context = $context;
     }

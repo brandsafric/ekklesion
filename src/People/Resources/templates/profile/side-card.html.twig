@@ -1,0 +1,156 @@
+<!-- Profile Image -->
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" src="{{ person.avatar }}" alt="{% trans 'User profile picture' %}">
+
+        <h3 class="profile-username text-center">
+            {% if person.isBaptized %}
+                <i class="fa fa-tint margin-r-5 text-blue" data-toggle="tooltip" data-placement="top" title="{{ person.baptizedAt }}"></i>
+            {% endif %}
+            {{ person.fullName }}
+        </h3>
+        <p class="text-muted text-center">{% if person.attendsSince %}{{ person.attendsSince }}{% else %}{% trans %}No record of {{ possessive }} first visit{% endtrans %}{% endif %}</p>
+
+        <p class="text-center">
+            {% for name in person.membership %}
+                <span class="label label-success">{{ name }}</span>
+            {% endfor %}
+        </p>
+
+        <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+                <b>{% trans 'Notes' %}</b> <a class="pull-right">{{ notes.count }}</a>
+            </li>
+            {% if context.isModuleInstalled('household') %}
+            <li class="list-group-item">
+                <b>{% trans 'Household' %}</b> <a class="pull-right">{{ household.name }}</a>
+            </li>
+            {% endif %}
+            <li class="list-group-item">
+                <b>{% trans 'Events Attendance' %}</b> <a class="pull-right">{{ events.count }}</a>
+            </li>
+        </ul>
+        {% if not person.hasAccount %}
+            <button data-toggle="modal" data-target="#create-account" class="btn btn-primary btn-block"><b>{% trans 'Create Account' %}</b></button>
+
+            <div class="modal fade" id="create-account">
+                <form action="{{ person.link }}/create-account" method="post">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">{% trans 'Create Account' %}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{% trans 'Please select this person email address. If no email addresses are registered for this person, then you will have the chance to write down one.' %}</p>
+                                <p>{% trans %}We will send an email to this person with instructions on how to create {{ possessive }} account.{% endtrans %}</p>
+                                <div class="form-group">
+                                    {% if person.emailPrimary %}
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="email" id="optionsRadios1" value="{{ person.emailPrimary }}" checked="">
+                                            {{ person.emailPrimary }}
+                                        </label>
+                                    </div>
+                                    {% endif %}
+                                    {% if person.emailSecondary %}
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="email" id="optionsRadios2" value="{{ person.emailSecondary }}">
+                                            {{ person.emailSecondary }}
+                                        </label>
+                                    </div>
+                                    {% endif %}
+                                    {% if not person.emailPrimary and not person.emailSecondary %}
+                                        <input type="email" class="form-control" required name="email" placeholder="{% trans 'Write the email address here' %}"/>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'Cancel' %}</button>
+                                <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <button data-toggle="modal" data-target="#delete-account" type="submit" class="btn btn-danger btn-block"><b>{% trans 'Delete Account' %}</b></button>
+
+            <div class="modal modal-danger fade" id="delete-account">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">{% trans 'Are you sure?' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{% trans %}This will delete the person account with <b>no chance to recover it</b>. This user <b>will not be able to log in again</b> until a new account is created for {{ possessive }}. However, the person data will remain intact.{% endtrans %}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{% trans 'Cancel' %}</button>
+                            <button type="button" class="btn btn-danger">{% trans 'Delete Account' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<!-- About Me Box -->
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">{% trans 'Contact Info' %}</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <strong><i class="fa fa-phone margin-r-5"></i> {% trans 'Primary Phone' %}</strong>
+        {% if person.phonePrimary %}
+            <p class="text-muted"><a href="tel://{{ person.phonePrimary }}">{{ person.phonePrimary }}</a></p>
+        {% else %}
+            <p class="text-muted">{% trans 'Not registered' %}</p>
+        {% endif %}
+
+        <hr>
+
+        <strong><i class="fa fa-envelope margin-r-5"></i> {% trans 'Primary Email' %}</strong>
+        {% if person.emailPrimary %}
+            <p class="text-muted"><a href="mailto://{{ person.emailPrimary }}">{{ person.emailPrimary }}</a></p>
+        {% else %}
+            <p class="text-muted">{% trans 'Not registered' %}</p>
+        {% endif %}
+
+        <hr>
+
+        <strong><i class="fa fa-phone margin-r-5"></i> {% trans 'Secondary Phone' %}</strong>
+        {% if person.phoneSecondary %}
+            <p class="text-muted"><a href="tel://{{ person.phoneSecondary }}">{{ person.phoneSecondary }}</a></p>
+        {% else %}
+            <p class="text-muted">{% trans 'Not registered' %}</p>
+        {% endif %}
+
+        <hr>
+
+        <strong><i class="fa fa-envelope margin-r-5"></i> {% trans 'Sencondary Email' %}</strong>
+        {% if person.emailSecondary %}
+            <p class="text-muted"><a href="mailto://{{ person.emailSecondary }}">{{ person.emailSecondary }}</a></p>
+        {% else %}
+            <p class="text-muted">{% trans 'Not registered' %}</p>
+        {% endif %}
+
+        {% if person.facebook %}
+            <hr>
+
+            <strong><i class="fa fa-facebook margin-r-5"></i> {% trans 'Facebook' %}</strong>
+            <p><a href="{{ person.facebook }}" target="_blank" class="text-muted">{% trans 'Go to profile' %}...</a></p>
+        {% endif %}
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

@@ -11,6 +11,7 @@ namespace Ekklesion\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * A Note represents a commentary on text that a Person writes about another.
@@ -20,15 +21,15 @@ use Ramsey\Uuid\Uuid;
 class Note
 {
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $uuid;
     /**
-     * @var Uuid
+     * @var Person
      */
-    private $authorId;
+    private $author;
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $subjectId;
     /**
@@ -36,7 +37,77 @@ class Note
      */
     private $text;
     /**
+     * @var bool
+     */
+    private $isPrivate;
+    /**
      * @var Chronos
      */
     private $writtenOn;
+
+    /**
+     * Note constructor.
+     *
+     * @param Person        $author
+     * @param UuidInterface $subjectId
+     * @param string        $text
+     * @param bool          $isPrivate
+     */
+    public function __construct(Person $author, UuidInterface $subjectId, string $text, bool $isPrivate = false)
+    {
+        $this->uuid = Uuid::uuid4();
+        $this->author = $author;
+        $this->subjectId = $subjectId;
+        $this->text = $text;
+        $this->isPrivate = $isPrivate;
+        $this->writtenOn = Chronos::now();
+    }
+
+    /**
+     * @return UuidInterface
+     */
+    public function uuid(): UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return Person
+     */
+    public function author(): Person
+    {
+        return $this->author;
+    }
+
+    /**
+     * @return UuidInterface
+     */
+    public function subjectId(): UuidInterface
+    {
+        return $this->subjectId;
+    }
+
+    /**
+     * @return string
+     */
+    public function text(): string
+    {
+        return $this->text;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPrivate(): bool
+    {
+        return $this->isPrivate;
+    }
+
+    /**
+     * @return Chronos
+     */
+    public function writtenOn(): Chronos
+    {
+        return $this->writtenOn;
+    }
 }

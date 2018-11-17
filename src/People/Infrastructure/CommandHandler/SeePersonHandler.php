@@ -9,6 +9,10 @@
 
 namespace Ekklesion\People\Infrastructure\CommandHandler;
 
+use Ekklesion\People\Domain\Command\SeePerson;
+use Ekklesion\People\Domain\Presenter\PersonPresenter;
+use Ramsey\Uuid\Uuid;
+
 /**
  * Class SeePersonHandler.
  *
@@ -18,7 +22,14 @@ class SeePersonHandler implements PeopleAware
 {
     use People;
 
-    public function __invoke()
+    /**
+     * @param SeePerson $command
+     *
+     * @return PersonPresenter
+     */
+    public function __invoke(SeePerson $command)
     {
+        $person = $this->findPersonByIdOrFail(Uuid::fromString($command->personId()));
+        return new PersonPresenter($person);
     }
 }
