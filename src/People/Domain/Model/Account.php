@@ -69,7 +69,7 @@ class Account
      *
      * @return Account
      */
-    public static function create(Person $person, string $username, string $plainPassword, Privileges $privileges): Account
+    public static function create(Person $person, string $username, string $plainPassword, int $privileges): Account
     {
         $self = new self();
         $self->uuid = Uuid::uuid4();
@@ -77,7 +77,7 @@ class Account
         $self->username = Username::create($username);
         $self->password = ArgonHashedPassword::fromPlainPassword($plainPassword);
         $self->actionToken = ActionToken::generate();
-        $self->privileges = $privileges;
+        $self->privileges = Privileges::fromValue($privileges);
         $self->createdAt = Chronos::now();
         $self->requiresPasswordChange = false;
 

@@ -13,6 +13,7 @@ use Ekklesion\People\Domain\Model\Email;
 use Ekklesion\People\Domain\Model\Person;
 use MNC\PhpDdd\Domain\Model\Collection;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Interface PersonRepository.
@@ -27,11 +28,11 @@ interface PersonRepository
     public function all(): Collection;
 
     /**
-     * @param Uuid $id
+     * @param UuidInterface $id
      *
      * @return Person|null
      */
-    public function ofId(Uuid $id): ?Person;
+    public function ofId(UuidInterface $id): ?Person;
 
     /**
      * @param Uuid ...$ids

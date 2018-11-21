@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\Core\Tests\Domain\Model;
+namespace Ekklesion\Tests\People\Domain\Model;
 
-use Ekklesion\Core\Domain\Model\Privileges;
+use Ekklesion\People\Domain\Model\Privileges;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,7 +69,7 @@ class PrivilegesTest extends TestCase
     {
         $privileges = Privileges::all();
 
-        $this->assertSame(7, $privileges->value());
+        $this->assertSame(15, $privileges->value());
     }
 
     public function testDoubleGrant(): void

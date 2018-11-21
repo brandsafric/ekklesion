@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\People\Tests\Infrastructure\Filesystem;
+namespace Ekklesion\Tests\People\Infrastructure\Filesystem;
 
 use Ekklesion\Core\Infrastructure\Filesystem\Filename;
 use PHPUnit\Framework\TestCase;

@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\Core\Tests\Domain\Model;
+namespace Ekklesion\Tests\People\Domain\Model;
 
-use Ekklesion\Core\Domain\Model\Username;
+use Ekklesion\People\Domain\Model\Username;
 use PHPUnit\Framework\TestCase;
 
 /**

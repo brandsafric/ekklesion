@@ -81,7 +81,7 @@ class PeopleModule implements EkklesionModule
             Repository\NoteRepository::class => new RepositoryFactory\NoteRepositoryFactory(),
 
             // Command => Command Handler
-            Command\CreateAccount::class => new HandlerFactory\CreateAccountHandlerFactory(),
+            Command\CreateAccountForPerson::class => new HandlerFactory\CreateAccountForPersonHandlerFactory(),
             Command\Login::class => new HandlerFactory\LoginHandlerFactory(),
             Command\ResetPassword::class => new HandlerFactory\ResetPasswordHandlerFactory(),
             Command\CreateFirstUser::class => new HandlerFactory\CreateFirstUserHandlerFactory(),
@@ -131,10 +131,13 @@ class PeopleModule implements EkklesionModule
 
         // Auth Endpoints
         $loader->group('/auth', function () use ($loader) {
+            $loader->get('/login', Controller\SecurityController::class.':renderLogin');
+            $loader->post('/login', Controller\SecurityController::class.':doLogin');
             $loader->post('/create-account', Controller\SecurityController::class.':createAccount');
             $loader->post('/logout', Controller\SecurityController::class.':logout');
         });
 
+        // People Endpoints
         $loader->group('/people', function () use ($loader) {
             $loader->get('', Controller\PeopleController::class.':index');
             $loader->post('', Controller\PeopleController::class.':create');

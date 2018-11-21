@@ -13,6 +13,7 @@ use Ekklesion\People\Domain\Model\Email;
 use Ekklesion\People\Domain\Model\Person;
 use Ekklesion\People\Domain\Repository\PersonRepository;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * Trait People.
@@ -35,11 +36,11 @@ trait People
     }
 
     /**
-     * @param Uuid $id
+     * @param UuidInterface $id
      *
      * @return Person
      */
-    protected function findPersonByIdOrFail(Uuid $id): Person
+    protected function findPersonByIdOrFail(UuidInterface $id): Person
     {
         $person = $this->people->ofId($id);
         if ($person instanceof Person) {

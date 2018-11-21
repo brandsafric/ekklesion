@@ -10,11 +10,11 @@
 namespace Ekklesion\People\Domain\Command;
 
 /**
- * Class CreateAccount.
+ * Class CreateAccountForPerson.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class CreateAccount
+class CreateAccountForPerson
 {
     /**
      * @var string
@@ -23,18 +23,32 @@ class CreateAccount
     /**
      * @var string
      */
-    private $plainPassword;
+    private $personId;
+    /**
+     * @var int
+     */
+    private $privileges;
 
     /**
-     * CreateAccount constructor.
+     * CreateAccountForPerson constructor.
      *
+     * @param string $personId
      * @param string $username
-     * @param string $plainPassword
+     * @param int    $privileges
      */
-    public function __construct(string $username, string $plainPassword)
+    public function __construct(string $personId, string $username, int $privileges)
     {
+        $this->personId = $personId;
         $this->username = $username;
-        $this->plainPassword = $plainPassword;
+        $this->privileges = $privileges;
+    }
+
+    /**
+     * @return string
+     */
+    public function personId(): string
+    {
+        return $this->personId;
     }
 
     /**
@@ -46,10 +60,10 @@ class CreateAccount
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function plainPassword(): string
+    public function privileges(): int
     {
-        return $this->plainPassword;
+        return $this->privileges;
     }
 }

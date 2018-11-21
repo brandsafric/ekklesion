@@ -11,7 +11,7 @@ namespace Ekklesion\People\Infrastructure\Http\Controller;
 
 use Cake\Chronos\Chronos;
 use Ekklesion\Core\Infrastructure\Http\Controller\BaseController;
-use Ekklesion\People\Domain\Command\CreateAccount;
+use Ekklesion\People\Domain\Command\CreateAccountForPerson;
 use Ekklesion\People\Domain\Command\Login;
 use Ekklesion\People\Domain\Command\ResetPassword;
 use Ekklesion\Core\Infrastructure\Http\Form\FormExtractor;
@@ -81,7 +81,7 @@ class SecurityController extends BaseController
     public function createAccount(Request $request, Response $response): Response
     {
         $body = $request->getParsedBody();
-        $account = $this->dispatchCommand(new CreateAccount($body['username'], $body['password']));
+        $account = $this->dispatchCommand(new CreateAccountForPerson($body['username'], $body['password']));
 
         return $this->json($response, $account);
     }

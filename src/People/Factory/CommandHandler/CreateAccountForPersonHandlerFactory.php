@@ -10,24 +10,24 @@
 namespace Ekklesion\People\Factory\CommandHandler;
 
 use Ekklesion\People\Domain\Repository\AccountRepository;
-use Ekklesion\People\Infrastructure\CommandHandler\CreateAccountHandler;
+use Ekklesion\People\Infrastructure\CommandHandler\CreateAccountForPersonHandler;
 use Psr\Container\ContainerInterface;
 
 /**
- * Class CreateAccountHandlerFactory.
+ * Class CreateAccountForPersonHandlerFactory.
  *
  * @author Matías Navarro Carter <mnavarro@option.cl>
  */
-class CreateAccountHandlerFactory
+class CreateAccountForPersonHandlerFactory
 {
     /**
      * @param ContainerInterface $container
      *
-     * @return CreateAccountHandler
+     * @return CreateAccountForPersonHandler
      */
     public function __invoke(ContainerInterface $container)
     {
-        $handler = new CreateAccountHandler();
+        $handler = new CreateAccountForPersonHandler();
         $handler->setAccounts($container->get(AccountRepository::class));
 
         return $handler;

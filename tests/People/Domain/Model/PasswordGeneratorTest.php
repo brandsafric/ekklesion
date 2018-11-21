@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Ekklesion\Core\Tests\Domain\Model;
+namespace Ekklesion\Tests\People\Domain\Model;
 
-use Ekklesion\Core\Domain\Model\PasswordGenerator;
+use Ekklesion\People\Domain\Model\PasswordGenerator;
 use PHPUnit\Framework\TestCase;
 
 class PasswordGeneratorTest extends TestCase

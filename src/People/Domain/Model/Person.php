@@ -10,7 +10,6 @@
 namespace Ekklesion\People\Domain\Model;
 
 use Cake\Chronos\Chronos;
-// TODO: Change filename to model in core, along with filesystem
 use Ekklesion\Core\Infrastructure\Filesystem\Filename;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -47,9 +46,9 @@ class Person
      */
     private $avatar;
     /**
-     * @var Uuid|null
+     * @var Account|null
      */
-    private $accountId;
+    private $account;
     /**
      * @var Uuid|null
      */
@@ -95,7 +94,7 @@ class Person
      */
     private $baptizedAt;
     /**
-     * @var Uuid
+     * @var UuidInterface
      */
     private $createdBy;
     /**
@@ -118,7 +117,7 @@ class Person
      *
      * @return Person
      */
-    public static function create(Uuid $createdBy, Name $name, Gender $gender, Membership $membership): Person
+    public static function create(UuidInterface $createdBy, Name $name, Gender $gender, Membership $membership): Person
     {
         $person = new self();
         $person->uuid = Uuid::uuid4();
@@ -205,11 +204,11 @@ class Person
     }
 
     /**
-     * @return null|Uuid
+     * @return null|Account
      */
-    public function accountId(): ?Uuid
+    public function account(): ?Account
     {
-        return $this->accountId;
+        return $this->account;
     }
 
     /**
@@ -293,9 +292,9 @@ class Person
     }
 
     /**
-     * @return Uuid
+     * @return UuidInterface
      */
-    public function createdBy(): Uuid
+    public function createdBy(): UuidInterface
     {
         return $this->createdBy;
     }
@@ -399,18 +398,15 @@ class Person
     }
 
     /**
-     * @param string     $username
-     * @param string     $plainPassword
-     * @param Privileges $privileges
+     * @param string $username
+     * @param string $plainPassword
+     * @param int    $privileges
      *
      * @return Account
      */
-    public function createAccount(string $username, string $plainPassword, Privileges $privileges): Account
+    public function createAccount(string $username, string $plainPassword, int $privileges): Account
     {
-        // TODO: Refactor account like notes: embedding user.
-        $account = Account::create($username, $plainPassword, $privileges);
-        $this->accountId = $account->uuid();
-
-        return $account;
+        $this->account = Account::create($this, $username, $plainPassword, $privileges);
+        return $this->account;
     }
 }
